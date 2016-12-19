@@ -42,3 +42,8 @@ Secure Server
 ☐ install fail2ban
 
 ☐ initialise ufw (and allow ssh)
+
+Other Management
+----------------
+
+☐ Enable longview
