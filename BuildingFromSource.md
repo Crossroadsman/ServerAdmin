@@ -41,3 +41,16 @@ curl -O <url_to_tarball>
 ```
 
 (`-O` is an alias for `--remote-name` and signifies that the next argument will be the remote url)
+
+3: Extract Tarball
+------------------
+
+```
+tar -xvf <filename>
+```
+
+Key:
+- `x`: extract
+- `v`: verbose
+- `f`: filename
+
