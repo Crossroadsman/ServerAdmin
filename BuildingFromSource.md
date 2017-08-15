@@ -54,3 +54,18 @@ Key:
 - `v`: verbose
 - `f`: filename
 
+4: Prepare `makefile` (etc) with configure
+------------------------------------------
+
+```
+./configure
+```
+
+5: Use `make` to build the application
+--------------------------------------
+
+Run from the project's source directory.
+
+```
+make
+```
