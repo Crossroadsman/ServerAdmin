@@ -69,3 +69,10 @@ Run from the project's source directory.
 ```
 make
 ```
+
+6: Install the program
+----------------------
+
+```
+sudo make install
+```
