@@ -16,9 +16,13 @@ First-time Log in
 
 ☐ perform software updates
 
-☐ create hostname
+☐ create & activate hostname
 
-☐ activate hostname
+- option 1:
+    - `echo "my_hostname" > /etc/hostname` (create) then 
+    - `hostname -F /etc/hostname` (apply the changes to the running server)
+- option 2:
+    - `hostnamectl set-hostname my_hostname` (create and apply in one step)
 
 ☐ edit hosts
 
