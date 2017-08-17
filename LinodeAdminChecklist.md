@@ -28,6 +28,9 @@ First-time Log in
 
 ☐ specify timezone
 
+- `dpkg-reconfigure tzdata`
+
+
 Secure Server
 -------------
 
