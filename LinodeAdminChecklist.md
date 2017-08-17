@@ -38,13 +38,21 @@ Secure Server
 
 ☐ create limited user account
 
+- `adduser my_user_name`
+
 ☐ add limited user to sudo group
+
+- `adduser my_user_name sudo`
 
 ☐ create SSH keypair on local machine
 
 ☐ copy public key to server
 
 ☐ disallow root logins over ssh
+
+- edit `/etc/ssh/sshd_config`
+
+☐ restart the ssh daemon
 
 ☐ install fail2ban
 
