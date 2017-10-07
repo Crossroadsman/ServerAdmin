@@ -3,18 +3,28 @@ Linode Administration Checklist
 
 Provision VPS
 -------------
-☐ Deploy image
+☐ Go to Linode manager
+
+☐ Shut down the existing instance
+
+☐ Go to Rebuild and configure the settings for the new VPS
 
 ☐ Boot Machine
 
-☐ Get IP address
+☐ Note the IP address
+
+Remove old VPS from local machine's known_hosts
+-----------------------------------------------
+
+Edit `~/ssh/known_hosts`
 
 First-time Log in
 -----------------
 
 ☐ ssh in as root
 
-☐ perform software updates
+☐ perform software updates (`apt-get update && apt-get upgrade`)
+  (note: when prompted to update Grub, select '*keep the local version installed*')
 
 ☐ create & activate hostname
 
@@ -24,7 +34,15 @@ First-time Log in
 - option 2:
     - `hostnamectl set-hostname my_hostname` (create and apply in one step)
 
-☐ edit hosts
+- verify the hostname has been updated by entering `hostname`
+
+☐ configure hosts
+
+- edit `/etc/hosts` and add:
+  ```<ip address of server (from Linode Manager)> <FQDN> <hostname>```
+
+- verify by entering `hostname -f` which should respond with the FQDN, obtained by looking up the hostname in the hosts file 
+  and returning the associated FQDN
 
 ☐ specify timezone
 
