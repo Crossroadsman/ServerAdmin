@@ -97,7 +97,7 @@ CHANGE ROOT PASSWORD     | No                  |
 --------------
 
 ```
-sudo apt-get install php libapache2-mod-php php-mycrypt php-mysql
+sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
 ```
 
 
