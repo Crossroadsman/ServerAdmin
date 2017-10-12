@@ -93,5 +93,53 @@ CHANGE ROOT PASSWORD     | No                  |
 <all other questions>    | Yes                 |  
 
 
+8: Install PHP
+--------------
+
+```
+sudo apt-get install php libapache2-mod-php php-mycrypt php-mysql
+```
+
+
+9: Configure PHP
+----------------
+
+First, tell Apache to prefer `index.php` to `index.html` by editing `/etc/apache2/mods-enabled/dir.conf` to change the line commencing `DirectoryIndex index.html ...` such that `index.php` appears before `index.html`.
+
+Then restart Apache:
+
+```
+sudo systemctl restart apache2
+```
+
+We can check the status of Apache as follows:
+
+```
+sudo systemctl status apache2
+```
+
+
+10: (Optional) Install Additional PHP Modules
+---------------------------------------------
+
+```
+apt-cache search php- | less
+```
+
+(Note, it's not obvious how the search term operates: `php-` returns hits for, *inter alia*, `libnet-libidn-perl`, `php7.0-cli`, `bandwidthd-psql`)
+
+If we see a package that might be interesting we can get more information using:
+
+```
+apt-cache show <package_name>
+```
+
+And then install any desired optional modules as a space-separated list into `apt-get`:
+
+```
+sudo apt-get install <package1> <package2> <package3> ...
+```
+
+
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md
