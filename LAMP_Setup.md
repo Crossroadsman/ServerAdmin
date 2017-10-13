@@ -141,5 +141,26 @@ sudo apt-get install <package1> <package2> <package3> ...
 ```
 
 
+11: Test PHP Processing on the Web Server
+-----------------------------------------
+
+Create a very simple php script *info.php* and save it in the '*web root*' (which, in Ubuntu 16.04, is */var/www/html/*):
+
+```php
+<?php
+phpinfo();
+?>
+```
+
+Then try loading the script from a web browser by pointing it at *http://<server_FQDN>/info.php*.
+
+Once you have successfully tested that the script loads, delete it (since it displays information that might be useful to an attacker):
+
+```
+sudo rm /var/www/html/info.php
+```
+
+
+
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md
