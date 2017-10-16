@@ -61,5 +61,41 @@ Then quit out of *psql*:
 ```
 
 
+4: Create a Python Virtual Environment for the Project
+------------------------------------------------------
+
+Start by upgrading *pip* and installing *venv*:
+
+```
+sudo -H pip3 install --upgrade pip
+sudo apt-get install python3-venv
+```
+
+(Note: for a discussion of why the `-H` switch is important, see [this][link03] Stack Overflow answer)
+
+(**Question: Why, when this upgrades pip from 8.1.1 to 9.0.1 is the version of pip associated with the subsequently-created Python virtual environment still 8.1.1 instead of 9.0.1?**)
+
+Create a directory to hold the project, *cd* into it, and create the virtual environment:
+
+```
+mkdir <project_name>
+cd <project_name>
+python3 -m venv <project_name_env>
+```
+
+Then activate the virtual environment:
+
+```
+source <project_name_env>/bin/activate
+```
+
+Use the activated, local version of pip to install the other required components:
+
+```
+pip install django gunicorn psycopg2
+```
+
+
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md
 [link02]: https://docs.djangoproject.com/en/1.11/ref/databases/#optimizing-postgresql-s-configuration "Django Documentation: Optimizing PostgreSQL's Configuration"
+[link03]: https://stackoverflow.com/questions/43623025/what-does-sudo-h-do "Stack Overflow: What does sudo -H do?"
