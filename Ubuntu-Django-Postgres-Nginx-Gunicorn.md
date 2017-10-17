@@ -142,6 +142,50 @@ Add a line to specify where static files should be placed (for NGINX) immediatel
 ```Python
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 ```
+
+
+6: Complete Initial Project Setup
+---------------------------------
+
+Migrate the initial database schema to PostgreSQL:
+(from the directory `~/<project_name>`)
+
+```
+./manage.py makemigrations
+./manage.py migrate
+```
+
+Create an administrative superuser for the project:
+
+```
+./manage.py createsuperuser
+```
+
+Collect all the static content into the location we specified when we edited settings.py:
+(**Question: should this include the various files being pulled in from the Python Virtual Environment? If not, how to avoid?**)
+
+```
+./manage.py collectstatic
+```
+
+Allow access through the firewall on port 8000:
+
+```
+sudo ufw allow 8000
+```
+
+Launch Django's development webserver:
+
+```
+./manage.py runserver 0.0.0.0:8000
+```
+
+Test that the server is running by going to `http:<project_FQDN>:8000` in a web browser.
+
+Test that the Django superuser is working correctly by going to `http:<project_FQDN>:8000/admin` in a web browser.
+
+
+
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md
 [link02]: https://docs.djangoproject.com/en/1.11/ref/databases/#optimizing-postgresql-s-configuration "Django Documentation: Optimizing PostgreSQL's Configuration"
 [link03]: https://stackoverflow.com/questions/43623025/what-does-sudo-h-do "Stack Overflow: What does sudo -H do?"
