@@ -96,6 +96,52 @@ pip install django gunicorn psycopg2
 ```
 
 
+5: Create and Configure a New Django Project
+--------------------------------------------
+
+Start by telling Django to create its files in the directory we created:
+
+```
+django-admin.py startproject <project_name> ~/<project_name>
+```
+
+(Note, we are explicitly defining the project directory (`~/<project_name>`) instead of allowing django to decide. By default 
+django would have created an extra level of hierarchy)
+
+Edit the settings:
+
+```
+vi ~/<project_name>/<project_name>/settings.py
+```
+
+and set the `ALLOWED_HOSTS` value (this is a whitelist for which hosts are permitted to connect to the Django instance):
+
+```Python
+ALLOWED_HOSTS = ['.<domain>.com', '193.27.45.109']
+```
+
+(Note: This should be the domain and IP address of the server hosting the Django project)
+
+Change the `DATABASES` value:
+
+```Python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '<project_name>',
+        'USER': '<project_user>',
+        'PASSWORD': '<password>',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+```
+
+Add a line to specify where static files should be placed (for NGINX) immediately after the existing `STATIC-URL` line:
+
+```Python
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+```
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md
 [link02]: https://docs.djangoproject.com/en/1.11/ref/databases/#optimizing-postgresql-s-configuration "Django Documentation: Optimizing PostgreSQL's Configuration"
 [link03]: https://stackoverflow.com/questions/43623025/what-does-sudo-h-do "Stack Overflow: What does sudo -H do?"
