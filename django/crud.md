@@ -30,6 +30,20 @@ The CRUD Operations
       ```
 
 - Read
-  ```Python
-  <var_name> = <Model_name>.objects.get(<property>='<property_value>')
-  ```
+    - `get()` for a single instance (raises an exception if [0][link01] or [>1][link02] objects match the query)
+       ```Python
+       <var_name> = <Model_name>.objects.get(<property>='<property_value>')
+       ```
+
+- Update
+   - Option 1: editing an in-memory variable:
+     ```Python
+     <var_name>.<property> = <new_value>
+     <var_name>.save()
+     ```
+   - Option 2: editing a database entry directly:
+
+
+
+[link01]: https://docs.djangoproject.com/en/1.11/ref/exceptions/#objectdoesnotexist
+[link02]: https://docs.djangoproject.com/en/1.11/ref/exceptions/#multipleobjectsreturned
