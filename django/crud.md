@@ -18,7 +18,7 @@ Shell setup
 The CRUD Operations
 -------------------
 
-- Create
+- **Create**
     - Option 1: create (and write to the database) and return an object
       ```Python
       <Model_name>.objects.create(<property1>='<p1_value>', <property2>='<p2_value>', <etc>)
@@ -29,7 +29,7 @@ The CRUD Operations
       <var_name>.save()
       ```
 
-- Read
+- **Read**
     - `get()` for a single instance (raises an exception if [0][link01] or [>1][link02] objects match the query)
        ```Python
        <var_name> = <Model_name>.objects.get(<property>='<property_value>')
@@ -53,7 +53,7 @@ The CRUD Operations
       <Model_name>.objects.order_by('-<some_variable>') # the - character reverses the sort order
       ```
 
-- Update
+- **Update**
    - Option 1: editing an in-memory variable:
      ```Python
      <var_name>.<property> = <new_value>
@@ -64,7 +64,7 @@ The CRUD Operations
      <Model_name>.objects.<TBD:set>
      ```
 
-- Delete
+- **Delete**
     - Option 1: deleting an in-memory object:
       ```Python
       <var_name>.delete()
