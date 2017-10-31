@@ -34,6 +34,24 @@ The CRUD Operations
        ```Python
        <var_name> = <Model_name>.objects.get(<property>='<property_value>')
        ```
+    - `all()` to get a `QuerySet` object containing all the entries of the specified model:
+      ```Python
+      <var_name> = <Model_name>.objects.all()
+      ```
+    - `filter()` to get a `QuerySet` object containing the matching entities (in this example '*publish*' is a model property that is of type `DateTimeField()`, whose components can be queried, *author* is a User object with a *username* field):
+      ```Python
+      <var_name> = <Model_name>.objects.filter(publish__year=2016)
+      
+      <var_name> = <Model_name>.objects.filter(publish__year=2016, auther__username='admin')
+      ```
+    - `exclude()` to reduce a `QuerySet` by excluding items matching the specified criteria:
+      ```Python
+      <reduced_QuerySet> = <some_QuerySet>.exclude(title__startswith='why')
+      ```
+    - `order_by()` to specify the order of the returned `QuerySet`:
+      ```Python
+      <Model_name>.objects.order_by('-<some_variable>') # the - character reverses the sort order
+      ```
 
 - Update
    - Option 1: editing an in-memory variable:
@@ -42,8 +60,15 @@ The CRUD Operations
      <var_name>.save()
      ```
    - Option 2: editing a database entry directly:
+     ```Python
+     <Model_name>.objects.<TBD:set>
+     ```
 
-
+- Delete
+    - Option 1: deleting an in-memory object:
+      ```Python
+      <var_name>.delete()
+      ```
 
 [link01]: https://docs.djangoproject.com/en/1.11/ref/exceptions/#objectdoesnotexist
 [link02]: https://docs.djangoproject.com/en/1.11/ref/exceptions/#multipleobjectsreturned
