@@ -10,3 +10,5 @@ Using old-style Gandi
     - TTL: (leave as default)
     - Name: <my_hostname>
     - Value: <my_ip_address>
+- Save the record
+- Select "Use this Zone file"
