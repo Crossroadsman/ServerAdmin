@@ -19,10 +19,33 @@ sudo apt-get update
 
 - Install components
 ```
-sudo apt-get install python3-pip python-dev libpq-dev postgresql postgresql-contrib
+sudo apt-get install python3-pip python3-dev python3-venv
 ```
 
-3: Create a DB and DB User
+3: Install PostgreSQL
+---------------------
+```
+sudo apt-get install libpq-dev postgresql postgresql-contrib
+```
+
+4: Create a Project Directory (`<project_name>`)
+----------------------------------------------
+
+5: Inside the Project Directory, Create, Activate, and Upgrade a Virtual Environment
+------------------------------------------------------------------------------------
+```
+python3 -m venv <project_name>
+source <project_name>/bin/activate
+pip install --upgrade pip
+```
+
+6: Install Django and Psycopg2
+------------------------------
+```
+pip install django psycopg2
+```
+
+7: Create a DB and DB User
 --------------------------
 
 Postgres uses 'peer authentication'  for local connections. During installation, a 'postgres' linux user was created to correspond 
@@ -38,18 +61,10 @@ Create a database for the project (each project should have its own, isolated, D
 CREATE DATABASE <project_name>;
 ```
 
-Cerate a database user who will connect to, and interact with, the DB:
+Create a database user who will connect to, and interact with, the DB:
 
 ```SQL
 CREATE USER <project_user> WITH PASSWORD '<password>';
-```
-
-Specify some connection parameters for the user so that they don't have to be set on each session:
-
-```SQL
-ALTER ROLE <project_user> SET client_encoding TO 'utf-8';
-ALTER ROLE <project_user> SET default_transaction_isolation TO 'read committed';
-ALTER ROLE <project_user> SET timezone TO 'UTC';
 ```
 
 Give the new user access rights to the database:
@@ -58,57 +73,23 @@ Give the new user access rights to the database:
 GRANT ALL PRIVILEGES ON DATABASE <project_name> TO <project_user>;
 ```
 
+8: [Specify some connection parameters for the user so that they don't have to be set on each session][link02]
+--------------------------------------------------------------------------------------------------------------
+
+```SQL
+ALTER ROLE <project_user> SET client_encoding TO 'utf8';
+ALTER ROLE <project_user> SET default_transaction_isolation TO 'read committed';
+ALTER ROLE <project_user> SET timezone TO 'UTC';
+```
+
 Finally, exit the interactive session:
 
 ```
 \q
 ```
 
-
-4: Install Django in a Virtual Environment
-------------------------------------------
-
-Add the venv module:
-
-```
-sudo apt-get install python3-venv
-```
-
-Create a new directory to hold the project:
-
-```
-mkdir <project_name>
-```
-
-Inside that directory create a new virtual environment:
-
-```
-python3 -m venv <project_name_env>
-```
-
-Load the virtual environment:
-
-```
-source <project_name_env>/bin/activate
-```
-
-(should modify prompt to show the specified virtual environment)
-
-Ensure you are using the most recent version of pip:
-
-```
-pip install --upgrade pip
-```
-
-(Because we are in a virtual environment that has created a link for pip to the pip3 binary, we can just type pip)
-
-Install Django and pyscopg2 (the Python-PostgreSQL database adapter) using pip:
-
-```
-pip install django psycopg2
-```
-
-(Note you can view the details of a particular package by entering `pip show <package_name>`)
+9: Install Django in the Project's Virtual Environment
+------------------------------------------------------
 
 Create a Django project in the <project_name> directory:
 
@@ -116,10 +97,33 @@ Create a Django project in the <project_name> directory:
 django-admin.py startproject <project_name> .
 ```
 
-(Note the `.` at the end of the line)
+(Note the `.` at the end of the line, which is an optional argument to explicitly set the project directory)
 
+10: Edit the Project Settings
+-----------------------------
 
+### a: set `ALLOWED_HOSTS`: ###
+
+```Python
+ALLOWED_HOSTS = ['.<domain>.com', '<ip_address>']
+```
+
+### b: change the `DATABASES` value: ###
+
+```Python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '<project_name>',
+        'USER': '<project_user>',
+        'PASSWORD': '<password>',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+```
 
 
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md
+[link02]: https://docs.djangoproject.com/en/1.11/ref/databases/#optimizing-postgresql-s-configuration
