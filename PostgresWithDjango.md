@@ -77,7 +77,7 @@ GRANT ALL PRIVILEGES ON DATABASE <project_name> TO <project_user>;
 --------------------------------------------------------------------------------------------------------------
 
 ```SQL
-ALTER ROLE <project_user> SET client_encoding TO 'utf8';
+ALTER ROLE <project_user> SET client_encoding TO 'UTF8';
 ALTER ROLE <project_user> SET default_transaction_isolation TO 'read committed';
 ALTER ROLE <project_user> SET timezone TO 'UTC';
 ```
