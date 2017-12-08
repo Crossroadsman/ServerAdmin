@@ -35,9 +35,11 @@ sudo apt-get install libpq-dev postgresql postgresql-contrib
 ------------------------------------------------------------------------------------
 ```
 python3 -m venv <project_name>
-source <project_name>/bin/activate
+. <project_name>/bin/activate
 pip install --upgrade pip
 ```
+
+Note that in Bash `.` and `source` are equivalent.
 
 6: Install Django and Psycopg2
 ------------------------------
