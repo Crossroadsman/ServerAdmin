@@ -35,6 +35,27 @@ There are three most commonly suggested solutions to this issue:
 
 #### How ####
 
+##### Install Screen #####
+
+```
+$ sudo apt-get install screen
+```
+
+##### Run Screen #####
+
+```
+$ screen
+> <process_name>
+```
+
+then send `^A d` to exit from the Screen session
+
+
+##### Resume a Screen session later #####
+
+```
+$ screen -r
+```
 
 ### nohup ###
 
@@ -47,8 +68,13 @@ There are three most commonly suggested solutions to this issue:
 
 #### How ####
 
-### disown ###
+```
+$ nohup <process_name> &
+$ exit
+```
 
+
+### disown ###
 
 #### Why? ####
 
@@ -59,6 +85,32 @@ There are three most commonly suggested solutions to this issue:
 - Only works with Bash.
 
 #### How ####
+
+##### Get the process name of the relevant job #####
+
+Send `^Z` to suspend foreground process.
+You will see a report that lists the process that looks something like:
+
+```
+[1]+    Stopped                processName
+```
+
+##### Send the relevant job to the background #####
+(This will resume the suspended job in the background)
+
+```
+$ bg %<process_number>
+```
+
+##### Disown the process #####
+
+```
+$ disown -h <PID>|%<process_number>
+```
+
+The `-h` flag preserves ownership of the process and only `disown`s on termination of the current shell session.
+`disown` can take either a PID or the process number from the previous step as the identifier.
+
 
 
 
