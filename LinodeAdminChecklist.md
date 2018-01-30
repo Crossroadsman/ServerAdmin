@@ -16,7 +16,7 @@ Provision VPS
 Remove old VPS from local machine's known_hosts
 -----------------------------------------------
 
-Edit `~/ssh/known_hosts`
+Edit `~/.ssh/known_hosts`
 
 First-time Log in
 -----------------
