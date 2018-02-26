@@ -1,6 +1,7 @@
 Linode Administration Checklist
 ===============================
 
+
 Provision VPS
 -------------
 ☐ Go to Linode manager
@@ -13,17 +14,19 @@ Provision VPS
 
 ☐ Note the IP address
 
+
 Remove old VPS from local machine's known_hosts
 -----------------------------------------------
 
 Edit `~/.ssh/known_hosts`
+
 
 First-time Log in
 -----------------
 
 ☐ ssh in as root
 
-☐ perform software updates (`apt-get update && apt-get upgrade`)
+☐ perform software updates (`apt-get update -y && apt-get upgrade -y`)<sup>[1](#footnote01)</sup>
   (note: when prompted to update Grub, select '*keep the local version installed*')
 
 ☐ create & activate hostname
@@ -79,4 +82,24 @@ Secure Server
 Other Management
 ----------------
 
+☐ [Configure git][link01]
+
+☐ Clone .vimrc
+
 ☐ Enable longview
+
+
+
+
+
+
+
+
+Footnotes
+---------
+<a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if any 
+'undesirable' situations arise). Per the man page.
+
+
+
+[link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/git.md 'Crossroadsman: Server Admin: Git'
