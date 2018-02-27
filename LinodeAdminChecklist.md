@@ -98,7 +98,7 @@ Other Management
 Footnotes
 ---------
 <a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
-any 'undesirable' situations arise). Per the man page.
+any 'undesirable' situations arise). Per the man page.  
 <a name="footnote02">2.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
 
 
