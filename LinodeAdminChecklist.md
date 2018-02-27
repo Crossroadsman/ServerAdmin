@@ -84,7 +84,7 @@ Other Management
 
 ☐ [Configure git][link01]
 
-☐ Clone .vimrc
+☐ [Clone .vimrc][link01]<sup>[2](#footnote02)</sup>
 
 ☐ Enable longview
 
@@ -97,9 +97,12 @@ Other Management
 
 Footnotes
 ---------
-<a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if any 
-'undesirable' situations arise). Per the man page.
+<a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
+any 'undesirable' situations arise). Per the man page.
+<a name="footnote02">2.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
 
 
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/git.md 'Crossroadsman: Server Admin: Git'
+[link02]: https://github.com/Crossroadsman/.vim 'Crossroadsman: .vimrc'
+[link03]: ethanschoonover.com/solarized
