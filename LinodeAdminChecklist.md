@@ -75,7 +75,7 @@ Secure Server
 
 ☐ restart the ssh daemon
 
-☐ install fail2ban
+☐ [install fail2ban][link04]
 
 ☐ initialise ufw (and allow ssh)
 
@@ -106,3 +106,4 @@ any 'undesirable' situations arise). Per the man page.
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/git.md 'Crossroadsman: Server Admin: Git'
 [link02]: https://github.com/Crossroadsman/.vim 'Crossroadsman: .vimrc'
 [link03]: ethanschoonover.com/solarized
+[link04]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md 'Crossroadsman: Server Admin: Securing a Server'
