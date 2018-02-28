@@ -31,8 +31,34 @@ useremail:
 git config --global user.email <email_address>
 ```
 
+3: Configure system settings
+----------------------------
 
-3: Link SSH key with Github
+Append the following to `~/.bashrc`:
+
+```
+# set $VISUAL and $EDITOR (including for child shells)
+export EDITOR='vim'
+export VISUAL='vim'
+```
+
+Reload bashrc:
+
+```
+. ~/.bashrc
+```
+
+Confirm that bashrc gets loaded for [login][link01] sessions by checking .profile and .bash_profile:
+
+```
+less ~/.bash_profile
+less ~/.profile
+```
+
+One of them (at least) should load .bashrc.
+
+
+4: Link SSH key with Github
 ---------------------------
 
 a) Create a key (if there isn't one already at `~/.ssh/id_rsa.pub`)
@@ -46,10 +72,12 @@ b) copy the contents of the created public key to the clipboard
 c) go to github and select add a new SSH key, pasting the contents of the ssh key into the field
 
 
-4: Clone a repo
+5: Clone a repo
 ---------------
 
 ```
 git clone git@github.com:<user_id>/<repo>.git
 ```
 
+
+[link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
