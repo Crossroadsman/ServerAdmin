@@ -48,11 +48,41 @@ sudo vi /etc/fail2ban/fail2ban.local
 
 #### Configuring `jail.local` ####
 
-
 ```
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo vi /etc/fail2ban/jail.local
 ```
+
+The jail file contains the various filters (regex patterns to find in logfiles) and actions (behaviours in response to a filter hit) for
+the listed services. Note that most common services are included by default. Following is an example for `sshd`:
+
+```
+[sshd]
+enabled = true
+#filter = sshd-aggressive
+port    = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+```
+
+Notes:
+1. the name of the template is in brackets. There is a default setting for `filter` of `filter = %(__name__)s` which means that if
+   no filter is specified, Fail2ban will look for file called 'sshd' (either .conf or .local) in the filter.d subdirectory.
+2. here, `filter` is commented out, which means that Fail2ban will fall back to the default filter file: `sshd.conf` or `sshd.local`.
+3. port is the port that Fail2ban should be referencing for this service. If using ssh's default port, you can just put `ssh` but if
+   you have customised ssh to use a different port, say 3456, then you would replace `ssh` with `3456`.
+4. no actions have specified, which means that only the default actions will be taken.
+
+
+There are also some global default behaviours specified in this file, such as bantime and the settings for email.
+
+
+#### Launch the Fail2ban Client ####
+
+```
+sudo fail2ban-client start
+```
+
 
 
 Footnotes
