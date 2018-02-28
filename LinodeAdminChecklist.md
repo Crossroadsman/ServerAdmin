@@ -77,7 +77,7 @@ Secure Server
 
 ☐ [install fail2ban][link04]
 
-☐ initialise ufw (and allow ssh)
+☐ [initialise ufw (and allow ssh)][link04]
 
 Other Management
 ----------------
