@@ -25,25 +25,35 @@ Once installed, test that it was installed by typing:
 fail2ban-client -h
 ```
 
-Note, always use fail2ban-client, [never][link01] call fail2-ban-server directly.
+Note, always use `fail2ban-client`, [never][link01] call `fail2-ban-server` directly.
 
 
 ### Configuration ###
 
-Once installed, we want to configure Fail2ban. It keeps its configuration files in `/etc/fail2ban/`. The main configuration file is called 
-`fail2ban.conf` and the 'jail' file (which has the filters for various services) is called 'jail.conf'.
+Once installed, we want to configure Fail2ban. It keeps its configuration files in `/etc/fail2ban/`. The main configuration file 
+is called `fail2ban.conf` and the 'jail' file (which has the filters and actions for various services) is called 'jail.conf'.
 
 Best practice is to not modify the master files but instead to create `.local` copies that override the `.conf` files:
+
+
+#### Configuring `fail2ban.local` ####
+
+`fail2ban.conf` is the main configuration file for Fail2ban and includes things like the [log level][link02]. This file has sensible
+defaults so generally does not require much customisation.
 
 ```
 sudo cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
 sudo vi /etc/fail2ban/fail2ban.local
 ```
 
+#### Configuring `jail.local` ####
+
+
 ```
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo vi /etc/fail2ban/jail.local
 ```
+
 
 Footnotes
 ---------
@@ -54,3 +64,4 @@ Footnotes
 
 
 [link01]: https://www.fail2ban.org/wiki/index.php/Fail2Ban 'Fail2ban.org: Wiki'
+[link02]: https://www.tutorialspoint.com/unix/unix-system-logging.htm
