@@ -95,16 +95,17 @@ system.
 ### Launch ufw ###
 
 ```
-sudo ufw allow ssh 'allows ssh'
+sudo ufw allow ssh comment 'allows ssh'
 sudo ufw logging on
 sudo ufw enable
 sudo ufw status
 ```
 
 Notes:
-1. `allow ssh 'allows ssh'`: By default, ufw disallows everything. Here we are explicitly allowing ssh. Like with Fail2ban, if we are
-   using the default port for ssh, we can refer to `ssh` otherwise we would refer to the port. E.g., if ssh was running on port 2020 the
-   command would be: `sudo ufw allow 2020`. The part in quotes is a comment, which can be viewed when using `ufw status`;
+1. `allow ssh comment 'allows ssh'`: By default, ufw disallows everything. Here we are explicitly allowing ssh. Like with Fail2ban, if 
+   we are using the default port for ssh, we can refer to `ssh` otherwise we would refer to the port. E.g., if ssh was running on 
+   port 2020 the command would be: `sudo ufw allow 2020`. 
+   The `comment 'allows ssh'` is a comment, which can be viewed when using `ufw status`;
 2. `logging on`: This enables logging for the firewall;
 3. `enable`: This actually activates the firewall;
 4. `status`: This gives a short summary of the firewall's status (what ports have been specified, what actions are permitted, and which
