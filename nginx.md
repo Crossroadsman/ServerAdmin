@@ -72,6 +72,7 @@ server {
     server_name example.com;
     root /var/www/example;
     location / {
+        try_files $uri $uri/ /index.html =404;
     }
 }
 ```
@@ -85,8 +86,12 @@ Notes:
   nginx instance;
 - [`root`][link04] is the location for static files;
 - [`location`][link05] is a directive with two parameters: a string or regex (here `/`) representing a uri and then a block for what
-  actions nginx should take when receiving a request with uri that matches the string/regex;
-- 
+  actions nginx should take when receiving a request with uri that matches the string/regex. In this case, the the '/' is being treated
+  as a regex, so any pattern that matches (e.g., `/whatever`) will trigger the enclosed block;
+- ['try_files'][link06] is a directive that takes a list of filenames and uses the first found file for request processing. Optionally, can
+  take a `=<code>` argument that specifies which http response code to serve if no file match is found. The path is determined by reference
+  to the `root` (and/or `alias`) directive. `$uri` is the part of the url that comes after the `root`. A filename with a trailing slash
+  represents a directory;
 
 
 
@@ -103,3 +108,4 @@ by a single server. [Here](https://www.digitalocean.com/community/tutorials/how-
 [link03]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
 [link04]: http://nginx.org/en/docs/http/ngx_http_core_module.html#root
 [link05]: http://nginx.org/en/docs/http/ngx_http_core_module.html#location
+[link06]: http://nginx.org/en/docs/http/ngx_http_core_module.html#try_files
