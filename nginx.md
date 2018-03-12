@@ -71,17 +71,22 @@ server {
     listen 80;
     server_name example.com;
     root /var/www/example;
+    location / {
+    }
 }
 ```
 
 Notes:
-- Each server in a config file is namespaced with a `server { }` block
-- Inside the block are all the 'directives' for the server, terminated with a semicolon, such as [`listen`][link02].
+- Each server in a config file is namespaced with a `server { }` block;
+- Inside the block are all the 'directives' for the server, terminated with a semicolon, such as [`listen`][link02];
 - [`server_name`][link03] matches the server as specified in the http(s) request. E.g., if you requested www.mysite.com then a 
   `server_name` of `mysite.com` would match it. Similarly if you are using A records to route multiple domains to a single physical server,
   each one can have a server block with a `server_name` corresponding to the name per the A record to host multiple sites on a single 
-  nginx instance.
-- [`root`][link04] ...
+  nginx instance;
+- [`root`][link04] is the location for static files;
+- [`location`][link05] is a directive with two parameters: a string or regex (here `/`) representing a uri and then a block for what
+  actions nginx should take when receiving a request with uri that matches the string/regex;
+- 
 
 
 
@@ -97,3 +102,4 @@ by a single server. [Here](https://www.digitalocean.com/community/tutorials/how-
 [link02]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 [link03]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
 [link04]: http://nginx.org/en/docs/http/ngx_http_core_module.html#root
+[link05]: http://nginx.org/en/docs/http/ngx_http_core_module.html#location
