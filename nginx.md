@@ -18,3 +18,8 @@ Nginx
     `sudo ufw allow 'Nginx HTTP'`
   - then verify the change:  
     `sudo ufw status`
+
+- check nginx is running  
+  - verify tha the service is running  
+    `systemctl status nginx`
+  - check that nginx is visible to a web browser
