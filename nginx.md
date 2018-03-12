@@ -24,9 +24,9 @@ Nginx
     `systemctl status nginx`
   - check that nginx is visible to a web browser
 
+
 2: Manage the nginx Service
 ---------------------------
-
 When nginx is installed, it sets itself to load on boot.
 You can use `systemctl` to override this setting:
 
@@ -38,6 +38,7 @@ Command                        | Result
 `sudo systemctl reload nginx`  | reload configuration files (soft restart that doesn't drop any connections)
 `sudo systemctl disable nginx` | prevent nginx from loading on boot
 `sudo systemctl enable nginx`  | set nginx to load on boot
+
 
 3: Configure nginx
 ------------------
@@ -61,10 +62,32 @@ Command                        | Result
 - `/var/log/nginx/error.log`
 
 
+4: Configure a Server
+---------------------
+Simple Example:
+
+```
+server {
+    listen 80;
+    server_name example.com;
+```
+
+Notes:
+- Each server in a config file is namespaced with a `server { }` block
+- Inside the block are all the 'directives' for the server, terminated with a semicolon, such as [`listen`][link02].
+- `server_name` matches the server as specified in the http(s) request. E.g., if you requested www.mysite.com then a `server_name` of
+  `mysite.com` would match it. Similarly if you are using A records to route multiple domains to a single physical server, each one can
+  have a server block with a `server_name` corresponding to the name per the A record to host multiple sites on a single nginx instance.
+
 
 
 
 A: Footnotes
 ------------
-<a name="footnote01">1</a>: '[Server blocks](https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/)' are nginx's equivalent of Apache's virtual hosts. These allow multiple domains to be served 
+<a name="footnote01">1</a>: '[Server blocks][link01]' are nginx's equivalent of Apache's virtual hosts. These allow multiple domains to be served 
 by a single server. [Here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04) is a Digital Ocean guide to using server blocks. 
+
+
+
+[link01]: https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/
+[link02]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
