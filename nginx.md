@@ -70,6 +70,8 @@ Simple Example:
 server {
     listen 80;
     server_name example.com;
+    root /var/www/example;
+}
 ```
 
 Notes:
@@ -79,6 +81,7 @@ Notes:
   `server_name` of `mysite.com` would match it. Similarly if you are using A records to route multiple domains to a single physical server,
   each one can have a server block with a `server_name` corresponding to the name per the A record to host multiple sites on a single 
   nginx instance.
+- [`root`][link04] ...
 
 
 
@@ -93,3 +96,4 @@ by a single server. [Here](https://www.digitalocean.com/community/tutorials/how-
 [link01]: https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/
 [link02]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
 [link03]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
+[link04]: http://nginx.org/en/docs/http/ngx_http_core_module.html#root
