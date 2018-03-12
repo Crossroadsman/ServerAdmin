@@ -38,3 +38,23 @@ Command                        | Result
 `sudo systemctl reload nginx`  | reload configuration files (soft restart that doesn't drop any connections)
 `sudo systemctl disable nginx` | prevent nginx from loading on boot
 `sudo systemctl enable nginx`  | set nginx to load on boot
+
+3: Configure nginx
+------------------
+
+### Nginx files and directories ###
+
+#### Content ####
+- `/var/www/html/`: the default directory for website content
+
+#### Config files ####
+- `/etc/nginx/`: the configuration directory
+  - `/etc/nginx/nginx.conf`: the main nginx configuration file
+  - `/etc/nginx/sites-available/`: the directory where per-site 'server blocks' are stored. Need to be enabled by linking to the 
+    'enabled' directory
+  - `/etc/nginx/sites-enabled/`: the directory where **enabled** per-site "server blocks" are stored.
+  - `/etc/nginx/snippets/`: configuration fragments that can be reused
+
+#### Server Logs ####
+- `/var/log/nginx/access.log`
+- `/var/log/nginx/error.log`
