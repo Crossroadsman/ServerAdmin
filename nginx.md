@@ -50,11 +50,20 @@ Command                        | Result
 #### Config files ####
 - `/etc/nginx/`: the configuration directory
   - `/etc/nginx/nginx.conf`: the main nginx configuration file
-  - `/etc/nginx/sites-available/`: the directory where per-site 'server blocks' are stored. Need to be enabled by linking to the 
+  - `/etc/nginx/sites-available/`: the directory where per-site 'server blocks'<sup>[1]('#footnote01')</sup> are stored. Need to be enabled by linking to the 
     'enabled' directory
-  - `/etc/nginx/sites-enabled/`: the directory where **enabled** per-site "server blocks" are stored.
+  - `/etc/nginx/sites-enabled/`: the directory where **enabled** per-site 'server blocks' are stored.
   - `/etc/nginx/snippets/`: configuration fragments that can be reused
 
 #### Server Logs ####
 - `/var/log/nginx/access.log`
 - `/var/log/nginx/error.log`
+
+
+
+
+
+A: Footnotes
+------------
+<a name="footnote01">1</a>: '[Server blocks](https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/)' are nginx's equivalent of Apache's virtual hosts. These allow multiple domains to be served 
+by a single server.
