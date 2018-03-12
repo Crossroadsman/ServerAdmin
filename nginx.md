@@ -50,9 +50,10 @@ Command                        | Result
 #### Config files ####
 - `/etc/nginx/`: the configuration directory
   - `/etc/nginx/nginx.conf`: the main nginx configuration file
-  - `/etc/nginx/sites-available/`: the directory where per-site 'server blocks'<sup>[1]('#footnote01')</sup> are stored. Need to be enabled by linking to the 
-    'enabled' directory
-  - `/etc/nginx/sites-enabled/`: the directory where **enabled** per-site 'server blocks' are stored.
+  - `/etc/nginx/sites-available/`: the directory where per-site 'server blocks'<sup>[1]('#footnote01')</sup> are stored. Need to be 
+    enabled by linking to the 'enabled' directory
+  - `/etc/nginx/sites-enabled/`: the directory where **enabled** per-site 'server blocks' are stored. Typically in the form of symlinks to
+    the corresponding server block entry in the `sites-available` directory.
   - `/etc/nginx/snippets/`: configuration fragments that can be reused
 
 #### Server Logs ####
