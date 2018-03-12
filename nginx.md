@@ -75,9 +75,10 @@ server {
 Notes:
 - Each server in a config file is namespaced with a `server { }` block
 - Inside the block are all the 'directives' for the server, terminated with a semicolon, such as [`listen`][link02].
-- `server_name` matches the server as specified in the http(s) request. E.g., if you requested www.mysite.com then a `server_name` of
-  `mysite.com` would match it. Similarly if you are using A records to route multiple domains to a single physical server, each one can
-  have a server block with a `server_name` corresponding to the name per the A record to host multiple sites on a single nginx instance.
+- [`server_name`][link03] matches the server as specified in the http(s) request. E.g., if you requested www.mysite.com then a 
+  `server_name` of `mysite.com` would match it. Similarly if you are using A records to route multiple domains to a single physical server,
+  each one can have a server block with a `server_name` corresponding to the name per the A record to host multiple sites on a single 
+  nginx instance.
 
 
 
@@ -91,3 +92,4 @@ by a single server. [Here](https://www.digitalocean.com/community/tutorials/how-
 
 [link01]: https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/
 [link02]: http://nginx.org/en/docs/http/ngx_http_core_module.html#listen
+[link03]: http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name
