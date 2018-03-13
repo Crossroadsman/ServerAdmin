@@ -89,6 +89,15 @@ sudo journalctl -u gunicorn
 
 [Here][link03] are some common problems that might cause startup to fail.
 
+After fixing any problems, reload the service definition file:
+```
+sudo systemctl daemon-reload
+```
+and then restart Gunicorn:
+```
+sudo systemctl restart gunicorn
+```
+
 
 [link01]: http://gunicorn.org
 [link02]: https://github.com/Crossroadsman/ServerAdmin/blob/master/PostgresWithDjango.md
