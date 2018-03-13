@@ -139,7 +139,7 @@ A: Footnotes
 <a name="footnote01">1</a>: '[Server blocks][link01]' are nginx's equivalent of Apache's virtual hosts. These allow multiple domains to be
 served by a single server. 
 [Here](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04) is a Digital 
-Ocean guide to using server blocks. 
+Ocean guide to using server blocks.  
 <a name="footnote02">2</a>: Typically we would start by unlinking default from `sites-enabled` and create a new server file in 
 `sites-available` and create a symlink to it in `sites-enabled`.
 
