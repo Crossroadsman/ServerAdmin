@@ -129,6 +129,10 @@ python manage.py collectstatic
 See: [Securing the Server][link07]
 
 
+7: Set up Gunicorn
+------------------
+See: [Gunicorn][link08]
+
 
 A: Footnotes
 ------------
@@ -149,3 +153,4 @@ Ocean guide to using server blocks.
 [link05]: http://nginx.org/en/docs/http/ngx_http_core_module.html#location
 [link06]: http://nginx.org/en/docs/http/ngx_http_core_module.html#try_files
 [link07]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md
+[link08]: https://github.com/Crossroadsman/ServerAdmin/blob/master/gunicorn.md
