@@ -1,6 +1,23 @@
 Nginx
 =====
 
+0: Background
+-------------
+For a system using nginx and django, the behaviour of the various components is as follows:
+
+```
+                                   [static files]
+                                 /
+                               /
+[ The Internet ] <----> [nginx]
+                               \
+                                 \
+                                   [gunicorn] <-(socket)-> [django dynamic app]
+```
+
+nginx can serve static content (media/css/etc) directly but can't control django apps, so needs an intermediary (typically gunicorn).
+
+
 1: Installing Nginx
 -------------------
 - update the apt package cache  
