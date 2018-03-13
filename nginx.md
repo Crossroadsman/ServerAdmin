@@ -7,15 +7,18 @@ For a system using nginx and django, the behaviour of the various components is 
 
 ```
                                    [static files]
-                                 /
+                                  /
+                            <serves directly>  
                                /
 [ The Internet ] <----> [nginx]
                                \
-                                 \
-                                   [gunicorn] <-(socket)-> [django dynamic app]
+                           <WSGI protocol>
+                                  \
+                                    [gunicorn] <-(socket)-> [django dynamic app]
 ```
 
-nginx can serve static content (media/css/etc) directly but can't control django apps, so needs an intermediary (typically gunicorn).
+nginx can serve static content (media/css/etc) directly but can't control django apps, so needs an intermediary app server (typically
+gunicorn).
 
 
 1: Installing Nginx
