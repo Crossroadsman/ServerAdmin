@@ -114,6 +114,20 @@ Notes:
   represents a directory;
 
 
+5: Setting Up to Work With Django
+---------------------------------
+
+Collect all the static files into the directory that nginx will be serving from:
+```
+python manage.py collectstatic
+```
+
+
+6: Ensure Firewall has an Exception for HTTP (and HTTPS if Applicable)
+----------------------------------------------------------------------
+
+See: [Securing the Server][link07]
+
 
 
 A: Footnotes
@@ -134,3 +148,4 @@ Ocean guide to using server blocks.
 [link04]: http://nginx.org/en/docs/http/ngx_http_core_module.html#root
 [link05]: http://nginx.org/en/docs/http/ngx_http_core_module.html#location
 [link06]: http://nginx.org/en/docs/http/ngx_http_core_module.html#try_files
+[link07]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md
