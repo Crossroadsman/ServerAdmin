@@ -33,6 +33,7 @@ If installed, should get a terminal response like:
 /usr/bin/make
 ```
 
+
 2: Download Remote Source Tarball
 ---------------------------------
 
@@ -42,13 +43,14 @@ curl -O <url_to_tarball>
 
 (`-O` is an alias for `--remote-name` and signifies that the next argument will be the remote url)
 
+
 3: Check md5 hash
 -----------------
 
 [Verify][link01] that the md5 is valid
 
 
-3: Extract Tarball
+4: Extract Tarball
 ------------------
 
 ```
@@ -60,14 +62,16 @@ Key:
 - `v`: verbose
 - `f`: filename
 
-4: Prepare `makefile` (etc) with configure
+
+5: Prepare `makefile` (etc) with configure
 ------------------------------------------
 
 ```
 ./configure
 ```
 
-5: Use `make` to build the application
+
+6: Use `make` to build the application
 --------------------------------------
 
 Run from the project's source directory.
@@ -76,7 +80,8 @@ Run from the project's source directory.
 make
 ```
 
-6: Install the program
+
+7: Install the program
 ----------------------
 
 ```
