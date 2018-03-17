@@ -42,6 +42,12 @@ curl -O <url_to_tarball>
 
 (`-O` is an alias for `--remote-name` and signifies that the next argument will be the remote url)
 
+3: Check md5 hash
+-----------------
+
+[Verify][link01] that the md5 is valid
+
+
 3: Extract Tarball
 ------------------
 
@@ -76,3 +82,8 @@ make
 ```
 sudo make install
 ```
+
+
+
+
+[link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/md5sum.md
