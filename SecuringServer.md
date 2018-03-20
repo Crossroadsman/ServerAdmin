@@ -10,7 +10,7 @@ Fail2ban scans log files (which contain interesting information, especially abou
 malicious signs (e.g., multiple password failures, exploit-seeking behaviour, etc.). 
 
 It is then used (typically) to update firewall rules to reject those IP addresses (and email the system 
-administrator)<sup>[1]('#footnote01')</sup>.
+administrator)<sup>[1](#footnote01)</sup>.
 
 
 ### Installation ###
