@@ -7,14 +7,14 @@ Installation of JVM
 ### What to Install ###
 
 If we will be compiling any Java programs we will want the JDK otherwise we can install just the JRE. Note that the JDK contains the JRE, so 
-there is no disadvantage to installing the JDK except the additional storage requirements<sup>[1]('#footnote01')</sup>
+there is no disadvantage to installing the JDK except the additional storage requirements<sup>[1](#footnote01)</sup>
 
 We will be using the OpenJDK version.
 
 ### JDK ###
 
 - update the apt package index
-- install the JDK<sup>[2]('#footnote02')</sup>
+- install the JDK<sup>[2](#footnote02)</sup>
   ```
   sudo apt-get install default-jdk
   ```
@@ -22,7 +22,7 @@ We will be using the OpenJDK version.
 ### JRE ###
 
 - update the apt package index
-- install the JRE<sup>[2]('#footnote02')</sup>
+- install the JRE<sup>[2](#footnote02)</sup>
   ```
   sudo apt-get install default-jre
   ```
