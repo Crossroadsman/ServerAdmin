@@ -22,7 +22,7 @@ Removes 'orphaned' packages: installed packages that were installed as a depende
 
 
 
-<a name="#footnote01">1</a>: except files that are in users' home directories
+<a name="footnote01">1</a>: except files that are in users' home directories
 
 [link01]: https://askubuntu.com
 [link02]: https://askubuntu.com/questions/187888/what-is-the-correct-way-to-completely-remove-an-application
