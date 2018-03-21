@@ -29,8 +29,21 @@ Installation
   **Notes**:  
   - `-a` tells tee to append to the file instead of replacing it
 - Update apt's package list
-- install elasticsearch:
-  `sudo apt-get install elasticsearch`
+  
+### Install Elasticsearch ###
+`sudo apt-get install elasticsearch`
+
+Configuration
+-------------
+- Specify the network settings by:
+  - editing the configuration file:
+    `sudo vi /etc/elasticsearch/elasticsearch.yml`
+  - and setting the following properties:
+    ```
+    network.host: "localhost"
+    http.port:9200
+    ```
+**NOTE we may need to open port 9200 in ufw**
 
 
 
