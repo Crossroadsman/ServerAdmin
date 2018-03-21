@@ -43,7 +43,17 @@ sudo update-alternatives --config <command_to_configure>
 where `<command_to_configure>` is the command for which we want to set a default. Various Java components can be specified this way, such as 
 `java` (the Java runtime), `javac` (the compiler), `javadoc` (documentation generator), `jarsigner` (signing tool), etc.
 
-
+### Setting the `JAVA_HOME` Environment variable ###
+The `JAVA_HOME` environment variable lets various programs know where Java is installed. To set it we do the following:
+- note the installation location from `update-alternatives`:  
+  `sudo update-alternatives --config java`
+- edit `/etc/environment` and append the following line:
+  `JAVA_HOME="<full/path/to/java>"` (e.g., `/lib/jvm/java-8-openjdk-amd64/jre/bin/java`)
+- reload the environment file:
+  `. /etc/environment`
+- test that the variable was set:
+  `echo $JAVA_HOME`
+  
 
 
 Footnotes
