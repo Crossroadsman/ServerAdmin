@@ -17,10 +17,15 @@ Installation
   **Notes**:
   - `-q` means [`quiet`][link03] (turn off output)
   - `-O <file>` is an alias for [`--output-document=<file>`][link04] which tells wget that instead of writing the documents to the 
-    appropriate files, all the files should be concatenated together and written to the specified <file>.
+    appropriate files, all the files should be concatenated together and written to the specified <file>
   - `-` used as an argument to `-O` means that stdout should be used as the 'file'
   - `apt-key` is the [APT key management utility][link05]
   - `add <file>` adds a new key to the list of trusted keys. Using `-` as the file means to get the key from stdin
+- Type `apt-key list` to verify that Elastic's signing key was added to the key manager
+- Install `apt-transport-https` if not installed already:
+  ```
+  sudo apt-get install apt-transport-https
+  ```
 
 
 
