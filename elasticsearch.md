@@ -23,9 +23,14 @@ Installation
   - `add <file>` adds a new key to the list of trusted keys. Using `-` as the file means to get the key from stdin
 - Type `apt-key list` to verify that Elastic's signing key was added to the key manager
 - Install `apt-transport-https` if not installed already:
-  ```
-  sudo apt-get install apt-transport-https
-  ```
+  `sudo apt-get install apt-transport-https`
+- Add Elastic's repo definition to apt's list of known sources:
+  `echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt-c`
+  **Notes**:
+  - `-a` tells tee to append to the file instead of replacing it
+- Update apt's package list
+- install elasticsearch:
+  `sudo apt-get install elasticsearch`
 
 
 
