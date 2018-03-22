@@ -60,7 +60,7 @@ The `JAVA_HOME` environment variable lets various programs know where Java is in
 Footnotes
 ---------
 <a name="footnote01">1</a>: As of 2018-03-20 the size difference on Ubuntu was 17% (420MB for JDK, 360MB for JRE)  
-<a name="footnote02">2</a>: Note that OpenJDK v1.8 and v9 are both [officially supported](https://www.elastic.co/support/matrix#matrix_jvm) for Elastic Search
+<a name="footnote02">2</a>: Note that OpenJDK v1.8 and v9 are both [officially supported](https://www.elastic.co/support/matrix#matrix_jvm) for Elastic Search  
 <a name="footnote03">3</a>: If we didn't know the name of the package we wanted, we could perform a search using apt-cache:  
                             ```
                             sudo apt-cache search java
