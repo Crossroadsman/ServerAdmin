@@ -91,8 +91,13 @@ node.name: <node_name>
 ```
 You can give it an absolute value, e.g., `node.name: my_elastic_node` or pass in the computer's HOSTNAME variable: `node.name: ${HOSTNAME}`
 
-
-
+#### Network Host ####
+By default, Elasticsearch binds to loopback addresses only.
+To set the host, specify:
+```
+network.host: <IP-address>
+```
+Elasticsearch understands [IPv4 and IPv6 addresses, FQDNs, 0.0.0.0, and some special values like (`_local_`, `_site_`, `_global_`, etc)][link10].
 
 
 Footnotes
@@ -110,3 +115,4 @@ sockets. Here we are running it so that it can pick up the config from the newly
 [link07]: https://unix.stackexchange.com/questions/364782/what-does-systemctl-daemon-reload-do
 [link08]: http://www.yaml.org
 [link09]: https://www.elastic.co/guide/en/elasticsearch/reference/current/path-settings.html
+[link10]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html#network-interface-values
