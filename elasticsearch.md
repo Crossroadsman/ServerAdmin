@@ -106,10 +106,14 @@ Set the heap in `jvm.options` by specifying minimum (`Xms`) and maximum (`Xmx`) 
 
 Note: you can check total memory by typing `sudo lshw -c memory` and see available memory using `free -m`<sup>[4](#footnote04)</sup>.
 [Considerations][link11]:
-- Set min and max to be equal to each other
-- 
+- Set min and max to be equal to each other;
+- Higher heap values allow more caching but also lead to longer garbage collection pauses;
+- Max should be no more than 50% of physical RAM;
+- Max should not be larger than the JVM's zero-based compressed oops value (usually around 26GB)
 
-
+##### Dump Path #####
+By default, some installs of Elasticsearch configure the JVM to dump the heap on out of memory exceptions to `/var/lib/elasticsearch`. If.
+for any reason, this path is unsuitable, modify the entry `-XX:HeapDumpPath=<path>` to the preferred path.
 
 
 Footnotes
