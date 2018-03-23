@@ -67,12 +67,19 @@ testing use without changing any settings.
 
 For production, the following items need to be configured:
 
-- Path
+- Paths
 - Cluster and Node name
 - Network host
 - Discovery
 - Heap (size and dump path)
 - GC Logging
+
+#### Paths ####
+
+Depending on the installation method, files may not be residing in suitable locations. Note that the Debian distribution described above 
+uses appropriate paths by default<sup>[3](#footnote03)</sup>. For other install methods, see the [official documentation][link09].
+
+####
 
 
 
@@ -81,7 +88,8 @@ Footnotes
 <a name="footnote01">1</a>: `shasum` might not be installed. If it is not installed, it can be obtained by installing, e.g., 
 perl: `sudo apt-get install perl`  
 <a name="footnote02">2</a>: This is a '[soft reload][link07]' that updates configurations and generators without interrupting open 
-sockets. Here we are running it so that it can pick up the config from the newly installed Elasticsearch
+sockets. Here we are running it so that it can pick up the config from the newly installed Elasticsearch  
+<a name="footnote03">3</a>: logs: `/var/log/elasticsearch`; data: `/var/lib/elasticsearch`  
 
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/java.md
@@ -89,3 +97,4 @@ sockets. Here we are running it so that it can pick up the config from the newly
 [link06]: https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo
 [link07]: https://unix.stackexchange.com/questions/364782/what-does-systemctl-daemon-reload-do
 [link08]: http://www.yaml.org
+[link09]: https://www.elastic.co/guide/en/elasticsearch/reference/current/path-settings.html
