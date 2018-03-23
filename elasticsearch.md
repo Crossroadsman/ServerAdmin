@@ -57,15 +57,12 @@ Configure Elasticsearch
 Footnotes
 ---------
 <a name="footnote01">1</a>: `shasum` might not be installed. If it is not installed, it can be obtained by installing, e.g., 
-perl: `sudo apt-get install perl`
-<a name="footnote02">2</a>: This is a '[soft reload][link07]' that updates configurations and generators without interrupting open sockets. Here
-we are running it so that it can pick up the config from the newly installed Elasticsearch
+perl: `sudo apt-get install perl`  
+<a name="footnote02">2</a>: This is a '[soft reload][link07]' that updates configurations and generators without interrupting open 
+sockets. Here we are running it so that it can pick up the config from the newly installed Elasticsearch
 
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/java.md
 [link02]: https://www.elastic.co/support/matrix
-[link03]: https://www.gnu.org/software/wget/manual/html_node/Logging-and-Input-File-Options.html#Logging-and-Input-File-Options
-[link04]: https://www.gnu.org/software/wget/manual/html_node/Download-Options.html#Download-Options
-[link05]: https://www.systutorials.com/docs/linux/man/8-apt-key/
 [link06]: https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo
 [link07]: https://unix.stackexchange.com/questions/364782/what-does-systemctl-daemon-reload-do
