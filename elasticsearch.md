@@ -68,11 +68,21 @@ Set Elasticsearch to run as a service
   SysV `init`, see Elastic's [instructions][link06]
 
 - Restart systemd's manager configuration<sup>[2](#footnote02)</sup>:  
-  `sudo /bin/systemctl daemon-reload
-- Enable Elasticsearch:  
+  `sudo /bin/systemctl daemon-reload`
+- Enable Elasticsearch to start on boot:  
   `sudo /bin/systemctl enable elasticsearch.service`
 
+Note that we can start and stop elasticsearch as follows:
+```
+sudo systemctl start elasticsearch.service
+sudo systemctl stop elasticsearch.service
+```
 
+Note that starting/stopping the service doesn't give any feedback on whether Elasticsearch started successfully or not. To check this (and 
+other troubleshooting of Elasticsearch) check the log files in `/var/log/elasticsearch`.
+
+- Check that Elasticsearch is running:  
+  `curl localhost:9200`
 
 
 Footnotes
