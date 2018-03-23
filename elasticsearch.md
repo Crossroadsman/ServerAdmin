@@ -72,7 +72,7 @@ For production, the following items need to be configured in `/etc/elasticsearch
 - Paths
 - Cluster and Node name
 - Network host
-- Discovery
+- Discovery (for clustering)
 - Heap (size and dump path)
 - GC Logging
 
@@ -99,14 +99,30 @@ network.host: <IP-address>
 ```
 Elasticsearch understands [IPv4 and IPv6 addresses, FQDNs, 0.0.0.0, and some special values like (`_local_`, `_site_`, `_global_`, etc)][link10].
 
+#### Heap ####
+
+##### Size #####
+Set the heap in `jvm.options` by specifying minimum (`Xms`) and maximum (`Xmx`) settings.
+
+Note: you can check total memory by typing `sudo lshw -c memory` and see available memory using `free -m`<sup>[4](#footnote04)</sup>.
+[Considerations][link11]:
+- Set min and max to be equal to each other
+- 
+
+
+
 
 Footnotes
 ---------
 <a name="footnote01">1</a>: `shasum` might not be installed. If it is not installed, it can be obtained by installing, e.g., 
-perl: `sudo apt-get install perl`  
+  perl: `sudo apt-get install perl`  
 <a name="footnote02">2</a>: This is a '[soft reload][link07]' that updates configurations and generators without interrupting open 
-sockets. Here we are running it so that it can pick up the config from the newly installed Elasticsearch  
+  sockets. Here we are running it so that it can pick up the config from the newly installed Elasticsearch  
 <a name="footnote03">3</a>: logs: `/var/log/elasticsearch`; data: `/var/lib/elasticsearch`  
+<a name="footnote04">4</a>: Note that Linux allows the disk cache to use otherwise free memory (which will be given over to applications as
+  they request it). This will cause the 'free' column in `free` to approach zero even hardly any memory has been allocated to applications.
+  Looking at the 'available' column will give an indication of how much memory is really available. See [here](https://www.linuxatemyram.com) 
+  for more details.
 
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/java.md
@@ -116,3 +132,4 @@ sockets. Here we are running it so that it can pick up the config from the newly
 [link08]: http://www.yaml.org
 [link09]: https://www.elastic.co/guide/en/elasticsearch/reference/current/path-settings.html
 [link10]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html#network-interface-values
+[link11]: https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html
