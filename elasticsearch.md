@@ -48,6 +48,8 @@ other troubleshooting of Elasticsearch) check the log files in `/var/log/elastic
 - Check that Elasticsearch is running:  
   `curl localhost:9200`
 
+Also note that it may take 30 seconds or so for Elasticsearch to be available after restarting it.
+
 
 Configure Elasticsearch
 -----------------------
