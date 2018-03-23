@@ -65,7 +65,7 @@ The configuration files are in [YAML][link08].
 Note that Elasticsearch ships with sensible defaults and a single cluster with a single node should work out of the box for demo or 
 testing use without changing any settings.
 
-For production, the following items need to be configured:
+For production, the following items need to be configured in `/etc/elasticsearch/elasticsearch.yml`:
 
 - Paths
 - Cluster and Node name
@@ -75,11 +75,21 @@ For production, the following items need to be configured:
 - GC Logging
 
 #### Paths ####
-
 Depending on the installation method, files may not be residing in suitable locations. Note that the Debian distribution described above 
 uses appropriate paths by default<sup>[3](#footnote03)</sup>. For other install methods, see the [official documentation][link09].
 
-####
+#### Cluster and Node Name ####
+Nodes will only join clusters with the same name.
+```
+cluster.name: <cluster_name>
+```
+By default, Elasticsearch gives a new node a name corresponding to the first seven characters of the UUID. To give it a more memorable name:
+```
+node.name: <node_name>
+```
+You can give it an absolute value, e.g., `node.name: my_elastic_node` or pass in the computer's HOSTNAME variable: `node.name: ${HOSTNAME}`
+
+
 
 
 
