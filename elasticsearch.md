@@ -51,6 +51,28 @@ other troubleshooting of Elasticsearch) check the log files in `/var/log/elastic
 
 Configure Elasticsearch
 -----------------------
+By default, `/etc/elasticsearch` is where runtime configuration is stored. The main config file is `/etc/elasticsearch/elasticsearch.yml`.
+For Debian-based systems, there is also a system config file in `/etc/default/elasticsearch` for setting things like custom path to Java
+runtime, etc.
+
+Elasticsearch has three configuration files: 
+- `elasticsearch.yml` for configuring Elasticsearch;
+- `jvm.options` for configuring the JVM settings;
+- `log4j2.properties` for configuring logging.
+
+The configuration files are in [YAML][link08].
+
+Note that Elasticsearch ships with sensible defaults and a single cluster with a single node should work out of the box for demo or 
+testing use without changing any settings.
+
+For production, the following items need to be configured:
+
+- Path
+- Cluster and Node name
+- Network host
+- Discovery
+- Heap (size and dump path)
+- GC Logging
 
 
 
@@ -66,3 +88,4 @@ sockets. Here we are running it so that it can pick up the config from the newly
 [link02]: https://www.elastic.co/support/matrix
 [link06]: https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html#deb-repo
 [link07]: https://unix.stackexchange.com/questions/364782/what-does-systemctl-daemon-reload-do
+[link08]: http://www.yaml.org
