@@ -3,57 +3,21 @@ ElasticSearch
 
 Pre-requisites
 --------------
-
 - Install the most current [JVM][link01]
 - (Optional) confirm that the OS is included in the [ElasticSearch Support Matrix][link02]
 
 
-VERSION1...
-Installation
-------------
-### Configure apt for Use With Elastic's Repository ###
-- Install Elastic's signing key:  
-  ```
-  wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-  ```
-  **Notes**:
-  - `-q` means [`quiet`][link03] (turn off output)
-  - `-O <file>` is an alias for [`--output-document=<file>`][link04] which tells wget that instead of writing the documents to the 
-    appropriate files, all the files should be concatenated together and written to the specified <file>
-  - `-` used as an argument to `-O` means that stdout should be used as the 'file'
-  - `apt-key` is the [APT key management utility][link05]
-  - `add <file>` adds a new key to the list of trusted keys. Using `-` as the file means to get the key from stdin
-- Type `apt-key list` to verify that Elastic's signing key was added to the key manager
-- Install `apt-transport-https` if not installed already:  
-  `sudo apt-get install apt-transport-https`
-- Add Elastic's repo definition to apt's list of known sources:  
-  `echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt-c`  
-  **Notes**:  
-  - `-a` tells tee to append to the file instead of replacing it
-- Update apt's package list
-  
-### Install Elasticsearch ###
-`sudo apt-get install elasticsearch`
-
-Configuration
--------------
-- Specify the network settings by:
-  - editing the configuration file:
-    `sudo vi /etc/elasticsearch/elasticsearch.yml`
-  - and setting the following properties:
-    ```
-    network.host: "localhost"
-    http.port:9200
-    ```
-**NOTE we may need to open port 9200 in ufw**
-END VERSION1
-
-VERSION2
+Obtain Elasticsearch
+--------------------
 Follow Elastic's [instructions][link06] for manually downloading and installing elastic search:
 - Obtain the `.deb` package  
   `wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.deb`
 - Obtain the SHA hash file  
   `wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.3.deb.sha512`
+
+
+Install Elasticsearch
+---------------------
 - Ensure that the hash is ok<sup>[1](#footnote01)</sup>  
   `shasum -a 512 -c elasticsearch-6.2.3.deb.sha512`
 - Install the application  
@@ -83,6 +47,11 @@ other troubleshooting of Elasticsearch) check the log files in `/var/log/elastic
 
 - Check that Elasticsearch is running:  
   `curl localhost:9200`
+
+
+Configure Elasticsearch
+-----------------------
+
 
 
 Footnotes
