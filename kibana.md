@@ -34,7 +34,8 @@ sudo systemctl stop kibana.service
 
 Configuration
 -------------
-Note that Kibana should be 
+Kibana's config file is in `/etc/kibana/kibana.yml`.
+
 
 
 [intro01]: https://www.elastic.co/guide/en/kibana/current/introduction.html
