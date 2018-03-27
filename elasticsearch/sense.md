@@ -8,7 +8,7 @@ browser][intro02].
 Installation
 ------------
 - Start with a [properly configured Elasticsearch/Kibana instance][install01];
-- Run the following command in the Kibana directory<sup>[1]('#install01')</sup> to download and install Sense:  
+- Run the following command in the Kibana directory<sup>[1](#install01)</sup> to download and install Sense:  
   ```
   ./bin/kibana-plugin install elastic/sense
   ```
