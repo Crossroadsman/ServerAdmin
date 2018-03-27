@@ -1,12 +1,14 @@
-Sense
-=====
+Console (Formerly Sense)
+========================
 
-Sense is a [Kibana][intro01] app that [provides an interactive console for submitting requests to Elasticsearch direct from a 
-browser][intro02].
+Console, formerly known as Sense, is a [Kibana][intro01] app that [provides an interactive console for submitting requests to 
+Elasticsearch direct from a browser][intro02].
 
 
 Installation
 ------------
+From Kibana v5.0, Console is included in the base Kibana install. For older versions, Sense is installed as follows:
+
 - Start with a [properly configured Elasticsearch/Kibana instance][install01];
 - Run the following command in the Kibana directory<sup>[1](#install01)</sup> to download and install Sense:  
   ```
