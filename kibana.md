@@ -36,6 +36,19 @@ Configuration
 -------------
 Kibana's config file is in `/etc/kibana/kibana.yml`.
 
+By default Kibana runs on `localhost:5601`
+
+Common settings to consider changing (shown with defaults):
+- `elasticsearch.preserveHost: true` - When set to `true`, Kibana will only use the hostname specified in the `server.host` setting.
+  When `false`, uses the hostname of the host that connects to the Kibana instance;
+- `elasticsearch.url: "http://localhost:9200"` - The URL of the Elasticsearch instance;
+- `elasticsearch.username`, `elasticsearch.password` - If the Elasticsearch instance is protected with basic security then the credentials
+   go here;
+- `server.defaultRoute: "/app/kibana"` - The default route when opening Kibana;
+- `server.host: "localhost"` - The host for the back end server;
+- `server.name: "<name>"` - Human-readable name to identify this instance;
+- `server.port: 5601` - Kinbana is served by a back-end server, this specifies the port.
+
 
 
 [intro01]: https://www.elastic.co/guide/en/kibana/current/introduction.html
