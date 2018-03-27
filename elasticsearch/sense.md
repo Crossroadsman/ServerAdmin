@@ -16,7 +16,7 @@ Installation
   
 Footnotes
 ---------
-<a name="install01">[1]</a>: Assuming a Debian-package install, the Kibana home directory is `/usr/share/kibana`
+<a name="install01">1</a>: Assuming a Debian-package install, the Kibana home directory is `/usr/share/kibana`
 
 
 [intro01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/kibana.md
