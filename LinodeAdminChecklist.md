@@ -14,6 +14,10 @@ Provision VPS
 
 ☐ Note the IP address
 
+☐ Configure DNS
+
+- [Set a low TTL][link05]
+- Set the A Record
 
 Remove old VPS from local machine's known_hosts
 -----------------------------------------------
@@ -107,3 +111,4 @@ any 'undesirable' situations arise). Per the man page.
 [link02]: https://github.com/Crossroadsman/.vim 'Crossroadsman: .vimrc'
 [link03]: ethanschoonover.com/solarized
 [link04]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md 'Crossroadsman: Server Admin: Securing a Server'
+[link05]: https://www.dnswatch.info/articles/dns-update
