@@ -37,12 +37,36 @@ If installed, should get a terminal response like:
 2: Download Remote Source Tarball
 ---------------------------------
 
+Decide where we are going to store the source files, `/home/source` is a common choice:
 ```
+sudo mkdir /home/source
+sudo mkdir /home/source/tarballs
+```
+
+Whatever location we choose, we can create a symlink to that location and give it a common name, e.g., `/source`:
+```
+sudo ln -s /home/source /source
+```
+
+We can `chown` the directory tree so we don't always need to be superuser:
+```
+sudo chown -R <username> /home/source
+```
+(Note this will make `/home/source` and `/home/source/tarballs` owned by <username> but the `/source` symlink will still be owned by
+root).
+
+We then download our tarball:
+```
+cd /source/tarballs
 curl -O <url_to_tarball>
 ```
-
 (`-O` is an alias for `--remote-name` and signifies that the next argument will be the remote url)
 
+Or if we prefer Gnu wget:
+```
+cd /source/tarballs
+wget <url_to_tarball>
+```
 
 3: Check md5 hash
 -----------------
@@ -50,8 +74,8 @@ curl -O <url_to_tarball>
 [Verify][link01] that the md5 is valid
 
 
-4: Extract Tarball
-------------------
+4: Extract [Tarball][link02]
+----------------------------
 
 ```
 tar -xvf <filename>
@@ -92,3 +116,4 @@ sudo make install
 
 
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/md5sum.md
+[link02]: https://github.com/Crossroadsman/TerminalTips/blob/master/tar.md
