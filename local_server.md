@@ -1,12 +1,22 @@
 Configuring a Local Server
 ==========================
 
+Create an Installer
+-------------------
 [Create Ubuntu installer][link01]
+
+Install Linux
+-------------
 [Install Ubuntu][link02]
 
+
+Configure Server
+----------------
+### Create a User ###
 Create a user (part of the install process if using Desktop)
 Add the user to the sudo group (`adduser <username> sudo`)
 
+### Configure SSH ###
 Install ssh server:
 ```
 sudo apt-get install openssh-server
@@ -18,7 +28,10 @@ sudo service ssh status
 
 Make sure that ssh connections are possible (ssh from another machine on the local network using the local IP address)
 
-Configure external connections:
+### Configure ufw ###
+
+
+### Configure external connections ###
 
 Go to the router's (e.g., Orbi) web admin portal and set up port forwarding for ssh (so that incoming connections to the one public ip 
 address get redirected to the server)
