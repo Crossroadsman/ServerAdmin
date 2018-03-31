@@ -4,6 +4,7 @@ Configuring a Local Server
 Create an Installer
 -------------------
 [Create Ubuntu installer][link01]
+See also <https://www.nushackers.org/2017/11/digest-ubuntu-on-macbook/>
 
 Install Linux
 -------------
