@@ -12,7 +12,8 @@ Installation
   - Manual installation with Debian:  
     ```
     wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.3-amd64.deb
-    shasum kibana-6.2.3-adm64.deb
+    wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.3-amd64.deb.sha512
+    shasum -a 512 -c kibana-6.2.3-adm64.deb.sha512
     sudo dpkg -i kibana-6.2.3-amd64.deb
     ```
 
