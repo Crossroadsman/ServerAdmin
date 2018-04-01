@@ -46,7 +46,7 @@ Common settings to consider changing (shown with defaults):
 - `elasticsearch.username`, `elasticsearch.password` - If the Elasticsearch instance is protected with basic security then the credentials
    go here;
 - `server.defaultRoute: "/app/kibana"` - The default route when opening Kibana;
-- `server.host: "localhost"` - The host for the back end server;
+- `server.host: "localhost"` - The host for the back end server. In order to access this from remote hosts, change to `0.0.0.0`;
 - `server.name: "<name>"` - Human-readable name to identify this instance;
 - `server.port: 5601` - Kinbana is served by a back-end server, this specifies the port.
 
