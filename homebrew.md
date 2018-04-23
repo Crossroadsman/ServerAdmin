@@ -40,7 +40,9 @@ Usage
 - `update` updates Homebrew from the latest version on git
 - `list` lists all installed *formulae*
 - `doctor` perform various diagnostics on Homebrew and installed packages
-
+- `search` search the package directory
+- `cask <brew_command> [brew_command_args]` use Homebrew Cask for installation. Typically used for installing GUI applications, e.g,:
+  `brew cask install vlc`
 
 
 
