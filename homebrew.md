@@ -28,6 +28,7 @@ Usage
 - `uninstall <thing>` uninstalls the package 'thing'
 - `update` updates Homebrew from the latest version on git
 - `list` lists all installed *formulae*
+- `doctor` perform various diagnostics on Homebrew and installed packages
 
 
 
