@@ -22,14 +22,12 @@ Follow the [installation instructions][link01]:
 
 Usage
 -----
-
 [Common command syntax][link04] (in the form `brew <command>`):
-
-`--version` display version information then quit
-`install <thing>` installs the package 'thing'
-`uninstall <thing>` uninstalls the package 'thing'
-`update` updates Homebrew from the latest version on git
-`list` lists all installed *formulae*
+- `--version` display version information then quit
+- `install <thing>` installs the package 'thing'
+- `uninstall <thing>` uninstalls the package 'thing'
+- `update` updates Homebrew from the latest version on git
+- `list` lists all installed *formulae*
 
 
 
