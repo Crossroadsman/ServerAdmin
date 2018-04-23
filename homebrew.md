@@ -23,9 +23,9 @@ System Setup
 ------------
 Homebrew uses Ruby which is installed by default on the Mac, but is typically a very old version. Therefore we want to be able to install 
 new versions of the tools (including Ruby) that Homebrew needs, but without overwriting the system-installed versions (which might be
-required for system-related purposes).
+required for system-related purposes).  
 The way we do this is to ensure that /usr/local/bin (where we install programs) appears before /usr/bin (where Apple installs programs) in
-the PATH.
+the PATH.  
 Note that it doesn't matter (except aesthetically) if things appear multiple times in the PATH, all the matters is that the first 
 appearance of a particular path appears before the first appearance of another path.
 See [Bash Environment][link04] for which profile file to edit to modify PATH.
@@ -35,7 +35,7 @@ Usage
 -----
 [Common command syntax][link05] (in the form `brew <command>`):
 - `--version` display version information then quit
-- `install <thing>` installs the package 'thing'
+- `install <thing>` installs the package 'thing'; or chain multiple packages: `brew install foo bar baz`
 - `uninstall <thing>` uninstalls the package 'thing'
 - `update` updates Homebrew from the latest version on git
 - `list` lists all installed *formulae*
