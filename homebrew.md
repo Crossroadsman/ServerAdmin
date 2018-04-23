@@ -54,7 +54,7 @@ Usage
 
 Footnotes
 ---------
-<a name="footnote01">1</a>: Apple themselves [warn developers not to use the Apple-supplied versions of Ruby, Perl, Python or any other
+<a name="footnote01">1</a>: Apple expressly [warns developers not to use the Apple-supplied versions of Ruby, Perl, Python or any other
 scripting languages that might be found on a MacOS installation](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/FileSystemProtections/FileSystemProtections.html#//apple_ref/doc/uid/TP40016462-CH2-DontLinkElementID_2).
 
 
