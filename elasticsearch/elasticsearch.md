@@ -116,6 +116,22 @@ By default, some installs of Elasticsearch configure the JVM to dump the heap on
 for any reason, this path is unsuitable, modify the entry `-XX:HeapDumpPath=<path>` to the preferred path.
 
 
+Add Some Test Data
+------------------
+Data can typically be added to Elasticsearch one of two ways:
+- json over http;
+- native client.
+
+### Json over http ###
+We can use curl to do an http PUT. If we are going to do that we need to ensure that the server will accept headers of type 'application/x-www-form-urlencoded' (which is the form that curl uses when sending data using the `-d` flag) otherwise we'll get a 406 error.
+```
+curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}'
+```
+**Notes**:
+- `-X<method> <url>` use an alternative method to the default (deafult=GET) for the specified URL
+- `-d <data>` send the specified data in a POST request
+
+
 Footnotes
 ---------
 <a name="footnote01">1</a>: `shasum` might not be installed. If it is not installed, it can be obtained by installing, e.g., 
