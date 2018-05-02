@@ -138,6 +138,16 @@ curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}'
 - `-H <content-type>` tells Elasticsearch what form the data is in. Note this [only became possible in v5.3 and mandatory in v6.0][link12]
   so many guides and examples do not include this argument.
 
+We can retrieve that entry with an http GET:
+```
+curl -XGET 'http://myserver.com:9200/blog/user/finn'
+```
+We can optionally get a more 'pretty' retrieval as follows:
+```
+curl -XGET 'http://myserver.com:9200/blog/user/finn?pretty'
+```
+
+
 
 Footnotes
 ---------
