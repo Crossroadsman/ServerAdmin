@@ -125,11 +125,15 @@ Data can typically be added to Elasticsearch one of two ways:
 ### Json over http ###
 We can use curl to do an http POST or PUT.
 ```
-curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}' -H Content-Type: application/json'
+curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}' -H 'Content-Type: application/json'
 ```
 **Notes**:
 - `-X<method> <url>` use an alternative method to the default (deafult=GET) for the specified URL. `POST` is used for creating a 
   new document, `PUT` for modifying an existing one
+- in the url, Elasticsearch interprets the path (after the port) as /<index>/<type>/<id>. A [breaking change in v6.0 is that an index can
+  now only have one type][link13]. This means that after the above example, attempting to issue the following:
+  `curl -XPUT 'http://myserver.com:9200/blog/post/helloworld' -d '{"title": "Hello World"}' -H 'Content-Type: application/json'`
+  will produce an error in v6.0 because we are attempting to create more than one type ('user', 'post') for a single index ('blog').
 - `-d <data>` send the specified data in a POST request
 - `-H <content-type>` tells Elasticsearch what form the data is in. Note this [only became possible in v5.3 and mandatory in v6.0][link12]
   so many guides and examples do not include this argument.
@@ -157,3 +161,4 @@ Footnotes
 [link10]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html#network-interface-values
 [link11]: https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html
 [link12]: https://www.elastic.co/blog/strict-content-type-checking-for-elasticsearch-rest-requests
+[link13]: https://discuss.elastic.co/clicks/track?url=https%3A%2F%2Fwww.elastic.co%2Fblog%2Findex-type-parent-child-join-now-future-in-elasticsearch&post_id=387316&topic_id=106089
