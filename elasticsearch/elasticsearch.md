@@ -130,7 +130,7 @@ curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}'
 **Notes**:
 - `-X<method> <url>` use an alternative method to the default (deafult=GET) for the specified URL. `POST` is used for creating a 
   new document, `PUT` for modifying an existing one
-- in the url, Elasticsearch interprets the path (after the port) as /<index>/<type>/<id>. A [breaking change in v6.0 is that an index can
+- in the url, Elasticsearch interprets the path (after the port) as `/<index>/<type>/<id>`. A [breaking change in v6.0 is that an index can
   now only have one type][link13]. This means that after the above example, attempting to issue the following:
   `curl -XPUT 'http://myserver.com:9200/blog/post/helloworld' -d '{"title": "Hello World"}' -H 'Content-Type: application/json'`
   will produce an error in v6.0 because we are attempting to create more than one type ('user', 'post') for a single index ('blog').
