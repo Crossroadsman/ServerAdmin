@@ -123,7 +123,7 @@ Data can typically be added to Elasticsearch one of two ways:
 - native client.
 
 ### Json over http ###
-We can use curl to do an http PUT. If we are going to do that we need to ensure that the server will accept headers of type 'application/x-www-form-urlencoded' (which is the form that curl uses when sending data using the `-d` flag) otherwise we'll get a 406 error.
+We can use curl to do an http POST or PUT.
 ```
 curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}' -H Content-Type: application/json'
 ```
