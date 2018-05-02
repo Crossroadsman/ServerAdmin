@@ -125,11 +125,14 @@ Data can typically be added to Elasticsearch one of two ways:
 ### Json over http ###
 We can use curl to do an http PUT. If we are going to do that we need to ensure that the server will accept headers of type 'application/x-www-form-urlencoded' (which is the form that curl uses when sending data using the `-d` flag) otherwise we'll get a 406 error.
 ```
-curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}'
+curl -XPUT 'http://myserver.com:9200/blog/user/finn' -d '{"name": "Finn Human"}' -H Content-Type: application/json'
 ```
 **Notes**:
-- `-X<method> <url>` use an alternative method to the default (deafult=GET) for the specified URL
+- `-X<method> <url>` use an alternative method to the default (deafult=GET) for the specified URL. `POST` is used for creating a 
+  new document, `PUT` for modifying an existing one
 - `-d <data>` send the specified data in a POST request
+- `-H <content-type>` tells Elasticsearch what form the data is in. Note this [only became possible in v5.3 and mandatory in v6.0][link12]
+  so many guides and examples do not include this argument.
 
 
 Footnotes
@@ -153,3 +156,4 @@ Footnotes
 [link09]: https://www.elastic.co/guide/en/elasticsearch/reference/current/path-settings.html
 [link10]: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html#network-interface-values
 [link11]: https://www.elastic.co/guide/en/elasticsearch/reference/current/heap-size.html
+[link12]: https://www.elastic.co/blog/strict-content-type-checking-for-elasticsearch-rest-requests
