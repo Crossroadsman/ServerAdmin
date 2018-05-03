@@ -166,18 +166,18 @@ curl -XGET 'http://myserver.com:9200/blog/user/finn?pretty'
 Per the [logz.io tutorial][link14], we use PUT when we want to specify the data item's ID and POST when we want Elasticsearch to generate
 it. Examples:
 ```
-curl -X POST 'elastic.mydomain.com:9200/logs/myapp' -H 'Content-Type: application/json' -d' {
-	"timestamp": "2018-05-03T16:32:35-0600",
-	"message": "Log in attempt",
-	"user_id": 7,
-	"admin": false
-}'
- 
-curl -X PUT 'elastic.mydomain.com:9200/app/users/7' -H 'Content-Type: application/json' -d ' {
+curl -X PUT 'elastic.mydomain.com:9200/app/users/7' -H 'Content-Type: application/json' -d '{
   "id": 7, 
   "username": "nice_king", 
   "last_login": "2018-05-03T16:34:32-0600"
 }'
+
+curl -X POST 'elastic.mydomain.com:9200/logs/myapp' -H 'Content-Type: application/json' -d '{
+	"timestamp": "2018-05-03T16:32:35-0600",
+	"message": "Log in attempt",
+	"user_id": 7,
+	"admin": false
+}' 
 ```
 
 
