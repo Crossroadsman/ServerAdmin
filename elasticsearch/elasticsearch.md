@@ -170,7 +170,7 @@ curl -X POST 'elastic.mydomain.com:9200/logs/myapp' -H 'Content-Type: applicatio
 	"timestamp": "2018-05-03T16:32:35-0600",
 	"message": "Log in attempt",
 	"user_id": 7,
-	"admin": False
+	"admin": false
 }'
  
 curl -X PUT 'elastic.mydomain.com:9200/app/users/7' -H 'Content-Type: application/json' -d ' {
