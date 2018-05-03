@@ -1,4 +1,4 @@
-ElasticSearch
+Elasticsearch
 =============
 
 Pre-requisites
