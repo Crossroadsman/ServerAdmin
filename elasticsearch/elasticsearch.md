@@ -116,6 +116,20 @@ By default, some installs of Elasticsearch configure the JVM to dump the heap on
 for any reason, this path is unsuitable, modify the entry `-XX:HeapDumpPath=<path>` to the preferred path.
 
 
+Securing
+--------
+We can specify a firewall rule so that only the trusted host (the host that is running the app using elasticsearch) can access the 
+Elasticsearch port:
+```
+sudo ufw allow from <trusted_host> to any port 9200
+```
+**Notes**:
+- `from <trusted_host>` : only allow the specified host access through the firewall for this rule;
+- `to any` : this rule will allow access regardless of what ip address the machine running ufw has (so if the server moves ip address, 
+  it won't affect this rule);
+- `port 9200` : this rule only applies on port 9200
+
+
 Add Some Test Data
 ------------------
 Data can typically be added to Elasticsearch one of two ways:
