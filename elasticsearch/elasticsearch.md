@@ -196,6 +196,8 @@ curl -X GET '<url>:9200/<index>/<type>/<id>?pretty'
 ```
 
 ### Perform a search query ###
+
+#### [URI Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html) ####
 ```
 curl -X GET '<url>:9200/_search?q=finn'
 ```
@@ -203,6 +205,12 @@ or
 ```
 curl -X GET '<url>:9200/_search?q=%22Hello+World%22&pretty'
 ```
+
+#### Other Search Types ####
+
+- [Request Body Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)
+- [Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
+
 
 Footnotes
 ---------
