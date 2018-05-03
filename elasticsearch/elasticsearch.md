@@ -161,7 +161,6 @@ We can optionally get a more 'pretty' retrieval as follows:
 curl -XGET 'http://myserver.com:9200/blog/user/finn?pretty'
 ```
 
-
 #### PUT vs POST ####
 Per the [logz.io tutorial][link14], we use PUT when we want to specify the data item's ID and POST when we want Elasticsearch to generate
 it. Examples:
@@ -180,6 +179,30 @@ curl -X POST 'elastic.mydomain.com:9200/logs/myapp' -H 'Content-Type: applicatio
 }' 
 ```
 
+Understanding the Data
+----------------------
+As is typical with NoSQL databases, we don't need define the structure of the data, although we can improve performance by defining 
+mappings for data types.
+We can view the indicesas follows:
+```
+curl -X GET '<url>:9200/_cat/indices?v&pretty'
+```
+
+Searching
+---------
+### Fetch a single record ###
+```
+curl -X GET '<url>:9200/<index>/<type>/<id>?pretty'
+```
+
+### Perform a search query ###
+```
+curl -X GET '<url>:9200/_search?q=finn'
+```
+or
+```
+curl -X GET '<url>:9200/_search?q=%22Hello+World%22&pretty'
+```
 
 Footnotes
 ---------
