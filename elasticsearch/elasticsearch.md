@@ -209,7 +209,21 @@ curl -X GET '<url>:9200/_search?q=%22Hello+World%22&pretty'
 #### Other Search Types ####
 
 - [Request Body Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-body.html)
-- [Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
+- [Query DSL](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html) (see also the [logz.io tutorial][link14])
+
+
+Removing Data
+-------------
+Delete a record:
+```
+curl -X DELETE '<url>:9200/<index>/<type>/<id>?pretty'
+```
+
+Delete an index:
+```
+curl -X DELETE '<url>:9200/<index>?pretty'
+```
+
 
 
 Footnotes
