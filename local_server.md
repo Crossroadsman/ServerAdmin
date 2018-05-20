@@ -34,8 +34,8 @@ Make sure that ssh connections are possible (ssh from another machine on the loc
 
 ### Configure external connections ###
 
-Go to the router's (e.g., Orbi) web admin portal and set up port forwarding for ssh (so that incoming connections to the one public ip 
-address get redirected to the server)
+Go to the router's (e.g., Orbi) web admin portal and set up port forwarding (so that incoming connections to the one public ip 
+address get redirected to the server) for ssh and any other required services (e.g., elastic 9200, kibana 5601, etc).
 
 In netgear orbi go to ADVANCED / Advanced Setup / Port Forwarding Port Triggering
 <https://kb.netgear.com/31069/How-do-I-configure-port-forwarding-on-my-Orbi-system>
