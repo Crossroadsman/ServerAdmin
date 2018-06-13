@@ -34,6 +34,9 @@ Note that it doesn't matter (except aesthetically) if things appear multiple tim
 appearance of a particular path appears before the first appearance of another path.
 See [Bash Environment][link04] for which profile file to edit to modify PATH.
 
+Note that `usr/local` may not be writable (this error might be shown when running `brew doctor`). It is caused by Apple's SIP, which 
+needs to be [disabled][link06] for Homebrew to install correctly.
+
 
 Usage
 -----
@@ -63,3 +66,4 @@ scripting languages that might be found on a MacOS installation](https://develop
 [link03]: https://robm.me.uk/ruby/2013/11/20/ruby-enp.html
 [link04]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
 [link05]: https://docs.brew.sh/Manpage
+[link06]: https://developer.apple.com/library/archive/documentation/Security/Conceptual/System_Integrity_Protection_Guide/ConfiguringSystemIntegrityProtection/ConfiguringSystemIntegrityProtection.html
