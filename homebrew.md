@@ -34,8 +34,13 @@ Note that it doesn't matter (except aesthetically) if things appear multiple tim
 appearance of a particular path appears before the first appearance of another path.
 See [Bash Environment][link04] for which profile file to edit to modify PATH.
 
-Note that `usr/local` may not be writable (this error might be shown when running `brew doctor`). It is caused by Apple's SIP, which 
-needs to be [disabled][link06] for Homebrew to install correctly.
+Note that `usr/local` may not be writable (this error might be shown when running `brew doctor`). To remedy this, `chown` `usr/local` as 
+follows:
+```bash
+sudo chown -R $(whoami) /usr/local
+```
+A permissions error when attempting to do this is caused by Apple's SIP, which needs to be [disabled][link06] for Homebrew to install 
+correctly.
 
 
 Usage
