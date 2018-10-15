@@ -92,9 +92,7 @@ Addendum 1: Combining Two Git Repos
 7. Commit all of the file moves.
 8. Repeat 3-6 for OldB.
 
-<a name="s1">
-### Create a new empty repository New ###
-</a>
+### <a name="s1">Create a new empty repository New</a> ###
 
 ```Bash
 mkdir new
