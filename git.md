@@ -80,4 +80,37 @@ git clone git@github.com:<user_id>/<repo>.git
 ```
 
 
+Addendum 1: Combining Two Git Repos
+-----------------------------------
+
+1. [Create a new empty repository New.](#s1)
+2. [Make an initial commit because we need one before we do a merge.](#s2)
+3. Add a remote to old repository OldA.
+4. Merge OldA/master to New/master.
+5. Make a subdirectory OldA.
+6. Move all files into subdirectory OldA.
+7. Commit all of the file moves.
+8. Repeat 3-6 for OldB.
+
+<a name="s1">
+### Create a new empty repository New ###
+</a>
+
+```Bash
+mkdir new
+cd new
+git init
+```
+
+<a name="s2">
+### Make an Initial Commit ###
+</a>
+
+```Bash
+touch README.md
+git add -A
+git commit -m "Initial commit"
+```
+
+
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
