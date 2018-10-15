@@ -85,30 +85,53 @@ Addendum 1: Combining Two Git Repos
 
 1. [Create a new empty repository New.](#s1)
 2. [Make an initial commit because we need one before we do a merge.](#s2)
-3. Add a remote to old repository OldA.
-4. Merge OldA/master to New/master.
-5. Make a subdirectory OldA.
-6. Move all files into subdirectory OldA.
-7. Commit all of the file moves.
-8. Repeat 3-6 for OldB.
+3. [Create a new branch for old repo A's files](#s3)
+4. [Create a remote association to old repo A](#s4)
+5. [Pull the remote's files](#s5)
+6. Move all the remote's files into a subdirectory
+7. Checkout master
+8. Merge the branch back into master
+9. Repeat steps 3–8 for all remaining old repos
 
 ### <a name="s1">Create a new empty repository New</a> ###
 
-```Bash
+```shell
 mkdir new
 cd new
 git init
 ```
 
-<a name="s2">
-### Make an Initial Commit ###
-</a>
-
-```Bash
-touch README.md
+### <a name="s2">Make an Initial Commit</a> ###
+This creates a new master branch.
+```shell
+echo New > README.md
 git add -A
 git commit -m "Initial commit"
 ```
+
+### <a name="s3">Create a new branch for old repo A's files</a> ###
+For clarity, branches are in snake case, remote names in Pascal case
+
+```shell
+git checkout -b repo_a
+```
+
+### <a name="s4">Create a remote association to old repo A</a> ###
+`RepoA` is the name we are using to associate the remote repo's url inside this repo.
+
+```shell
+git remote add -f RepoA https://www.git.files/path/to/repo
+```
+
+### <a name="s5">Pull the remote's files</a> ###
+Will probably need to explicitly allow unrelated histories
+
+```shell
+git pull RepoA master --allow-unrelated-histories
+```
+
+Then will probably need to do a merge
+
 
 
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
