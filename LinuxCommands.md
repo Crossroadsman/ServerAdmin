@@ -38,7 +38,7 @@ is the user who created it and the owning group is the user's current group.
 
 Pipeline
 --------
-- `xargs`  
+- [`xargs`](https://shapeshed.com/unix-xargs/)  
   Used to build an execution pipeline from standard input. Allows tools like `echo`, `rm`, `mkdir` to accept standard input.
   By default, `xargs` reads items from standard input as items separated by blanks. It then runs the associated command once
   for each item.  
