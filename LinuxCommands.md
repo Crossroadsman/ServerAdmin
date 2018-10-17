@@ -35,3 +35,19 @@ is the user who created it and the owning group is the user's current group.
 - [`chown [options] {new owner} file ...`](https://www.computerhope.com/unix/uchown.htm)  
   Changes the ownership of a specified file.  
   `{new owner}` takes the form `user[:group]`
+
+Pipeline
+--------
+- `xargs`  
+  Used to build an execution pipeline from standard input. Allows tools like `echo`, `rm`, `mkdir` to accept standard input.
+  By default, `xargs` reads items from standard input as items separated by blanks. It then runs the associated command once
+  for each item.  
+  Example:
+  ```bash
+  $ echo "foo bar baz" | xargs mkdir
+  $ ls -l
+  drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 bar
+  drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 baz
+  drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 foo
+  ```
+
