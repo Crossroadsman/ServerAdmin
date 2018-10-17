@@ -90,7 +90,7 @@ Other Management
 
 ☐ [Configure git][link01]
 
-☐ [Clone .vimrc][link01]<sup>[2](#footnote02)</sup>
+☐ [Clone .vimrc][link02]<sup>[2](#footnote02)</sup>
 
 ☐ Enable longview
 
