@@ -28,6 +28,6 @@ is the user who created it and the owning group is the user's current group.
 
 - `chmod`
 
-- `chown [options] {new owner} file ...`  
+- [`chown [options] {new owner} file ...`](https://www.computerhope.com/unix/uchown.htm)  
   Changes the ownership of a specified file.  
   `{new owner}` takes the form `user[:group]`
