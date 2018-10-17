@@ -79,6 +79,8 @@ Secure Server
 
 ☐ restart the ssh daemon
 
+- `systemctl restart ssh`
+
 ☐ [install fail2ban][link04]
 
 ☐ [initialise ufw (and allow ssh)][link04]
