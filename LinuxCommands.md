@@ -50,4 +50,5 @@ Pipeline
   drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 baz
   drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 foo
   ```
+- hostname
 
