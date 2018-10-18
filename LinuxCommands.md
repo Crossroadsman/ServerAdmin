@@ -1,5 +1,5 @@
-Basic File Navigation
----------------------
+Basic Filesystem Navigation
+---------------------------
 - `cd`
 - `cp`
 - `mv`
@@ -8,6 +8,26 @@ Basic File Navigation
 - `rmdir`
 - `ls`
 - `pwd`
+
+More Filesystem Navigation
+--------------------------
+- `pushd <dirname>`  
+  `<dirname> ~/temp ~/temp2`  
+  `<dirname> $`  
+  push `<dirname>` onto the `{dirs}` stack (array) and cd to it
+
+- `pushd +n`  
+  `~ ~/temp ~/temp2`  
+  bring the dir at index `n` to the top of the stack (rotate the stack) and cd 
+  to it
+
+- `popd`  
+  pop the `{dirs}` stack
+
+- `popd +n`  
+  remove the dir at index `n`
+
+- `dirs [-v]`
 
 File reading
 ------------
@@ -51,25 +71,8 @@ Pipeline
   drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 foo
   ```
 
+Other
+-----
 - `hostname`  
   `localhost`  
   return the computer's network name
-
-- `pushd <dirname>`  
-  `<dirname> ~/temp ~/temp2`  
-  `<dirname> $`  
-  push `<dirname>` onto the `{dirs}` stack (array) and cd to it
-
-- `pushd +n`  
-  `~ ~/temp ~/temp2`  
-  bring the dir at index `n` to the top of the stack (rotate the stack) and cd 
-  to it
-
-- `popd`  
-  pop the `{dirs}` stack
-
-- `popd +n`  
-  remove the dir at index `n`
-
-- `dirs [-v]`
-
