@@ -12,12 +12,16 @@ Basic Filesystem Navigation
 More Filesystem Navigation
 --------------------------
 - `pushd <dirname>`  
+  Sample output:  
   `<dirname> ~/temp ~/temp2`  
   `<dirname> $`  
+  Explanation:  
   push `<dirname>` onto the `{dirs}` stack (array) and cd to it
 
 - `pushd +n`  
+  Sample output:  
   `~ ~/temp ~/temp2`  
+  Explanation:  
   bring the dir at index `n` to the top of the stack (rotate the stack) and cd 
   to it
 
