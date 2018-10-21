@@ -97,11 +97,31 @@ Other
   cp is /bin/cp
   ```
   
-  - `which <command>`
-    determine the path to a specified executable (doesn't return anything for shell builtins).
-    Examples:
-    ```console
-    $ which ls
-    /bin/ls
-    $ which type  # a builtin not an executable
-    ```
+- `which <command>`
+  determine the path to a specified executable (doesn't return anything for shell builtins).
+  Examples:
+  ```console
+  $ which ls
+  /bin/ls
+  $ which type  # a builtin not an executable
+  ```
+
+- `help [-m] <builtin>`
+  Get a manpage-like help description for shell builtins. Optional flag `-m` changes the output format.
+  Examples:
+  ```console
+  $ help cd
+  cd: cd [-L|[-P [-e]] [-@]] [dir]
+    Change the shell working directory.
+
+    Change the current directory to DIR.  The default DIR is the value of the
+    HOME shell variable.
+  <...>
+  $ help -m cd
+  NAME
+    cd - Change the shell working directory.
+
+  SYNOPSIS
+    cd [-L|[-P [-e]] [-@]] [dir]
+  <...>
+  ```
