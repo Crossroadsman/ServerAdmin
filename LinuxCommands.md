@@ -97,4 +97,11 @@ Other
   cp is /bin/cp
   ```
   
-  
+  - `which <command>`
+    determine the path to a specified executable (doesn't return anything for shell builtins).
+    Examples:
+    ```console
+    $ which ls
+    /bin/ls
+    $ which type  # a builtin not an executable
+    ```
