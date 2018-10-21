@@ -78,5 +78,23 @@ Pipeline
 Other
 -----
 - `hostname`  
+  Example output:  
   `localhost`  
+  Explanation:   
   return the computer's network name
+
+- `type <command>`
+  `type` is a shell builtin that reports the type of the specified command.
+  Examples:
+  ```bash
+  $ type type
+  type is a shell builtin
+  $ type ls  # macOS (at least as of 10.13.6)
+  ls is hashed (/bin/ls)
+  $ type ls  # Ubuntu 18.04.1 LTS (Linode)
+  ls is aliased to `ls --color=auto'
+  $ type cp
+  cp is /bin/cp
+  ```
+  
+  
