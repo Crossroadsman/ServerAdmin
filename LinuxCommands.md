@@ -83,9 +83,9 @@ Other
   Explanation:   
   return the computer's network name
 
-- `type <command>`
-  `type` is a shell builtin that reports the type of the specified command.
-  Examples:
+- `type <command>`  
+  `type` is a shell builtin that reports the type of the specified command.  
+  Examples:  
   ```console
   $ type type
   type is a shell builtin
@@ -97,18 +97,18 @@ Other
   cp is /bin/cp
   ```
   
-- `which <command>`
-  determine the path to a specified executable (doesn't return anything for shell builtins).
-  Examples:
+- `which <command>`  
+  determine the path to a specified executable (doesn't return anything for shell builtins).  
+  Examples:  
   ```console
   $ which ls
   /bin/ls
   $ which type  # a builtin not an executable
   ```
 
-- `help [-m] <builtin>`
-  Get a manpage-like help description for shell builtins. Optional flag `-m` changes the output format.
-  Examples:
+- `help [-m] <builtin>`  
+  Get a manpage-like help description for shell builtins. Optional flag `-m` changes the output format.  
+  Examples:  
   ```console
   $ help cd
   cd: cd [-L|[-P [-e]] [-@]] [dir]
