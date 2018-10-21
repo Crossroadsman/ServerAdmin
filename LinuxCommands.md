@@ -67,7 +67,7 @@ Pipeline
   By default, `xargs` reads items from standard input as items separated by blanks. It then runs the associated command once
   for each item.  
   Example:
-  ```bash
+  ```console
   $ echo "foo bar baz" | xargs mkdir
   $ ls -l
   drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 bar
@@ -86,7 +86,7 @@ Other
 - `type <command>`
   `type` is a shell builtin that reports the type of the specified command.
   Examples:
-  ```bash
+  ```console
   $ type type
   type is a shell builtin
   $ type ls  # macOS (at least as of 10.13.6)
