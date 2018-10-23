@@ -36,8 +36,8 @@ More Filesystem Navigation
 File reading
 ------------
 - `cat`
-- `head`
-- `tail`
+- [`head`](http://linuxcommand.org/lc3_man_pages/head1.html)
+- [`tail`](http://linuxcommand.org/lc3_man_pages/tail1.html)
 - `less`
 - `grep [options] pattern [file]`
 
@@ -74,6 +74,23 @@ Pipeline
   drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 baz
   drwxr-xr-x  2 testuser  staff  64 17 Oct 16:56 foo
   ```
+
+Other Tools Particularly Well Suited to Pipelines
+-------------------------------------------------
+- [`sort`](http://linuxcommand.org/lc3_man_pages/sort1.html)
+  Sorts standard input then outputs the result to standard output.
+- [`uniq`](http://linuxcommand.org/lc3_man_pages/uniq1.html)
+  Given a **sorted** stream of data from standard input, removes duplicate lines before passing to standard output.
+- [`fmt`](http://linuxcommand.org/lc3_man_pages/uniq1.html)
+- [`pr`](http://linuxcommand.org/lc3_man_pages/pr1.html)
+  Convert a text file for printing.
+- [`tr`](http://linuxcommand.org/lc3_man_pages/tr1.html)
+  translate or delete characters.
+- [`sed`](http://linuxcommand.org/lc3_man_pages/sed1.html)
+  Stream editor. Like `tr` but more sophisticated.
+- [`awk`](http://linuxcommand.org/lc3_man_pages/gawk1.html)
+  A C-like minilanguage for pattern scanning and processing of files.
+
 
 Other
 -----
