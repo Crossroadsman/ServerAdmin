@@ -103,6 +103,8 @@ Quoting/Escaping
   The balance for user tempUser is: $5.00
   ```
 
+Footnotes
+---------
 <a name="footnote01">1.</a> `printenv` and `set` differ in that `set`, as a shell builtin can see shell-local variables 
 (i.e., variables that are local to the shell, including shell functions) while `printenv` can only see exported variables (the
 variables that are passed to all programs)
