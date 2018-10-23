@@ -91,6 +91,40 @@ Other Tools Particularly Well Suited to Pipelines
 - [`awk`](http://linuxcommand.org/lc3_man_pages/gawk1.html)
   A C-like minilanguage for pattern scanning and processing of files.
 
+Process Management
+------------------
+- [`ps`](http://linuxcommand.org/lc3_man_pages/ps1.html)  
+  List a current snapshot of running processes (c.f. `top` which continuously updates).  
+  Example:  
+  ```console
+  $ ps
+    PID TTY          TIME CMD
+  15765 pts/0    00:00:00 bash
+  17311 pts/0    00:00:00 ps
+  ```
+- [`kill [signal] pid`](http://linuxcommand.org/lc3_man_pages/kill1.html)  
+  Send a signal to a current process (typically to kill the process). Specifying no signal value sends the default, SIGTERM.
+  Using the `-L` flag lists the available signals.
+  Example:  
+  ```console
+  $ kill -9 12731 17311 # Send signal 9 (KILL) to PIDs 12731 and 17311
+  ```
+- `jobs`
+  list running processes
+- `bg [job]`
+  resume the specified paused job and send it to the background
+- `fg [job]`
+  resume the specified paused job and bring it to the foreground
+- CTRL Z  
+  stop (pause) a foreground job
+- `kill -STOP [job id | pid]`  
+  stop (pause) a background job  
+  Examples:
+  ```console
+  $ kill -STOP 17331 # pause the job with the pid 17331
+  $ kill -STOP %2 # pause the job with the job id 2
+  ```
+
 
 Other
 -----
