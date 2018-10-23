@@ -93,8 +93,9 @@ Other Tools Particularly Well Suited to Pipelines
 
 Process Management
 ------------------
-- [`ps`](http://linuxcommand.org/lc3_man_pages/ps1.html)  
+- [`ps [opts]`](http://linuxcommand.org/lc3_man_pages/ps1.html)  
   List a current snapshot of running processes (c.f. `top` which continuously updates).  
+  We can use the `x` option to include in the list processes that are running but were not launched by the current shell.
   Example:  
   ```console
   $ ps
