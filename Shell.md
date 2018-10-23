@@ -60,7 +60,7 @@ $ echo $USER
 tempUser
 ```
 
-A current list of environment variables is available by running `printenv`.
+A current list of environment variables is available by running `printenv` or `set`<sup>[1](#footnote01)</sup>.
 
 We can use command substitution to use the output of a command as an expansion.
 ```console
@@ -102,3 +102,7 @@ Quoting/Escaping
   $ echo "The balance for user $USER is: \$5.00"
   The balance for user tempUser is: $5.00
   ```
+
+<a name="footnote01">1.</a> `printenv` and `set` differ in that `set`, as a shell builtin can see shell-local variables 
+(i.e., variables that are local to the shell, including shell functions) while `printenv` can only see exported variables (the
+variables that are passed to all programs)
