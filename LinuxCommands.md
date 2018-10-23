@@ -95,7 +95,9 @@ Process Management
 ------------------
 - [`ps [opts]`](http://linuxcommand.org/lc3_man_pages/ps1.html)  
   List a current snapshot of running processes (c.f. `top` which continuously updates).  
-  We can use the `x` option to include in the list processes that are running but were not launched by the current shell.
+  We can use the `x` option to include in the list processes that are owned by the current user but were not launched by 
+  the current shell. We can use the `a` option to include in the list processes that are not owned by the current user
+  (but were launched in the current session). Combining `a` and `x` will list all processes that are running.
   Example:  
   ```console
   $ ps
@@ -103,6 +105,17 @@ Process Management
   15765 pts/0    00:00:00 bash
   17311 pts/0    00:00:00 ps
   ```
+  Example with `x`:  
+  ```console
+  $ ps x
+    PID TTY      STAT   TIME COMMAND
+  15646 ?        Ss     0:00 /lib/systemd/systemd --user
+  15647 ?        S      0:00 (sd-pam)
+  15764 ?        S      0:00 sshd: tempUser@pts/0
+  15765 pts/0    Ss     0:00 -bash
+  17338 pts/0    T      0:00 sleep 1000
+  ```
+  Note that this gives us an additional column: STAT.
 - [`kill [signal] pid`](http://linuxcommand.org/lc3_man_pages/kill1.html)  
   Send a signal to a current process (typically to kill the process). Specifying no signal value sends the default, SIGTERM.
   Using the `-L` flag lists the available signals.
