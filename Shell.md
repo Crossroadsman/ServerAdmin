@@ -68,3 +68,8 @@ $ ls -l $(which cp)
 -rwxr-xr-x 1 root root 71516 2007-12-05 08:58 /bin/cp
 ```
 (This is equivalent to running `ls -l /bin/cp`)
+
+Quoting/Escaping
+----------------
+- double quotes
+  Items enclosed in double quotes will treat all special characters as literals (except `$`, `\` and `````)
