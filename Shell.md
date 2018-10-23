@@ -86,3 +86,19 @@ Quoting/Escaping
   21 22 23 24 25 26 27
   28 29 30 31
   ```
+
+- single quote
+  Items enclosed in single quotes will have all expansions suppressed. 
+  Example:
+  ```console
+  $ echo '$(cal)'
+  $(cal)
+  ```
+
+- backslash
+  Escapes a single character.
+  Example:
+  ```console
+  $ echo "The balance for user $USER is: \$5.00"
+  The balance for user tempUser is: $5.00
+  ```
