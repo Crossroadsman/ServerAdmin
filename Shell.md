@@ -71,9 +71,9 @@ $ ls -l $(which cp)
 
 Quoting/Escaping
 ----------------
-- double quotes
-  Items enclosed in double quotes will treat all special characters as literals (except `$`, `\` and `` ` ``)
-  Example:
+- double quotes  
+  Items enclosed in double quotes will treat all special characters as literals (except `$`, `\` and `` ` ``)  
+  Example:  
   ```console
   $ echo $(cal)
   October 2018 Su Mo Tu We Th Fr Sa 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
@@ -87,17 +87,17 @@ Quoting/Escaping
   28 29 30 31
   ```
 
-- single quote
-  Items enclosed in single quotes will have all expansions suppressed. 
-  Example:
+- single quote  
+  Items enclosed in single quotes will have all expansions suppressed.  
+  Example:  
   ```console
   $ echo '$(cal)'
   $(cal)
   ```
 
-- backslash
-  Escapes a single character.
-  Example:
+- backslash  
+  Escapes a single character.  
+  Example:  
   ```console
   $ echo "The balance for user $USER is: \$5.00"
   The balance for user tempUser is: $5.00
