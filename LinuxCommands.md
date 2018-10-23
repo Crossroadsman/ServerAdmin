@@ -124,6 +124,8 @@ Process Management
   $ kill -STOP 17331 # pause the job with the pid 17331
   $ kill -STOP %2 # pause the job with the job id 2
   ```
+- `<command> &`  
+  Start the process in the background.  
 
 
 Other
