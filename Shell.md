@@ -72,4 +72,4 @@ $ ls -l $(which cp)
 Quoting/Escaping
 ----------------
 - double quotes
-  Items enclosed in double quotes will treat all special characters as literals (except `$`, `\` and `````)
+  Items enclosed in double quotes will treat all special characters as literals (except `$`, `\` and `` ` ``)
