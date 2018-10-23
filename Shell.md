@@ -106,7 +106,8 @@ Quoting/Escaping
 Aliases and Functions
 ---------------------
 ### Alias ###
-
+Alias is a shell builtin that allows creating named aliases to commands. As a builtin, created aliases are only available 
+to the current session (although they can be specified in one of the shell's startup scripts to load automatically).
 Syntax: `alias name=value`.  
 Examples:  
 ```console
@@ -119,7 +120,13 @@ $ alias today='date +"%FT%T%:z"' #2018-10-23T17:12:02+01:00
 ```
 
 ### Shell Functions ###
-
+Example:
+```console
+today() {
+    echo -n "Today's date is: "
+    date +"%FT%T%:z"
+}
+```
 
 
 Footnotes
