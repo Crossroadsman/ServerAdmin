@@ -103,6 +103,25 @@ Quoting/Escaping
   The balance for user tempUser is: $5.00
   ```
 
+Aliases and Functions
+---------------------
+### Alias ###
+
+Syntax: `alias name=value`.  
+Examples:  
+```console
+$ alias la='ls -la'
+```
+
+```console
+$ alias today='date +"%FT%T%:z"' #2018-10-23T17:12:02+01:00
+2018-10-23T17:12:02+01:00
+```
+
+### Shell Functions ###
+
+
+
 Footnotes
 ---------
 <a name="footnote01">1.</a> `printenv` and `set` differ in that `set` (a shell builtin) can see shell-local variables 
