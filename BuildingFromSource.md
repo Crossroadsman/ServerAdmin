@@ -116,4 +116,4 @@ sudo make install
 
 
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/md5sum.md
-[link02]: https://github.com/Crossroadsman/TerminalTips/blob/master/tar.md
+[link02]: https://github.com/Crossroadsman/TerminalTips/blob/master/commands/tar.md
