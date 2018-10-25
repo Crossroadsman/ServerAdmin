@@ -48,6 +48,9 @@ file:/home/userName/.gitconfig      user.email=user@email.com
 file:.git/config        remote.origin.url=git@github.com:UserName/some_repo.git
 ```
 
+In the above example, the first two settings are globals, while the third is a repo-level setting.
+
+
 ### 3: Configure system settings ###
 Append the following to `~/.bashrc`:
 
