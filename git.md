@@ -148,7 +148,7 @@ Then will probably need to do a merge
 - `HEAD`
   A pointer to the most recent commit
 - `master`  
-  An arbitrary name that by convention refers to the main branch of the repo
+  An arbitrary name that by convention refers to the main/default branch of the repo
 - `origin`  
   An arbitrary name that by convention refers to the canonical version of the repo
 - `remote`
