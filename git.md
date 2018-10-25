@@ -164,6 +164,22 @@ Then will probably need to do a merge
       Added a comment
   ```
 
+- `git log --pretty=oneline`  
+  List all commits in reverse chronological order, showing only hash and commit message.  
+  Example:
+  ```console
+  $ git log --pretty=oneline
+  d91d1fd7a5a1ec809d7994a6d5c11409163429d3 (HEAD -> master, origin/master) Convert initial test to unittest test case
+  ```
+  
+- You can add additional flags to further customise the output (these are mostly (all?) stackable), such as:
+  ```console
+  $ git log --pretty=oneline --max-count=2  # show just the last two commits
+  $ git log --since='7 days ago' --until='5 minutes ago'  # show commits from the specified date range
+  $ git log --author=<name>  # show commits only for the specified user, quotes optional, username or email accepted
+  $ git log --all  # Pretend as if all the refs in refs/, along with HEAD, are listed on the command line as <commit>.
+  ```
+
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
 
