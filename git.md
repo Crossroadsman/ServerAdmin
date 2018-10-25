@@ -8,6 +8,7 @@ Index
 2. [HowTos](#s2)
    1. [Combine Multiple Git Repos](#s2)
 3. [Other Useful Resources](#s3)
+4. [Glossary](#s4)
 
 <a name="s1">1: Install and Setup</a>
 -------------------------------------
@@ -139,6 +140,17 @@ Then will probably need to do a merge
 
 - [Git Flight Rules](https://github.com/k88hudson/git-flight-rules)  
   Inspired by NASA's flight rules for the space program, detailed step-by-step instructions for a wide range of git tasks
+
+
+<a name="s4">Glossary</a>
+-------------------------
+
+- `HEAD`
+  A pointer to the most recent commit
+- `master`
+  An arbitrary name that by convention refers to the main branch of the repo
+- `origin`  
+  An arbitrary name that by convention refers to the canonical version of the repo
 
 
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
