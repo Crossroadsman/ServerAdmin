@@ -4,8 +4,9 @@ Git
 Index
 -----
 
-[1. Install and Setup](#s1)
-[2. HowTos](#s2)
+1. [Install and Setup](#s1)
+2. [HowTos](#s2)
+3. [Other Useful Resources](#s3)
 
 <a name="s1">1: Install and Setup</a>
 -------------------------------------
@@ -131,6 +132,12 @@ git pull RepoA master --allow-unrelated-histories
 
 Then will probably need to do a merge
 
+
+<a name="s3">Other Useful Resources</a>
+---------------------------------------
+
+- [Git Flight Rules](https://github.com/k88hudson/git-flight-rules)
+  Inspired by NASA's flight rules for the space program, detailed step-by-step instructions for a wide range of git tasks
 
 
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
