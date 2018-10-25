@@ -1,9 +1,15 @@
 Git
 ===
 
-1: Install git
---------------
+Index
+-----
+[1 - Install and Setup](#s1)
+[2 - HowTos]
 
+<a name="s1">1: Install and Setup</a>
+-------------------------------------
+
+### 1: Install git ###
 Update the apt package cache
 
 ```
@@ -16,24 +22,20 @@ Install git
 sudo apt-get install git
 ```
 
-2: Configure global settings
-----------------------------
-
+### 2: Configure global settings ###
 username:
 
 ```
 git config --global user.name "<name>"
 ```
 
-useremail:
+user.email:
 
 ```
 git config --global user.email <email_address>
 ```
 
-3: Configure system settings
-----------------------------
-
+### 3: Configure system settings ###
 Append the following to `~/.bashrc`:
 
 ```
@@ -58,9 +60,7 @@ less ~/.profile
 One of them (at least) should load .bashrc.
 
 
-4: Link SSH key with Github
----------------------------
-
+### 4: Link SSH key with Github ###
 a) Create a key (if there isn't one already at `~/.ssh/id_rsa.pub`)
 
 ```
@@ -72,15 +72,13 @@ b) copy the contents of the created public key to the clipboard
 c) go to github and select add a new SSH key, pasting the contents of the ssh key into the field
 
 
-5: Clone a repo
----------------
-
+### 5: Clone a repo ###
 ```
 git clone git@github.com:<user_id>/<repo>.git
 ```
 
 
-Addendum 1: Combining Two Git Repos
+2: HowTo 1: Combining Two Git Repos
 -----------------------------------
 
 1. [Create a new empty repository New.](#s1)
