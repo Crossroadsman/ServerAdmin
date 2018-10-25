@@ -72,8 +72,10 @@ $ ls -l $(which cp)
 Quoting/Escaping
 ----------------
 - double quotes  
-  Items enclosed in double quotes will treat all special characters as literals (except `$`, `\` and `` ` ``)  
-  Example:  
+  Items enclosed in double quotes will treat most special characters as literals. Exceptions include `$`, `\` and `` ` ``, 
+  which can each be escaped with a single backslash. Another exception is `!` which is more complex to escape (see example 2).
+  The best solution seems to be to wrap the text either side of the `!` in double quotes and the `!` alone in single quotes.  
+  Example 1:  
   ```console
   $ echo $(cal)
   October 2018 Su Mo Tu We Th Fr Sa 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
@@ -85,6 +87,15 @@ Quoting/Escaping
   14 15 16 17 18 19 20
   21 22 23 24 25 26 27
   28 29 30 31
+  ```
+  Example 2:  
+  ```console
+  $ echo "hello!? are you there?"
+  -bash: !? are you there?: event not found
+  $ echo "hello\!? are you there?"  # the backslash won't entirely help us here
+  hello\!? are you there?
+  $ echo "hello"'!'"? are you there?"
+  hello!? are you there?
   ```
 
 - single quote  
