@@ -6,7 +6,8 @@ Index
 
 1. [Install and Setup](#s1)
 2. [HowTos](#s2)
-   1. [Combine Multiple Git Repos](#s2)
+   1. [Combine Multiple Git Repos](#s2.1)
+   2. [Use logs](#s2.2)
 3. [Other Useful Resources](#s3)
 4. [Glossary](#s4)
 
@@ -94,20 +95,22 @@ git clone git@github.com:<user_id>/<repo>.git
 ```
 
 
-<a name="s2">2: HowTo 1: Combining Two Git Repos</a>
-----------------------------------------------------
+<a name="s2">2: HowTos</a>
+--------------------------
 
-1. [Create a new empty repository New.](#s2.1)
-2. [Make an initial commit because we need one before we do a merge.](#s2.2)
-3. [Create a new branch for old repo A's files](#s2.3)
-4. [Create a remote association to old repo A](#s2.4)
-5. [Pull the remote's files](#s2.5)
+###  <a name="s2.1">1: Combining Two Git Repos</a> ###
+
+1. [Create a new empty repository New.](#s2.1.1)
+2. [Make an initial commit because we need one before we do a merge.](#s2.1.2)
+3. [Create a new branch for old repo A's files](#s2.1.3)
+4. [Create a remote association to old repo A](#s2.1.4)
+5. [Pull the remote's files](#s2.1.5)
 6. Move all the remote's files into a subdirectory
 7. Checkout master
 8. Merge the branch back into master
 9. Repeat steps 3–8 for all remaining old repos
 
-### <a name="s2.1">Create a new empty repository New</a> ###
+#### <a name="s2.1.1">Create a new empty repository New</a> ####
 
 ```console
 mkdir new
@@ -115,7 +118,7 @@ cd new
 git init
 ```
 
-### <a name="s2.2">Make an Initial Commit</a> ###
+#### <a name="s2.1.2">Make an Initial Commit</a> ####
 This creates a new master branch.
 ```console
 echo New > README.md
@@ -123,21 +126,21 @@ git add -A
 git commit -m "Initial commit"
 ```
 
-### <a name="s2.3">Create a new branch for old repo A's files</a> ###
+#### <a name="s2.1.3">Create a new branch for old repo A's files</a> ####
 For clarity, branches are in snake case, remote names in Pascal case
 
 ```console
 git checkout -b repo_a
 ```
 
-### <a name="s2.4">Create a remote association to old repo A</a> ###
+#### <a name="s2.1.4">Create a remote association to old repo A</a> ####
 `RepoA` is the name we are using to associate the remote repo's url inside this repo.
 
 ```console
 git remote add -f RepoA https://www.git.files/path/to/repo
 ```
 
-### <a name="s2.5">Pull the remote's files</a> ###
+#### <a name="s2.1.5">Pull the remote's files</a> ####
 Will probably need to explicitly allow unrelated histories
 
 ```console
@@ -146,6 +149,20 @@ git pull RepoA master --allow-unrelated-histories
 
 Then will probably need to do a merge
 
+
+### <a name="s2.2">Use Logs</a> ###
+
+- `git log`  
+  Lists all commits in reverse chronological order.  
+  Example:  
+  ```console
+  $ git log
+  commit 8da33089a28c38b2106caa6f89c761861e8dec97 (HEAD -> master)
+  Author: UserName <user@email.com>
+  Date:   Thu Oct 25 15:06:33 2018 +0100
+
+      Added a comment
+  ```
 
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
