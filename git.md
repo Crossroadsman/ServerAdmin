@@ -6,6 +6,7 @@ Index
 
 1. [Install and Setup](#s1)
 2. [HowTos](#s2)
+   1. [Combine Multiple Git Repos](#s2)
 3. [Other Useful Resources](#s3)
 
 <a name="s1">1: Install and Setup</a>
