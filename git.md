@@ -39,6 +39,15 @@ user.email:
 git config --global user.email <email_address>
 ```
 
+Note that you can view git's settings using the `-l` (list) argument, and additionally view the source of the settings with 
+the `--show-origin` flag:
+```console
+$ git config -l --show-origin
+file:/home/userName/.gitconfig      user.name=UserName
+file:/home/userName/.gitconfig      user.email=user@email.com
+file:.git/config        remote.origin.url=git@github.com:UserName/some_repo.git
+```
+
 ### 3: Configure system settings ###
 Append the following to `~/.bashrc`:
 
