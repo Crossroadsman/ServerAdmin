@@ -136,7 +136,7 @@ Then will probably need to do a merge
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
 
-- [Git Flight Rules](https://github.com/k88hudson/git-flight-rules)
+- [Git Flight Rules](https://github.com/k88hudson/git-flight-rules)  
   Inspired by NASA's flight rules for the space program, detailed step-by-step instructions for a wide range of git tasks
 
 
