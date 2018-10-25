@@ -3,8 +3,9 @@ Git
 
 Index
 -----
-[1 - Install and Setup](#s1)
-[2 - HowTos]
+
+[1. Install and Setup](#s1)
+[2. HowTos](#s2)
 
 <a name="s1">1: Install and Setup</a>
 -------------------------------------
@@ -12,33 +13,33 @@ Index
 ### 1: Install git ###
 Update the apt package cache
 
-```
+```console
 sudo apt-get update
 ```
 
 Install git
 
-```
+```console
 sudo apt-get install git
 ```
 
 ### 2: Configure global settings ###
 username:
 
-```
+```console
 git config --global user.name "<name>"
 ```
 
 user.email:
 
-```
+```console
 git config --global user.email <email_address>
 ```
 
 ### 3: Configure system settings ###
 Append the following to `~/.bashrc`:
 
-```
+```bash
 # set $VISUAL and $EDITOR (including for child shells)
 export EDITOR='vim'
 export VISUAL='vim'
@@ -46,13 +47,13 @@ export VISUAL='vim'
 
 Reload bashrc:
 
-```
+```console
 . ~/.bashrc
 ```
 
 Confirm that bashrc gets loaded for [login][link01] sessions by checking .profile and .bash_profile:
 
-```
+```console
 less ~/.bash_profile
 less ~/.profile
 ```
@@ -63,7 +64,7 @@ One of them (at least) should load .bashrc.
 ### 4: Link SSH key with Github ###
 a) Create a key (if there isn't one already at `~/.ssh/id_rsa.pub`)
 
-```
+```console
 ssh-keygen -t rsa -b 4096 -C "<email_address>"
 ```
 
@@ -73,58 +74,58 @@ c) go to github and select add a new SSH key, pasting the contents of the ssh ke
 
 
 ### 5: Clone a repo ###
-```
+```console
 git clone git@github.com:<user_id>/<repo>.git
 ```
 
 
-2: HowTo 1: Combining Two Git Repos
------------------------------------
+<a name="s2">2: HowTo 1: Combining Two Git Repos</a>
+----------------------------------------------------
 
-1. [Create a new empty repository New.](#s1)
-2. [Make an initial commit because we need one before we do a merge.](#s2)
-3. [Create a new branch for old repo A's files](#s3)
-4. [Create a remote association to old repo A](#s4)
-5. [Pull the remote's files](#s5)
+1. [Create a new empty repository New.](#s2.1)
+2. [Make an initial commit because we need one before we do a merge.](#s2.2)
+3. [Create a new branch for old repo A's files](#s2.3)
+4. [Create a remote association to old repo A](#s2.4)
+5. [Pull the remote's files](#s2.5)
 6. Move all the remote's files into a subdirectory
 7. Checkout master
 8. Merge the branch back into master
 9. Repeat steps 3–8 for all remaining old repos
 
-### <a name="s1">Create a new empty repository New</a> ###
+### <a name="s2.1">Create a new empty repository New</a> ###
 
-```shell
+```console
 mkdir new
 cd new
 git init
 ```
 
-### <a name="s2">Make an Initial Commit</a> ###
+### <a name="s2.2">Make an Initial Commit</a> ###
 This creates a new master branch.
-```shell
+```console
 echo New > README.md
 git add -A
 git commit -m "Initial commit"
 ```
 
-### <a name="s3">Create a new branch for old repo A's files</a> ###
+### <a name="s2.3">Create a new branch for old repo A's files</a> ###
 For clarity, branches are in snake case, remote names in Pascal case
 
-```shell
+```console
 git checkout -b repo_a
 ```
 
-### <a name="s4">Create a remote association to old repo A</a> ###
+### <a name="s2.4">Create a remote association to old repo A</a> ###
 `RepoA` is the name we are using to associate the remote repo's url inside this repo.
 
-```shell
+```console
 git remote add -f RepoA https://www.git.files/path/to/repo
 ```
 
-### <a name="s5">Pull the remote's files</a> ###
+### <a name="s2.5">Pull the remote's files</a> ###
 Will probably need to explicitly allow unrelated histories
 
-```shell
+```console
 git pull RepoA master --allow-unrelated-histories
 ```
 
