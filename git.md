@@ -180,6 +180,16 @@ Then will probably need to do a merge
   $ git log --all  # Pretend as if all the refs in refs/, along with HEAD, are listed on the command line as <commit>.
   ```
 
+- Here is an example of a [custom format](http://gitimmersion.com/lab_10.html) 
+  (see the link for detailed explanation of each of the flags):  
+  ```console
+  $ git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  * 7bf0bf1 2018-09-28 | Added a comment (HEAD -> master) [Jim Weirich]
+  * 9cf3f21 2018-09-28 | Added a default value [Jim Weirich]
+  * 94e1b8b 2018-09-28 | Using ARGV [Jim Weirich]
+  * f656098 2018-09-28 | First Commit [Jim Weirich]
+  ```
+
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
 
