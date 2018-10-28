@@ -302,6 +302,35 @@ $ git hist --all
 * 951db27 2018-10-28 | Add comment (HEAD -> master, tag: v1) [UserName]
 ```
 
+##### Amend a commit #####
+
+An `amend` is equivalent to performing a soft `reset` followed by a commit.
+
+Example:
+
+We've edited `myfile.py` to include a comment specifying the author.
+
+```console
+$ git add myfile.py  # stage the revision containing the author comment
+$ git commit -m "Add an author comment"
+[master 8ef923b] Add an author comment
+ 1 file changed, 1 insertion(+)
+```
+
+Now we realise that we should have included both author name and email in the comment. We edit `myfile.py` to include the amended
+comment.
+
+```console
+$ git add myfile.py # stage the revision containing the author/email comment
+$ git commit --amend -m "Add an author/email comment"
+[master a3cf871] Add an author/email comment
+ Date: Sun Oct 28 13:33:36 2018 -0600
+ 1 file changed, 1 insertion(+)
+```
+
+The new commit takes the place of the previous commit. Note that the amended commit is a different commit, with a different hash. And 
+we can still access the original commit if we can remember the hash ID.
+
 
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
