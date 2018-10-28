@@ -214,8 +214,8 @@ Instead of always using the commit hash, we can use a couple of symbols to refer
   Example:  
   `v1~2` - the commit two commits prior to the one tagged `v1`.
 
-We can also use tags to name a particular commit. Let's suppose we wanted to tag the current commit as `v1` and the immediately previous
-commit as `v1-beta`:
+We can also use tags (get a list of tags using `git tag`) to name a particular commit. Let's suppose we wanted to tag the current commit 
+as `v1` and the immediately previous commit as `v1-beta`:
 ```console
 $ git tag v1
 $ git checkout v1^  # alternatively we could have used v1~1
