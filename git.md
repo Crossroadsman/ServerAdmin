@@ -206,12 +206,12 @@ Then will probably need to do a merge
 
 Instead of always using the commit hash, we can use a couple of symbols to reference commits relatively:
 - `^`  
-  Refers to the previous commit.
-  Example:
+  Refers to the previous commit.  
+  Example:  
   `HEAD^` - the previous commit before the current HEAD
-- `~`
-  Refers to the commit *n* commits before the specified commit.
-  Example:
+- `~`  
+  Refers to the commit *n* commits before the specified commit.  
+  Example:  
   `v1~2` - the commit two commits prior to the one tagged `v1`.
 
 We can also use tags to name a particular commit. Let's suppose we wanted to tag the current commit as `v1` and the immediately previous
