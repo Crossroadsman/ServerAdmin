@@ -222,7 +222,7 @@ Then will probably need to do a merge
   An arbitrary name that by convention refers to the main/default branch of the repo
 - `origin`  
   An arbitrary name that by convention refers to the canonical version of the repo
-- `remote`
+- `remote`  
   A reference to a URL for a repo
 
 
