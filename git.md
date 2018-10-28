@@ -51,6 +51,17 @@ file:.git/config        remote.origin.url=git@github.com:UserName/some_repo.git
 
 In the above example, the first two settings are globals (saved in `$HOME/.gitconfig`), while the third is a repo-level setting.
 
+You can also edit the ~/.gitconfig file directly. It has the following format:
+```
+[user]
+	name = UserName
+	email = user@email.com
+[push]
+	default = simple
+[alias]
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+```
+
 
 ### 3: Configure system settings ###
 Append the following to `~/.bashrc`:
