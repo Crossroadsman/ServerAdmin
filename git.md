@@ -27,7 +27,7 @@ Install git
 sudo apt-get install git
 ```
 
-### 2: Configure global settings ###
+### <a name="s1.2">2: Configure global settings</a> ###
 username:
 
 ```console
@@ -200,6 +200,41 @@ Then will probably need to do a merge
   * 94e1b8b 2018-09-28 | Using ARGV [Jim Weirich]
   * f656098 2018-09-28 | First Commit [Jim Weirich]
   ```
+
+### <a name="s2.3">Work with Relative References</a> ###
+
+Instead of always using the commit hash, we can use a couple of symbols to reference commits relatively:
+- `^`  
+  Refers to the previous commit.
+  Example:
+  `HEAD^` - the previous commit before the current HEAD
+- `~`
+  Refers to the commit *n* commits before the specified commit.
+  Example:
+  `v1~2` - the commit two commits prior to the one tagged `v1`.
+
+We can also use tags to name a particular commit. Let's suppose we wanted to tag the current commit as `v1` and the immediately previous
+commit as `v1-beta`:
+```console
+$ git tag v1
+$ git checkout v1^  # alternatively we could have used v1~1
+Note: checking out 'v1^'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+<...>
+
+HEAD is now at e283143 Handle case where no arg
+$ git tag v1-beta
+$ git checkout master
+Previous HEAD position was e283143 Handle case where no arg
+Switched to branch 'master'
+$ git hist  # this is an alias, see s1.2 for how to create
+* 951db27 2018-10-28 | Add comment' (HEAD -> master, tag: v1) [UserName]
+* e283143 2018-10-28 | Handle case where no arg (tag: v1-beta) [UserName]
+* d1ed2ea 2018-10-28 | Add command line arg [UserName]
+* 25dff66 2018-10-28 | create ruby file [UserName]
+* 48c6a21 2018-10-27 | initial commit [UserName]
+```
 
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
