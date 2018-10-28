@@ -261,6 +261,8 @@ Note also that this use of reset only affects the staging area. The working dire
 still the version in the working directory.
 
 #### <a name="s2.4.3">Committed Files</a> ####
+
+##### revert #####
 The first way to reverse an unwanted commit is to make a `revert` commit. This creates a new commit that exactly reverses the commit 
 that we want to change. This is good because it preserves all history and thus a) if best for keeping an audit trail and b) makes it 
 safe to use on any branch, even publicly shared ones.
@@ -272,6 +274,33 @@ $ git revert HEAD
 ```
 
 Note we don't have to use HEAD, we could use an absolute or relative reference to any commit.
+
+##### reset --hard #####
+The second way to reverse an unwanted commit is to make it look like the bad commit never happened. This makes for a cleaner-looking
+history. However, it can cause confusion on shared branches so shouldn't be used in such cases.
+
+Example:
+
+```console
+$ git hist
+* 01925f8 2018-10-28 | Revert "Oops, we didn't want this commit" (HEAD -> master) [UserName]
+* e174f47 2018-10-28 | Oops, we didn't want this commit [UserName]
+* 951db27 2018-10-28 | Add comment (tag: v1) [UserName]
+* e283143 2018-10-28 | Handle case where no arg (tag: v1-beta) [UserName]
+<...>
+$ git tag oops # this is just to show later that this commit still exists
+$ git reset --hard v1 # v1 is equivalent to oops~2 or 951db27
+HEAD is now at 951db27 Add comment
+```
+
+Note that the unwanted commits still exist, we can see them by browsing `all` commits:
+
+```console
+$ git hist --all
+* 01925f8 2018-10-28 | Revert "Oops, we didn't want this commit" (tag: oops) [UserName]
+* e174f47 2018-10-28 | Oops, we didn't want this commit [UserName]
+* 951db27 2018-10-28 | Add comment (HEAD -> master, tag: v1) [UserName]
+```
 
 
 <a name="s3">Other Useful Resources</a>
