@@ -8,6 +8,7 @@ Index
 2. [HowTos](#s2)
    1. [Combine Multiple Git Repos](#s2.1)
    2. [Use logs](#s2.2)
+   3. [Work With Relative Refs](#s2.3)
 3. [Other Useful Resources](#s3)
 4. [Glossary](#s4)
 
