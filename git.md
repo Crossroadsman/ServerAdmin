@@ -261,6 +261,18 @@ Note also that this use of reset only affects the staging area. The working dire
 still the version in the working directory.
 
 #### <a name="s2.4.3">Committed Files</a> ####
+The first way to reverse an unwanted commit is to make a `revert` commit. This creates a new commit that exactly reverses the commit 
+that we want to change. This is good because it preserves all history and thus a) if best for keeping an audit trail and b) makes it 
+safe to use on any branch, even publicly shared ones.
+
+Example:
+
+```console
+$ git revert HEAD
+```
+
+Note we don't have to use HEAD, we could use an absolute or relative reference to any commit.
+
 
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
