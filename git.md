@@ -9,6 +9,7 @@ Index
    1. [Combine Multiple Git Repos](#s2.1)
    2. [Use logs](#s2.2)
    3. [Work With Relative Refs](#s2.3)
+   4. [Undo](#s2.4)
 3. [Other Useful Resources](#s3)
 4. [Glossary](#s4)
 
@@ -236,6 +237,30 @@ $ git hist  # this is an alias, see s1.2 for how to create
 * 25dff66 2018-10-28 | create ruby file [UserName]
 * 48c6a21 2018-10-27 | initial commit [UserName]
 ```
+
+### <a name="s2.4">Undo</a> ###
+
+#### <a name="s2.4.1">Unstaged Files</a> ####
+Suppose we have been editing `myfile.py` and want to revert it. We can do this by simply checking out `HEAD`'s copy of the file. It will 
+silently overwrite the changed file in the working directory.
+
+```console
+$ git checkout myfile.py
+```
+
+#### <a name="s2.4.2">Staged but not Committed</a> ####
+Suppose we've added a bad version of `myfile.py` to the staging area. We can reset the staging area to how it is under the `HEAD` commit:
+
+```console
+$ git reset HEAD myfile.py
+```
+
+Note we could omit the filename in which case all the staged files would be reverted to the version from `HEAD`.
+
+Note also that this use of reset only affects the staging area. The working directory is unchanged, so the bad version of `myfile.py` is 
+still the version in the working directory.
+
+#### <a name="s2.4.3">Committed Files</a> ####
 
 <a name="s3">Other Useful Resources</a>
 ---------------------------------------
