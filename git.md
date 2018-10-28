@@ -211,8 +211,13 @@ Then will probably need to do a merge
 <a name="s4">Glossary</a>
 -------------------------
 
-- `HEAD`
-  A pointer to the most recent commit
+- `detached`  
+  A state where HEAD is not pointing to any branch. This occurs when checking out a specific commit instead of a branch. When detached
+  any commits will also not belong to a branch. Note that while in the detached state, you can create a new branch using 
+  `git checkout -b <branch-name>` and it will add all the commits in the tree from the checkout that caused the detached state through
+  to the current commit into this new branch.
+- `HEAD`  
+  A pointer to the currently checked-out commit
 - `master`  
   An arbitrary name that by convention refers to the main/default branch of the repo
 - `origin`  
