@@ -741,6 +741,9 @@ Notes:
 <a name="s5">Glossary</a>
 -------------------------
 
+- [`blob`][bottom-up]  
+  A file-like object stored in git's tree. The difference between a Git blob and a filesystem’s file is that a blob stores no metadata
+  about its content. All such information is kept in the tree that holds the blob.
 - [`commit`][bottom-up]  
   An snapshot/archive of what the project's *working tree* looked like at a particular point in time.
 - `detached`  
@@ -759,7 +762,7 @@ Notes:
 - [`repository`][bottom-up]  
   A repository is a collection of *commits*. It also defines *HEAD*, and it contains a set of branches and tags, to identify certain 
   commits by name.
-- [`working tree`][bottom-up]
+- [`working tree`][bottom-up]  
   A working tree is any directory on the filesystem which has a *repository* associated with it (typically indicated by the presence of 
   a subdirectory within it named `.git.`). It includes all the files and subdirectories in that directory.
 
