@@ -360,9 +360,9 @@ Behind the scenes, Git is a bunch of trees. To get a sense for this, let's exami
 │   ├── pre-receive.sample
 │   ├── prepare-commit-msg.sample
 │   └── update.sample
-├── index
+├── index                          [NOTE7]
 ├── info
-│   └── exclude
+│   └── exclude                    [NOTE8]
 ├── logs
 │   ├── HEAD
 │   └── refs
@@ -428,7 +428,17 @@ Notes:
    Example:
    `Unnamed repository; edit this file 'description' to name the repository.`
 6. Various hook scripts
-
+7. A binary file
+8. Like `.gitignore`  
+   Example:
+   ```shell
+   # git ls-files --others --exclude-from=.git/info/exclude
+   # Lines that start with '#' are comments.
+   # For a project mostly in C, the following would be a good set of
+   # exclude patterns (uncomment them if you want to use them):
+   # *.[oa]
+   # *~
+   ```
 
 <a name="s4">Other Useful Resources</a>
 ---------------------------------------
