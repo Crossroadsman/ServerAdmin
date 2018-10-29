@@ -369,7 +369,7 @@ Behind the scenes, Git is a bunch of trees. To get a sense for this, let's exami
 │       └── heads
 │           ├── hello
 │           └── master
-├── objects
+├── objects                        [NOTE9]
 │   ├── 0b
 │   │   └── 6e846af1c3ff99979436ef9c12ac5c1cacbb81
 │   ├── 41
@@ -398,9 +398,9 @@ Behind the scenes, Git is a bunch of trees. To get a sense for this, let's exami
 │   └── pack
 └── refs
     ├── heads
-    │   ├── hello
+    │   ├── hello                [NOTE10]
     │   └── master
-    └── tags
+    └── tags                     [NOTE11]
 ```
 
 Notes:
@@ -439,6 +439,12 @@ Notes:
    # *.[oa]
    # *~
    ```
+9. Compressed and encoded files containing the actual data objects
+10. The SHA hash of the corresponding commit  
+   Example:  
+   `e1627a63969a02945296a3425d702a84bf0a1557`
+11. The SHA hash(?) of each corresponding commit
+
 
 <a name="s4">Other Useful Resources</a>
 ---------------------------------------
