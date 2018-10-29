@@ -13,6 +13,7 @@ Index
    5. [Browse the Trees](#s2.5)
    6. [Merging and Rebasing](#s2.6)
    7. [Conflict Resolution](#s2.7)
+   8. [Cloning](#s2.8)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
 4. [Other Useful Resources](#s4)
@@ -478,6 +479,58 @@ Notes:
 
 Note you can use third-party merge tools.
 
+
+### <a name="s2.8">Cloning</a> ###
+
+Syntax:
+```console
+$ git clone repo_old repo_new
+Cloning into 'repo_new'
+done.
+```
+
+Note that `repo_old` is a path/url to a directory containing a .git subdirectory. If `repo_new` is omitted, git will attempt to create
+a directory with the same name as the directory containing .git in the `repo_old` path.
+
+The clone of the original will look almost identical to the original.
+
+One of the only differences will be visible when viewing the log of the clone:
+```console
+$ git hist --max-count=1
+* 747cfe2 2018-10-29 | Updated Rakefile (HEAD -> master, origin/master, origin/HEAD, origin/greet) [UserName]
+```
+
+The clone will get a reference (`remote`) to the original repo (with the default name `origin`):
+
+```console
+$ git remote
+origin
+```
+
+We can get more information:
+```console
+$ git remote show origin
+* remote origin
+  Fetch URL: /Users/username/repo_old
+  Push URL: /Users/username/repo_old
+  HEAD branch: master
+  Remote branches:
+    master tracked
+    greet
+  Local branch configured for 'git pull':
+    master merges with master
+  Local ref configured for 'git push':
+    masgter pushes to master (up to date)
+```
+
+Note that `git branch` only shows local branches. We can view remote branches by adding the `-a` flag:
+```console
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/greet
+```
 
 <a name="s3">Understanding Git</a>
 ----------------------------------
