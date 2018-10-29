@@ -10,8 +10,10 @@ Index
    2. [Use logs](#s2.2)
    3. [Work With Relative Refs](#s2.3)
    4. [Undo](#s2.4)
-3. [Other Useful Resources](#s3)
-4. [Glossary](#s4)
+3. [Understanding Git](#s3)
+   1. [Trees](#s3.1)
+4. [Other Useful Resources](#s4)
+5. [Glossary](#s5)
 
 <a name="s1">1: Install and Setup</a>
 -------------------------------------
@@ -332,14 +334,106 @@ The new commit takes the place of the previous commit. Note that the amended com
 we can still access the original commit if we can remember the hash ID.
 
 
-<a name="s3">Other Useful Resources</a>
+<a name="s3">Understanding Git</a>
+----------------------------------
+
+### <a name="s3.1">Trees</a> ###
+Behind the scenes, Git is a bunch of trees. To get a sense for this, let's examine the structure of a simple `.git` directory 
+(i.e., not the working directory):
+
+```
+.git
+├── COMMIT_EDITMSG                 [NOTE1]
+├── HEAD                           [NOTE2]
+├── ORIG_HEAD                      [NOTE3]
+├── config                         [NOTE4]
+├── description
+├── hooks
+│   ├── applypatch-msg.sample
+│   ├── commit-msg.sample
+│   ├── fsmonitor-watchman.sample
+│   ├── post-update.sample
+│   ├── pre-applypatch.sample
+│   ├── pre-commit.sample
+│   ├── pre-push.sample
+│   ├── pre-rebase.sample
+│   ├── pre-receive.sample
+│   ├── prepare-commit-msg.sample
+│   └── update.sample
+├── index
+├── info
+│   └── exclude
+├── logs
+│   ├── HEAD
+│   └── refs
+│       └── heads
+│           ├── hello
+│           └── master
+├── objects
+│   ├── 0b
+│   │   └── 6e846af1c3ff99979436ef9c12ac5c1cacbb81
+│   ├── 41
+│   │   └── 6f7b0878d85f0f4ef53de23468e829c8e57f2a
+│   ├── 63
+│   │   └── d927bc1e2ff8f78a3eb831749949baf6344312
+│   ├── 7d
+│   │   └── c46d6e73e2ba58fe6f12095dd9d86b7b116e81
+│   ├── a3
+│   │   └── 45c8b2c3102a8043801637b9f2a95d36eb2202
+│   ├── c1
+│   │   └── 0d7fed83d6dc60440117ecb610654ac8d961a4
+│   ├── e1
+│   │   └── 627a63969a02945296a3425d702a84bf0a1557
+│   ├── e3
+│   │   └── 1070457fb6fe5df98048304b2bb0e6a8bcc514
+│   ├── e6
+│   │   └── 9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+│   ├── f0
+│   │   └── cb3b45291697326597b008d0cdaa969abe8871
+│   ├── f9
+│   │   └── 3e3a1a1525fb5b91020da86e44810c87a2d7bc
+│   ├── ff
+│   │   └── 870e9f220613420e975f24ced7f40afef96de4
+│   ├── info
+│   └── pack
+└── refs
+    ├── heads
+    │   ├── hello
+    │   └── master
+    └── tags
+```
+
+Notes:
+1. The text of the most recent commit (not necessarily on the current branch)  
+   Example:
+   `Add shebang`
+2. A textual reference to the currently checked out HEAD  
+   Example:
+   `ref: refs/heads/master`
+3. The SHA hash of the original commit
+   Example:
+   `a345c8b2c3102a8043801637b9f2a95d36eb2202`
+4. Project-specific configuration (overrides `~/.gitconfig`)  
+   Example:
+   ```gitconfig
+   [core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+   ```
+
+
+<a name="s4">Other Useful Resources</a>
 ---------------------------------------
 
 - [Git Flight Rules](https://github.com/k88hudson/git-flight-rules)  
   Inspired by NASA's flight rules for the space program, detailed step-by-step instructions for a wide range of git tasks
 
 
-<a name="s4">Glossary</a>
+<a name="s5">Glossary</a>
 -------------------------
 
 - `detached`  
