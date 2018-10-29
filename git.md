@@ -741,19 +741,29 @@ Notes:
 <a name="s5">Glossary</a>
 -------------------------
 
+- [`commit`][bottom-up]  
+  An snapshot/archive of what the project's *working tree* looked like at a particular point in time.
 - `detached`  
   A state where HEAD is not pointing to any branch. This occurs when checking out a specific commit instead of a branch. When detached
   any commits will also not belong to a branch. Note that while in the detached state, you can create a new branch using 
   `git checkout -b <branch-name>` and it will add all the commits in the tree from the checkout that caused the detached state through
   to the current commit into this new branch.
 - `HEAD`  
-  A pointer to the currently checked-out commit
+  A pointer to the currently checked-out branch or commit
 - `master`  
   An arbitrary name that by convention refers to the main/default branch of the repo
 - `origin`  
   An arbitrary name that by convention refers to the canonical version of the repo
 - `remote`  
   A reference to a URL for a repo
+- [`repository`][bottom-up]  
+  A repository is a collection of *commits*. It also defines *HEAD*, and it contains a set of branches and tags, to identify certain 
+  commits by name.
+- [`working tree`][bottom-up]
+  A working tree is any directory on the filesystem which has a *repository* associated with it (typically indicated by the presence of 
+  a subdirectory within it named `.git.`). It includes all the files and subdirectories in that directory.
+
 
 
 [link01]: https://github.com/Crossroadsman/TerminalTips/blob/master/BashEnvironmentVariables.md
+[bottom-up]: http://ftp.newartisans.com/pub/git.from.bottom.up.pdf
