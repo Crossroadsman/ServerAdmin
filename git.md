@@ -190,7 +190,7 @@ Then will probably need to do a merge
   $ git log --pretty=oneline --max-count=2  # show just the last two commits
   $ git log --since='7 days ago' --until='5 minutes ago'  # show commits from the specified date range
   $ git log --author=<name>  # show commits only for the specified user, quotes optional, username or email accepted
-  $ git log --all  # Pretend as if all the refs in refs/, along with HEAD, are listed on the command line as <commit>.
+  $ git log --all  # "Pretend all refs in refs/, along with HEAD, are listed on the command line as <commit>." In practice, this means show other branches
   ```
 
 - Here is an example of a [custom format](http://gitimmersion.com/lab_10.html) 
