@@ -11,6 +11,7 @@ Index
    3. [Work With Relative Refs](#s2.3)
    4. [Undo](#s2.4)
    5. [Browse the Trees](#s2.5)
+   6. [Merging and Rebasing](#2.6)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
 4. [Other Useful Resources](#s4)
@@ -392,6 +393,47 @@ This is the readme file
 ```
 
 We can follow the commit history back to the original commit by repeatedly getting the dump of the commit then dumping the parent commit.
+
+### <a name="s2.6">Merging and Rebasing</a> ###
+By merging `master` into your working branch periodically, you can pick up any changes from the mainline and keep your working branch
+compatible. But this approach can produce ugly commit graphs. Instead it may be possible to rebase rather than merging.
+
+Use rebase exactly like merge:
+
+```console
+$ git hist --all
+* 7ea0a76 2018-10-29 | Updated readme (HEAD -> master) [UserName]
+| * da4901a 2018-10-29 | Updated Rakefile (greet) [UserName]
+| * 2bf6fd5 2018-10-29 | Added greeter class [UserName]
+|/
+* 48c6a21 2018-10-20 | Initial commit [UserName]
+$ git branch
+* master
+  greet
+$ git checkout greet
+Switched to branch 'greet'
+$ git rebase master
+First, rewinding HEAD to replay your work on top of it...
+Applying: Added greeter class
+Applying: Updated Rakefile
+$ git hist --all
+* 747cfe2 2018-10-29 | Updated Rakefile (HEAD -> greet) [UserName]
+* 4711d2b 2018-10-29 | Added greeter class [UserName]
+* 7ea0a76 2018-10-29 | Updated readme (master) [UserName]
+* 48c6a21 2018-10-27 | Initial commit [UserName]
+```
+
+Notes:
+1. The "Updated Rakefile" and "Added greeter class" commits now have different hashes (necessary because history has been rewritten)
+2. The apparent order of the commits has changed
+
+#### When to use which? ####
+Don't use rebase if:
+- the branch is public and shared: rewriting a publicly-shared branch tends to screw up other team members; or
+- the exact commit history is important.
+
+Thus, use rebase for short-lived local branches and merge for branches in the public repo.
+
 
 
 <a name="s3">Understanding Git</a>
