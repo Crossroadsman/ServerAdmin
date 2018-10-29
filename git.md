@@ -520,7 +520,7 @@ $ git remote show origin
   Local branch configured for 'git pull':
     master merges with master
   Local ref configured for 'git push':
-    masgter pushes to master (up to date)
+    master pushes to master (up to date)
 ```
 
 Note that `git branch` only shows local branches. We can view remote branches by adding the `-a` flag:
