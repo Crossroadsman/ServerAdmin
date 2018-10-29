@@ -10,6 +10,7 @@ Index
    2. [Use logs](#s2.2)
    3. [Work With Relative Refs](#s2.3)
    4. [Undo](#s2.4)
+   5. [Browse the Trees](#s2.5)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
 4. [Other Useful Resources](#s4)
@@ -334,6 +335,17 @@ The new commit takes the place of the previous commit. Note that the amended com
 we can still access the original commit if we can remember the hash ID.
 
 
+### <a name="s2.5">Browse the Trees</a> ###
+We can browse the trees using `cat-file` with the `-t` (type) and `-p` (dump) flags.
+
+First, let's get a SHA for a commit:
+```console
+$ git hist --all --max-count=1
+* e1627a6 2018-10-29 | Add shebang (hello) [UserName]
+```
+
+
+
 <a name="s3">Understanding Git</a>
 ----------------------------------
 
@@ -410,7 +422,7 @@ Notes:
 2. A textual reference to the currently checked out HEAD  
    Example:  
    `ref: refs/heads/master`
-3. The SHA hash of the original commit
+3. The SHA hash of the original commit  
    Example:  
    `a345c8b2c3102a8043801637b9f2a95d36eb2202`
 4. Project-specific configuration (overrides `~/.gitconfig`)  
@@ -444,6 +456,9 @@ Notes:
    Example:  
    `e1627a63969a02945296a3425d702a84bf0a1557`
 11. The SHA hash(?) of each corresponding commit
+
+[We can browse the trees using `cat-file`](#s2.5).
+
 
 
 <a name="s4">Other Useful Resources</a>
