@@ -115,6 +115,8 @@ git clone git@github.com:<user_id>/<repo>.git
 
 <a name="s2">2: HowTos</a>
 --------------------------
+Note that a lot of the content in this section comes from the excellent [Git Immersion](http://gitimmersion.com) tutorial by Jim Weirich.
+If you are not me, you should stop reading this and just go there.
 
 ###  <a name="s2.1">1: Combining Two Git Repos</a> ###
 
