@@ -14,7 +14,7 @@ Index
    6. [Merging and Rebasing](#s2.6)
    7. [Conflict Resolution](#s2.7)
    8. [Cloning](#s2.8)
-   9. [Fetching/Pulling](#2.9)
+   9. [Fetching/Pulling](#s2.9)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
 4. [Other Useful Resources](#s4)
@@ -591,6 +591,29 @@ Fast-forward
 ```
 
 Note that `git pull` is equivalent to `git fetch` followed by `git merge <branch>`.
+
+#### Tracking additional remote branches ####
+
+By default, cloning a repo will see all the remote branches but will only bring in the contents of the tracked branch. We can track 
+additional branches as follows:
+```console
+$ git branch -a  # view the remote branches
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/hello
+  remotes/origin/master
+  remotes/origin/pythonise
+$ git branch --track hello origin/hello
+Branch 'hello' set up to track remote branch 'hello' from 'origin'.
+$ git branch -a # view all the branches again
+  hello
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/hello
+  remotes/origin/master
+  remotes/origin/pythonise
+```
+
 
 
 <a name="s3">Understanding Git</a>
