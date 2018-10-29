@@ -347,8 +347,8 @@ Behind the scenes, Git is a bunch of trees. To get a sense for this, let's exami
 ├── HEAD                           [NOTE2]
 ├── ORIG_HEAD                      [NOTE3]
 ├── config                         [NOTE4]
-├── description
-├── hooks
+├── description			   [NOTE5]
+├── hooks                          [NOTE6]
 │   ├── applypatch-msg.sample
 │   ├── commit-msg.sample
 │   ├── fsmonitor-watchman.sample
@@ -415,7 +415,7 @@ Notes:
    `a345c8b2c3102a8043801637b9f2a95d36eb2202`
 4. Project-specific configuration (overrides `~/.gitconfig`)  
    Example:
-   ```gitconfig
+   ```INI
    [core]
 	repositoryformatversion = 0
 	filemode = true
@@ -424,6 +424,10 @@ Notes:
 	ignorecase = true
 	precomposeunicode = true
    ```
+5. Text description of the repo  
+   Example:
+   `Unnamed repository; edit this file 'description' to name the repository.`
+6. Various hook scripts
 
 
 <a name="s4">Other Useful Resources</a>
