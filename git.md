@@ -11,7 +11,8 @@ Index
    3. [Work With Relative Refs](#s2.3)
    4. [Undo](#s2.4)
    5. [Browse the Trees](#s2.5)
-   6. [Merging and Rebasing](#2.6)
+   6. [Merging and Rebasing](#s2.6)
+   7. [Conflict Resolution](#s2.7)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
 4. [Other Useful Resources](#s4)
@@ -434,6 +435,46 @@ Don't use rebase if:
 
 Thus, use rebase for short-lived local branches and merge for branches in the public repo.
 
+### <a name="s2.7">Conflict Resolution</a> ###
+
+Example merge error message:
+```console
+Auto-merging lib/hello.rb
+CONFLICT (content): Merge conflict in lib/hello.rb
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Example conflicted file:
+```ruby
+<<<<<<< HEAD
+require 'greeter'
+
+# default is 'World'
+# author: UserName (user@email.com)
+name = ARGV.first || "World"
+
+greeter = Greeter.new(name)
+puts greeter.greet
+=======
+# author: UserName (user@email.com)
+puts "What's your name?"
+my_name = gets.strip
+
+puts "Hello, #{my_name}!"
+>>>>>>> master
+```
+
+Notes:
+1. Note that the bookends and divider are exactly 7 characters long
+2. The top section is HEAD (the current branch); the bottom section is the branch being merged into the current branch
+
+#### Resolution Process ####
+1. Open the conflicted file
+2. Fix it however you want (you don't have to just pick between the two versions, you can mix and match code from both versions)
+3. `git add` the file
+4. `git commit` the file
+
+Note you can use third-party merge tools.
 
 
 <a name="s3">Understanding Git</a>
