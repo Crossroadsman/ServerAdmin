@@ -14,6 +14,7 @@ Index
    6. [Merging and Rebasing](#s2.6)
    7. [Conflict Resolution](#s2.7)
    8. [Cloning](#s2.8)
+   9. [Fetching/Pulling](#2.9)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
 4. [Other Useful Resources](#s4)
@@ -531,6 +532,66 @@ $ git branch -a
   remotes/origin/master
   remotes/origin/greet
 ```
+
+### <a name="s2.9">Fetching/Pulling</a> ###
+
+Example situation: remote has made a change to `readme.md`.
+```console
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Nothing to commit, working tree clean
+```
+
+At first glance, this makes no sense: we know that there is a change on the master branch of origin. However, git only knows the contents
+of the local copy of `origin/master` (we'll call this \<local\> origin/master). This is now out of sync with the real `origin/master` 
+(we'll disambiguate by specifying \<remote\> origin/master where applicable).
+
+We can get update our copy of `origin/master` using `fetch`:
+```console
+$ git fetch
+remote: Counting objects: 3, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From /Users/username/repo_old
+  747cfe2..d6742dc master -> origin/master
+```
+
+We can observe that this update is now in our local tree:
+```console
+$ git hist --all --max-count=2
+* d6742dc 2018-10-29 | Changed readme.md in original repo (origin/master, origin/HEAD) [UserName]
+* 747cfe2 2108-10-29 | Updated Rakefile (HEAD -> master) [UserName]
+```
+
+Note that although our tree now has the up to date commits from \<remote\> origin/master, they are still in the `origin/master` branch
+and not in our `master` branch.
+
+If we rerun `status` we will now see the message we might have expected earlier:
+```console
+$ git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+  
+Nothing to commit, working tree clean.
+```
+
+Thus fetch will essentially download the commits for the remote branch but will preserve them in the local version of the remote branch.
+
+To merge those changes, we simply do a `merge` as though `origin/master` were any other branch:
+```console
+$ git merge origin/master
+Updating 747cfe2..d6742dc
+Fast-forward
+  readme.md | 1+
+  1 file changed, 1 insertion(+)
+```
+
+Note that `git pull` is equivalent to `git fetch` followed by `git merge <branch>`.
+
 
 <a name="s3">Understanding Git</a>
 ----------------------------------
