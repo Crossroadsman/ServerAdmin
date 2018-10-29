@@ -405,13 +405,13 @@ Behind the scenes, Git is a bunch of trees. To get a sense for this, let's exami
 
 Notes:
 1. The text of the most recent commit (not necessarily on the current branch)  
-   Example:
+   Example:  
    `Add shebang`
 2. A textual reference to the currently checked out HEAD  
-   Example:
+   Example:  
    `ref: refs/heads/master`
 3. The SHA hash of the original commit
-   Example:
+   Example:  
    `a345c8b2c3102a8043801637b9f2a95d36eb2202`
 4. Project-specific configuration (overrides `~/.gitconfig`)  
    Example:
@@ -425,12 +425,12 @@ Notes:
 	precomposeunicode = true
    ```
 5. Text description of the repo  
-   Example:
+   Example:  
    `Unnamed repository; edit this file 'description' to name the repository.`
 6. Various hook scripts
 7. A binary file
 8. Like `.gitignore`  
-   Example:
+   Example:  
    ```shell
    # git ls-files --others --exclude-from=.git/info/exclude
    # Lines that start with '#' are comments.
