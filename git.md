@@ -344,6 +344,54 @@ $ git hist --all --max-count=1
 * e1627a6 2018-10-29 | Add shebang (hello) [UserName]
 ```
 
+The type of hash e1627a6:
+```console
+$ git cat-file -t e1627a6
+commit
+```
+
+Dump the contents of that hash:
+```console
+$ git cat-file -p e1627a6
+tree 0b6e846af1c3ff99979436ef9c12ac5c1cacbb81
+parent 63d927bc1e2ff8f78a3eb831749949baf6344312
+author UserName <user@email.com> 1540846607 -0600
+committer UserName <user@email.com> 1540846607 -0600
+
+Add shebang
+```
+
+This tells us:
+- `tree` : the hash of the corresponding tree
+- `parent` : the hash of the parent commit
+- `author` : the identity of the author, together with the UNIX timestamp and timezone of the commit
+- `committer` : the identity of the committer, together with the UNIX timestamp and timezone of the commit
+
+If we look at the tree, we can see what files were in that commit, and the hash reference to their contents:
+```console
+$ git cat-file -t 0b6e846
+tree
+$ git cat-file -p 0b6e846
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391	README.md
+100644 blob e31070457fb6fe5df98048304b2bb0e6a8bcc514	hello.py
+```
+
+Here we see:
+- `100644` : the Unix permissions of the file
+- `blob` : ???
+- `e69de29` : the SHA hash for the file itself
+- `README.md` : the filename
+
+We can look at the file itself:
+```console
+$ git cat-file -t e69de29
+blob
+$ git cat-file -p e69de29
+# README.md
+This is the readme file
+```
+
+We can follow the commit history back to the original commit by repeatedly getting the dump of the commit then dumping the parent commit.
 
 
 <a name="s3">Understanding Git</a>
