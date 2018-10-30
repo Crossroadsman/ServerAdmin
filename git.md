@@ -734,31 +734,26 @@ Notes:
 ### <a name="s3.2">Commits</a> ###
 There are a variety of ways to refer to commits and ranges of commits. Most of the ways work in most of the inputs to git commands.
 
-Type       | Example  | Explanation
------------|----------|------------
-branchname | `master` | The name of any branch is simply an alias for the most recent commit on that branch.
-tagname    | `v1`     | A tag alias is identical to a branch alias except in two ways: 1. tag aliases never change, while branch aliases
-                        always point to the newest commit on the branch; a tag alias can contain a description of the tag
-HEAD       | `HEAD`   | The currently checked out branch or commit is always called HEAD
-
-HEAD
-c82a22c39cbc32...
-c82a22c
-name^ name^^ name^2 name~10
-name:path
-name^{tree}
-A tag-name alias is identical to a branch alias in terms of naming a commit. e major difference between the two is that tag alias- es never change, whereas branch aliases change each time a new commit is checked in to that branch.
-e currently checked out commit is always called . If you check out a specific commit — instead of a branch name — then  refers to that commit only and not to any branch. Note that this case is somewhat special, and is called “using a detached ” (I’m sure there’s a joke to be told here...).
-A commit may always be referenced using its full, 40-character  hash id. Usually this happens during cut-and-pasting, since there are typically other, more convenient ways to refer to the same commit.
-You only need use as many digits of a hash id as are needed for a unique reference within the repository. Most of the time, six or seven digits is enough.
-e parent of any commit is referenced using the caret symbol. If a commit has more than one parent, the first is used.
-Carets may be applied successively. is alias refers to “the par- ent of the parent” of the given commit name.
-If a commit has multiple parents (such as a merge commit), you can refer to the nth parent using name^n.
-A commit’s nth ancestor may be referenced using a tilde (~) fol- lowed by the ordinal number. is type of usage is common with rebase -i, for example, to mean “show me a bunch of recent commits”. is is the same as name^^^^^^^^^^.
-To reference a certain file within a commit’s content tree, specify that file’s name aer a colon. is is helpful with show, or to show the difference between two versions of a committed file:
-       $ git diff HEAD^1:Makefile HEAD^2:Makefile
-You can reference just the tree held by a commit, rather than the commit itself.
-
+Type          | Example        | Explanation
+--------------|----------------|------------
+branchname    | `master`       | The name of any branch is simply an alias for the most recent commit on that branch.
+tagname       | `v1`           | A tag alias is identical to a branch alias except in two ways: 1. tag aliases never change, while branch aliases always point to the newest commit on the branch; 2. a tag alias can contain a description of the tag
+HEAD          | `HEAD`         | The currently checked out branch or commit is always called HEAD
+c82a22c       | `c82a22c`      | A commit can be referenced by its full hash id, or just as many characters that are required to make a unique reference in the repo
+name^         | `v1^`          | The \[first] parent of a specified commit
+name^n        | `v1^2`         | The second parent of a specified commit where the commit has multiple parents (e.g., merge commit)
+name^^...     | `v1^^`         | Two ancestors back from the specified commit. `^` can be used in an arbitrarily long sequence
+name~n        | `v1~2`         | The *nth* ancestor of the specified commit. In this example, it is equivalent to `v1^^`
+name:path     | `git diff HEAD^1:Makefile HEAD^2:Makefile` | reference a particular file in a commit's content tree
+name^{tree}   |                | Reference just the tree held by the commit, rather than the commit itself
+name1..name2  | `v1~3..v1`     | All the commits reachable from name2 back to, but not including, name1. If either name1 or name2 is omitted, HEAD is used in its place
+name1...name2 |                | Depends on the type of command. For commands like `log`, it refers to all the commits referenced by name1 or name2, but not by both. The result is a list of the unique commits in both branches.</br>For commands like `diff`, the range expressed is between name2 and the common ancestor of name1 and name2.
+master..      |                | Equivalent to `master..HEAD`.
+..master      |                | Equivalent to `HEAD..master`.
+since/after   | `--since="2 weeks ago"` |
+until/before  | `--until="1 week ago"` |
+grep          | `--grep=<pattern>` |
+committer/author | `--committer=<pattern>` |
 
 See [Git From the Bottom Up][bottom-up]
 
