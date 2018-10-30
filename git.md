@@ -738,8 +738,8 @@ Type          | Example        | Explanation
 --------------|----------------|------------
 branchname    | `master`       | The name of any branch is simply an alias for the most recent commit on that branch.
 tagname       | `v1`           | A tag alias is identical to a branch alias except in two ways: 1. tag aliases never change, while branch aliases always point to the newest commit on the branch; 2. a tag alias can contain a description of the tag
-HEAD          | `HEAD`         | The currently checked out branch or commit is always called HEAD
-c82a22c       | `c82a22c`      | A commit can be referenced by its full hash id, or just as many characters that are required to make a unique reference in the repo
+`HEAD`        | `HEAD`         | The currently checked out branch or commit is always called HEAD
+hash          | `c82a22c`      | A commit can be referenced by its full hash id, or just as many characters that are required to make a unique reference in the repo
 name^         | `v1^`          | The \[first] parent of a specified commit
 name^n        | `v1^2`         | The second parent of a specified commit where the commit has multiple parents (e.g., merge commit)
 name^^...     | `v1^^`         | Two ancestors back from the specified commit. `^` can be used in an arbitrarily long sequence
