@@ -17,6 +17,7 @@ Index
    9. [Fetching/Pulling](#s2.9)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
+   2. [Commits](#s3.2)
 4. [Other Useful Resources](#s4)
 5. [Glossary](#s5)
 
@@ -728,6 +729,38 @@ Notes:
 11. The SHA hash(?) of each corresponding commit
 
 [We can browse the trees using `cat-file`](#s2.5).
+
+
+### <a name="s3.2">Commits</a> ###
+There are a variety of ways to refer to commits and ranges of commits. Most of the ways work in most of the inputs to git commands.
+
+Type       | Example  | Explanation
+-----------|----------|------------
+branchname | `master` | The name of any branch is simply an alias for the most recent commit on that branch.
+tagname    | `v1`     | A tag alias is identical to a branch alias except in two ways: 1. tag aliases never change, while branch aliases
+                        always point to the newest commit on the branch; a tag alias can contain a description of the tag
+HEAD       | `HEAD`   | The currently checked out branch or commit is always called HEAD
+
+HEAD
+c82a22c39cbc32...
+c82a22c
+name^ name^^ name^2 name~10
+name:path
+name^{tree}
+A tag-name alias is identical to a branch alias in terms of naming a commit. e major difference between the two is that tag alias- es never change, whereas branch aliases change each time a new commit is checked in to that branch.
+e currently checked out commit is always called . If you check out a specific commit — instead of a branch name — then  refers to that commit only and not to any branch. Note that this case is somewhat special, and is called “using a detached ” (I’m sure there’s a joke to be told here...).
+A commit may always be referenced using its full, 40-character  hash id. Usually this happens during cut-and-pasting, since there are typically other, more convenient ways to refer to the same commit.
+You only need use as many digits of a hash id as are needed for a unique reference within the repository. Most of the time, six or seven digits is enough.
+e parent of any commit is referenced using the caret symbol. If a commit has more than one parent, the first is used.
+Carets may be applied successively. is alias refers to “the par- ent of the parent” of the given commit name.
+If a commit has multiple parents (such as a merge commit), you can refer to the nth parent using name^n.
+A commit’s nth ancestor may be referenced using a tilde (~) fol- lowed by the ordinal number. is type of usage is common with rebase -i, for example, to mean “show me a bunch of recent commits”. is is the same as name^^^^^^^^^^.
+To reference a certain file within a commit’s content tree, specify that file’s name aer a colon. is is helpful with show, or to show the difference between two versions of a committed file:
+       $ git diff HEAD^1:Makefile HEAD^2:Makefile
+You can reference just the tree held by a commit, rather than the commit itself.
+
+
+See [Git From the Bottom Up][bottom-up]
 
 
 
