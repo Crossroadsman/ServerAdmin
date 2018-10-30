@@ -764,6 +764,8 @@ See [Git From the Bottom Up][bottom-up]
 
 - [Git Flight Rules](https://github.com/k88hudson/git-flight-rules)  
   Inspired by NASA's flight rules for the space program, detailed step-by-step instructions for a wide range of git tasks
+- [A Successful Git Branching Model](https://nvie.com/posts/a-successful-git-branching-model/)  
+  An example of a branching strategy that can be effective for development projects of any size
 
 
 <a name="s5">Glossary</a>
