@@ -385,7 +385,7 @@ $ git cat-file -p 0b6e846
 
 Here we see:
 - `100644` : the Unix permissions of the file
-- `blob` : ???
+- `blob` : 'binary large object'. Like a file except without any metadata (the file's metadata is in the tree).
 - `e69de29` : the SHA hash for the file itself
 - `README.md` : the filename
 
