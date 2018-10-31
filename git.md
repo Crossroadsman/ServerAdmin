@@ -726,7 +726,7 @@ Notes:
    Example:  
    `Unnamed repository; edit this file 'description' to name the repository.`
 6. Various hook scripts
-7. A binary file
+7. A compressed binary file representing the contents of the index (i.e., the staging area)
 8. Like `.gitignore`  
    Example:  
    ```shell
