@@ -15,6 +15,7 @@ Index
    7. [Conflict Resolution](#s2.7)
    8. [Cloning](#s2.8)
    9. [Fetching/Pulling](#s2.9)
+   10. [Diff](#s2.10)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
    2. [Commits](#s3.2)
@@ -614,6 +615,20 @@ $ git branch -a # view all the branches again
   remotes/origin/master
   remotes/origin/pythonise
 ```
+
+### <a name="s2.10">Diff</a> ###
+
+Here are some common ways of performing a diff:
+
+- `git diff`: Compare the working tree to the staging area
+- `git diff --cached [<commit>]`: Compare the staging area to the specified commit.  
+                                  If no commit specified, defaults to `HEAD`.  
+				  If there is no `HEAD`, shows all staged changes.
+- `git diff <commit>`: Compare the working tree to the specified commit
+- `git diff <commit> <commit>`: Compare the changes between two arbitrary commits
+- `git diff <commit>..<commit>`: Mostly equivalent to `git diff <commit> <commit>` except that in this case, one of the commits could
+                                 be omitted and `HEAD` would be substituted automatically
+- `git diff <commit_a>...<commit_b>`: Compare the changes between commit_b and the common ancestor of commit_a and commit_b
 
 
 
