@@ -441,6 +441,20 @@ Don't use rebase if:
 
 Thus, use rebase for short-lived local branches and merge for branches in the public repo.
 
+#### Fast-forward ####
+
+When performing a merge, Git can detect whether `HEAD` is an ancestor of the commit being merged. When it does, it can,
+instead of writing a merge commit, simply move the `HEAD` pointer to the incoming commit.
+
+While this is very clean, sometimes you might want to preserve the history of the branch topology (e.g., merging a 
+feature branch). Using a FF would hide that there was ever a feature branch. We can force Git to perform a merge commit 
+and preserve the topology by using the no fast-forward flag:
+```console
+$ git merge --no-ff my-feature-branch
+```
+**TODO: Add example output**
+
+
 ### <a name="s2.7">Conflict Resolution</a> ###
 
 Example merge error message:
