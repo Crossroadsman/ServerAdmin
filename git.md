@@ -728,8 +728,8 @@ Notes:
 6. Various hook scripts
 7. A compressed binary file representing the contents of the index (i.e., the staging area)
 8. Like `.gitignore`. Difference is that `.gitignore` is a file in the repo and as such is available to anyone who clones the repo while
-   `exclude` exists only in the local clone. [As such it makes sense to include here files that are only relevant to the person using the
-   local clone, e.g., files relating to the user's IDE](https://stackoverflow.com/questions/22906851/when-would-you-use-git-info-exclude-instead-of-gitignore-to-exclude-files)  
+   `exclude` exists only in the local clone. [Accordingly, it makes sense to include here files that are only relevant to the person using 
+   the local clone, e.g., files relating to the user's IDE](https://stackoverflow.com/questions/22906851/when-would-you-use-git-info-exclude-instead-of-gitignore-to-exclude-files)  
    Example:  
    ```shell
    # git ls-files --others --exclude-from=.git/info/exclude
