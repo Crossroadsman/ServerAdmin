@@ -69,6 +69,11 @@ You can also edit the ~/.gitconfig file directly. It has the following format:
 	email = user@email.com
 [push]
 	default = simple
+        # push.followTags will push all the refs that would be pushed without this option, and also
+        # push annotated tags in refs/tags that are missing from the remote
+        # but are pointing at commit-ish that are reachable from the refs
+        # being pushed.
+	followTags = true
 [alias]
     hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 ```
