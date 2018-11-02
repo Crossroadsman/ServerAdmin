@@ -173,7 +173,12 @@ Will probably need to explicitly allow unrelated histories
 git pull RepoA master --allow-unrelated-histories
 ```
 
-Then will probably need to do a merge
+Then will probably need to do a merge. 
+
+The master repo's README might have been overwritten, get it back with `git checkout master -- README.md`. (the `--` 
+separator comes from shell where it is [used in bash built-in commands and many other commands to signify the end of 
+command options, after which only positional parameters are 
+accepted](https://unix.stackexchange.com/questions/11376/what-does-double-dash-mean-also-known-as-bare-double-dash))
 
 
 ### <a name="s2.2">Use Logs</a> ###
@@ -254,15 +259,16 @@ $ git hist  # this is an alias, see s1.2 for how to create
 ### <a name="s2.4">Undo</a> ###
 
 #### <a name="s2.4.1">Unstaged Files</a> ####
-Suppose we have been editing `myfile.py` and want to revert it. We can do this by simply checking out `HEAD`'s copy of the file. It will 
-silently overwrite the changed file in the working directory.
+Suppose we have been editing `myfile.py` and want to revert it. We can do this by simply checking out `HEAD`'s copy of 
+the file. It will silently overwrite the changed file in the working directory.
 
 ```console
 $ git checkout myfile.py
 ```
 
 #### <a name="s2.4.2">Staged but not Committed</a> ####
-Suppose we've added a bad version of `myfile.py` to the staging area. We can reset the staging area to how it is under the `HEAD` commit:
+Suppose we've added a bad version of `myfile.py` to the staging area. We can reset the staging area to how it is under 
+the `HEAD` commit:
 
 ```console
 $ git reset HEAD myfile.py
@@ -270,8 +276,8 @@ $ git reset HEAD myfile.py
 
 Note we could omit the filename in which case all the staged files would be reverted to the version from `HEAD`.
 
-Note also that this use of reset only affects the staging area. The working directory is unchanged, so the bad version of `myfile.py` is 
-still the version in the working directory.
+Note also that this use of reset only affects the staging area. The working directory is unchanged, so the bad version 
+of `myfile.py` is still the version in the working directory.
 
 #### <a name="s2.4.3">Committed Files</a> ####
 
@@ -610,6 +616,7 @@ Fast-forward
 
 Note that `git pull` is equivalent to `git fetch` followed by `git merge <branch>`.
 
+
 #### Tracking additional remote branches ####
 
 By default, cloning a repo will see all the remote branches but will only bring in the contents of the tracked branch. We can track 
@@ -631,6 +638,15 @@ $ git branch -a # view all the branches again
   remotes/origin/master
   remotes/origin/pythonise
 ```
+
+Note that when we have multiple branches on local we can push all of them to remote by using:
+```console
+$ git push --all -u
+```
+(Where `--all` means 'all refs under refs/heads should be pushed', `-u` means 'for every branch that is up-to-date or 
+successfully pushed, add upstream (tracking) ref')
+
+
 
 ### <a name="s2.10">Diff</a> ###
 
@@ -799,6 +815,9 @@ See [Git From the Bottom Up][bottom-up]
   Inspired by NASA's flight rules for the space program, detailed step-by-step instructions for a wide range of git tasks
 - [A Successful Git Branching Model](https://nvie.com/posts/a-successful-git-branching-model/)  
   An example of a branching strategy that can be effective for development projects of any size
+- [Adding a folder from one repo to another](https://github.community/t5/How-to-use-Git-and-GitHub/Adding-a-folder-from-one-repo-to-another/m-p/5574#M1817)  
+  Clear instructions for moving a folder from repoA to repoB while preserving history
+
 
 
 <a name="s5">Glossary</a>
