@@ -164,6 +164,8 @@ git checkout -b repo_a
 git remote add -f RepoA https://www.git.files/path/to/repo
 ```
 
+Note: [`-f`](https://git-scm.com/docs/git-remote) means perform a fetch immediately after the remote is set up
+
 #### <a name="s2.1.5">Pull the remote's files</a> ####
 Will probably need to explicitly allow unrelated histories
 
