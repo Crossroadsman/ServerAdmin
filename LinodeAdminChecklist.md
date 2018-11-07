@@ -33,7 +33,8 @@ First-time Log in
 ☐ perform software updates (`apt update && apt upgrade -y`)<sup>[1](#footnote01)</sup>
   (note: when prompted to update Grub, select '*keep the local version installed*')
 
-☐ consider whether appropriate to perform a dist upgrade (`apt-get dist-upgrade`)
+☐ consider whether appropriate to perform a full (dist) upgrade (`apt full-upgrade`) (previously `apt-get dist-upgrade`)
+- you can check whether there are packages available using `apt list --upgradable`
 
 ☐ create & activate hostname
 
