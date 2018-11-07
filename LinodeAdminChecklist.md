@@ -66,7 +66,7 @@ Secure Server
 
 ☐ create limited user account
 
-- `adduser my_user_name`
+- `adduser my_user_name`<sup>[2](#footnote02)</sup>
 
 ☐ add limited user to sudo group
 
@@ -93,7 +93,7 @@ Other Management
 
 ☐ [Configure git][link01]
 
-☐ [Clone .vimrc][link02]<sup>[2](#footnote02)</sup>
+☐ [Clone .vimrc][link02]<sup>[2](#footnote03)</sup>
 
 ☐ Enable longview
 
@@ -108,7 +108,10 @@ Footnotes
 ---------
 <a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
 any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`.
-<a name="footnote02">2.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
+<a name="footnote02">2.</a> `adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
+defaults to providing a full profile while `useradd` needs you to manually specify several values. See the [TDD guide][link06] for an 
+example.
+<a name="footnote03">3.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
 
 
 
@@ -117,3 +120,4 @@ any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update
 [link03]: ethanschoonover.com/solarized
 [link04]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md 'Crossroadsman: Server Admin: Securing a Server'
 [link05]: https://www.dnswatch.info/articles/dns-update
+[link06]: https://github.com/hjwp/Book-TDD-Web-Dev-Python/blob/master/server-quickstart.md
