@@ -12,3 +12,10 @@ Using old-style Gandi
     - Value: <my_ip_address>
 - Save the record
 - Select "Use this Zone file"
+
+
+Check Propagation
+-----------------
+
+We can use a DNS Propagation Checker to see the status of our new DNS Record, e.g., 
+[What's My DNS](https://www.whatsmydns.net/#A/lucy.koumparossoftware.com)
