@@ -30,7 +30,7 @@ First-time Log in
 
 ☐ ssh in as root
 
-☐ perform software updates (`apt-get update -y && apt-get upgrade -y`)<sup>[1](#footnote01)</sup>
+☐ perform software updates (`apt update && apt upgrade -y`)<sup>[1](#footnote01)</sup>
   (note: when prompted to update Grub, select '*keep the local version installed*')
 
 ☐ consider whether appropriate to perform a dist upgrade (`apt-get dist-upgrade`)
@@ -106,7 +106,7 @@ Other Management
 Footnotes
 ---------
 <a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
-any 'undesirable' situations arise). Per the man page.  
+any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`.
 <a name="footnote02">2.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
 
 
