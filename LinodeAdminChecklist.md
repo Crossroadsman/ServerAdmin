@@ -72,7 +72,11 @@ Secure Server
 
 - `adduser my_user_name sudo`
 
+☐ log out and log back in as limited user
+
 ☐ create SSH keypair on local machine
+
+- `ssh-keygen -t rsa -b 4096 -C "<user@email.com>"`<sup>[3](#footnote03)</sup>
 
 ☐ copy public key to server
 
@@ -93,7 +97,7 @@ Other Management
 
 ☐ [Configure git][link01]
 
-☐ [Clone .vimrc][link02]<sup>[2](#footnote03)</sup>
+☐ [Clone .vimrc][link02]<sup>[4](#footnote04)</sup>
 
 ☐ Enable longview
 
@@ -111,7 +115,9 @@ any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update
 <a name="footnote02">2.</a> `adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
 defaults to providing a full profile while `useradd` needs you to manually specify several values. See the [TDD guide][link06] for an 
 example.
-<a name="footnote03">3.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
+<a name="footnote03">3.</a> The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
+Github's [SSH key generation guide][link07]
+<a name="footnote04">4.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours
 
 
 
@@ -121,3 +127,4 @@ example.
 [link04]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md 'Crossroadsman: Server Admin: Securing a Server'
 [link05]: https://www.dnswatch.info/articles/dns-update
 [link06]: https://github.com/hjwp/Book-TDD-Web-Dev-Python/blob/master/server-quickstart.md
+[link07]: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux
