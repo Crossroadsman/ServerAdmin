@@ -16,8 +16,7 @@ requests are for static or dynamic content. For static files it just serves them
 to the app server. (QUESTION: DOES THE APP SERVER GET THE ORIGINAL REQUEST OR A SANITISED REQUEST?)
 
 Then app server then executes the app code (like Django does in the testing environment) to determine, and then create, the http 
-response, which it then sends back to nginx to provide to the remote client. (QUESTION: DOES THE APP SERVER SEND BACK TO NGINX OR
-DOES IT SERVE THE RESPONSE DIRECTLY TO THE CLIENT?)
+response, which it then sends back to nginx to provide to the remote client.
 
 For a more longer, but still very simple explanation from a gunicorn developer, see [this](https://serverfault.com/a/331263) 
 Server Fault answer.
