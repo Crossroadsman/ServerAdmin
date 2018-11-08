@@ -3,7 +3,24 @@ Gunicorn (Green Unicorn)
 
 1: Background
 -------------
-[Gunicorn][link01] is an app server inspired by Ruby's Unicorn.
+[Gunicorn][link01] is an app server inspired by Ruby's Unicorn. It is the second tier in the three-tier architecture of:
+```
+.-----------,       .----------,       .--------,
+|web  server| <---> |app server| <---> |database|
+|  (nginx)  |       |(gunicorn)|       | (sql)  |
+`-----------'       `----------'       `--------'
+```
+
+All http requests come into the web server. The web server first handles malicious or other bad requests, then decides whether good
+requests are for static or dynamic content. For static files it just serves them directly, for dynamic requests it passes the request
+to the app server. (QUESTION: DOES THE APP SERVER GET THE ORIGINAL REQUEST OR A SANITISED REQUEST?)
+
+Then app server then executes the app code (like Django does in the testing environment) to determine, and then create, the http 
+response, which it then sends back to nginx to provide to the remote client. (QUESTION: DOES THE APP SERVER SEND BACK TO NGINX OR
+DOES IT SERVE THE RESPONSE DIRECTLY TO THE CLIENT?)
+
+For a more longer, but still very simple explanation from a gunicorn developer, see [this](https://serverfault.com/a/331263) 
+Server Fault answer.
 
 2: Installation
 ---------------
