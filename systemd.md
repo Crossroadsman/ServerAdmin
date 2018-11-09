@@ -100,10 +100,12 @@ $ systemctl list-dependencies --reverse multi-user.target
 ```
 
 ### Service Configs ###
-- Reload the service configs into the systemd daemon  
-  (necessary if you have changed a service configuration that is loaded. Where loaded seems to mean included in the daemon's live 
-  listing not necessarily active. Put another way, the loaded configs are the versions that systemd thinks are current, whether or not the 
-  services they relate to are actually running).  
+- [Long answer][systemctl_man]:
+  > reload systemd manager configuration. This will rerun all generators (see systemd.generator(7)), reload all unit files, and 
+  > recreate the entire dependency tree. 
+  Note that it "reloads" unit files, so only those unit files that were already loaded<sup>[1](#footnote01)</sup> (i.e., in memory) will be reloaded. Similarly,
+  the `recreate the entire dependency tree` is a recreation based on the dependencies that are loaded (or reloaded)(?). Any config 
+  files that were not already loaded and didn't become dependencies of the reloaded files will remain outside the dependency tree(?).
   ```console
   $ systemctl daemon-reload
   ```
@@ -125,12 +127,24 @@ $ systemctl list-dependencies --reverse multi-user.target
   equivalent to runlevel 2) is about to be set (i.e., at boot time), systemd will load its dependencies, which are any services with
   config files symlinked from `.../multi-user.target.wants` or `.../multi-user.target.requires`. Conversely, if the specified config
   file's `[Install]` section did not make it a dependency for anything that loads on boot, `enable` would not do anything.  
-  More detail in the [man page][systemd_unit].
+  More detail in the [man page][systemd_unit]. 
+  After the symlinks have been created, the 'system manager configuration' is reloaded. The system manager configuration reload is
+  basically equivalent to `systemctl daemon-reload` for just the specified service (as per the [enable section of the 
+  systemctl man][systemctl_man]).
   ```console
   $ systemctl enable ufw.service
   ```
 
 
+Footnotes
+---------
+<a name="footnote01">1.</a> "Loaded" means simply that the unit has been loaded from the disk into memory. This happens any time that 
+the unit is 'looked at' which includes running `systemctl status <unit>`. Hence any unit that is examined with `systemctl status` will
+always appear to be loaded because it is loaded for `status` (and then immediately unloaded). See 
+[this](https://unix.stackexchange.com/a/336890) Linux/Unix Stack Exchange answer and the Unit Garbage Collection section of 
+the [systemd.unit][systemd_unit] man page.
+
 
 [systemd_home]: https://www.freedesktop.org/wiki/Software/systemd/
 [systemd_unit]: https://www.freedesktop.org/software/systemd/man/systemd.unit.html#
+[systemctl_man]: https://www.freedesktop.org/software/systemd/man/systemctl.html
