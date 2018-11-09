@@ -100,14 +100,20 @@ $ systemctl list-dependencies --reverse multi-user.target
 ```
 
 ### Service Configs ###
-- [Long answer][systemctl_man]:
+- Reload the system manager configuration  
+  [Long answer][systemctl_man]:
   > reload systemd manager configuration. This will rerun all generators (see systemd.generator(7)), reload all unit files, and 
   > recreate the entire dependency tree. 
   
   Note that it "reloads" unit files, so only those unit files that were already loaded<sup>[1](#footnote01)</sup> (i.e., in memory) 
   will be reloaded. Similarly, the `recreate the entire dependency tree` is a recreation based on the dependencies that are loaded 
-  (or reloaded)(?). Any config files that were not already loaded and didn't become dependencies of the reloaded files will remain 
+  (or reloaded)(?). Any unit files that were not already loaded and didn't become dependencies of the reloaded files will remain 
   outside the dependency tree(?).
+  
+  In short, it seems that the use cases for this command are (mostly) situations where a unit is loaded (or might be loaded) and
+  we are modifying the unit configuration. After we modify the config, we run the daemon-reload to reload the unit (and its config)(?).
+  This will not restart the unit itself, so if the change to the config file warrants reloading the unit, we need to separately issue
+  a restart command.
   ```console
   $ systemctl daemon-reload
   ```
