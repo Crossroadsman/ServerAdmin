@@ -87,7 +87,7 @@ Command                        | Result
 
 ### Example1: ###
 
-```nginx.conf
+```nginx
 server {
     listen 80;
     server_name example.com;
@@ -100,7 +100,7 @@ server {
 
 ### Example2: ###
 
-```nginx.conf
+```nginx
 server {
     listen 80;
     server_name www2.staging.mysite.com;
