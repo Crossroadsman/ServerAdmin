@@ -108,6 +108,7 @@ you are deploying.
   $ SITENAME=staging.mysite.com
   $ cd /etc/nginx/sites-enabled
   $ ln -s /etc/nginx/sites-available/$SITENAME $SITENAME
+  $ sudo systemctl reload nginx  # tell nginx to reload its config
   ```
 
 [guide_nginx]: https://github.com/Crossroadsman/ServerAdmin/blob/master/nginx.md
