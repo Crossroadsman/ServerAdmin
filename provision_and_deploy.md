@@ -70,7 +70,9 @@ you are deploying.
 
 ### <a name="s3.3">3.3 Configure Server-Side Installs</a> ###
 
-- In the above example, we needed to install [nginx]][guide_nginx]. The `deploy_tools/provisioning_notes.md` should have a section 
+#### 3.3.1 nginx ####
+
+- In the above example, we needed to install [nginx][guide_nginx]. The `deploy_tools/provisioning_notes.md` should have a section 
   with configuration notes for these applications.
 
   Example:
@@ -83,7 +85,7 @@ you are deploying.
   ```
 
 - Here is an example `nginx.template.conf`:
-  ```
+  ```nginx
   server {
     listen 80;
     server_name DOMAIN;
@@ -99,7 +101,13 @@ you are deploying.
   }
   ```
 
+- We would create a file called, e.g., `staging.mysite.com` in `/etc/nginx/sites-available` based on the specified template.
 
-
+- Enable the site by creating a symlink in `sites-enabled` to the config in `sites-available`:
+  ```console
+  $ SITENAME=staging.mysite.com
+  $ cd /etc/nginx/sites-enabled
+  $ ln -s /etc/nginx/sites-available/$SITENAME $SITENAME
+  ```
 
 [guide_nginx]: https://github.com/Crossroadsman/ServerAdmin/blob/master/nginx.md
