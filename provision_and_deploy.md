@@ -42,7 +42,7 @@ you are deploying.
 1. [Create clean server with non-root user](https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md)
 2. [Check the project's `deploy_tools/provisioning_notes` to determine required server-side installs](#s3.2)
 3. [Configure any server-side installs](#s3.3)
-
+4. [Run the deploy script](#s3.4)
 
 ### <a name="s3.2">3.2 Server-Side Installs</a> ###
 
@@ -110,5 +110,11 @@ you are deploying.
   $ ln -s /etc/nginx/sites-available/$SITENAME $SITENAME
   $ sudo systemctl reload nginx  # tell nginx to reload its config
   ```
+
+### <a name="s3.4">Deploy Script</a> ###
+
+- The local repo should have Fabric installed in the venv
+- Assuming there is a `fabfile.py` in the `deploy_tools` directory, we can run `fab` to execute the deployment script.
+
 
 [guide_nginx]: https://github.com/Crossroadsman/ServerAdmin/blob/master/nginx.md
