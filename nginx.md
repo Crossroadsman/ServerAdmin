@@ -40,7 +40,7 @@ gunicorn).
     `sudo ufw status`
 
 - check nginx is running  
-  - verify tha the service is running  
+  - verify that the service is running (should show `active (running)`)  
     `systemctl status nginx`
   - check that nginx is visible to a web browser
 
