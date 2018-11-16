@@ -16,6 +16,7 @@ Index
    8. [Cloning](#s2.8)
    9. [Fetching/Pulling](#s2.9)
    10. [Diff](#s2.10)
+   11. [Tagging](#s2.11)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
    2. [Commits](#s3.2)
@@ -652,7 +653,6 @@ $ git push --all -u
 successfully pushed, add upstream (tracking) ref')
 
 
-
 ### <a name="s2.10">Diff</a> ###
 
 Here are some common ways of performing a diff:
@@ -666,6 +666,52 @@ Here are some common ways of performing a diff:
 - `git diff <commit>..<commit>`: Mostly equivalent to `git diff <commit> <commit>` except that in this case, one of the commits could
                                  be omitted and `HEAD` would be substituted automatically
 - `git diff <commit_a>...<commit_b>`: Compare the changes between commit_b and the common ancestor of commit_a and commit_b
+
+
+### <a name="s2.11">Tagging</a> ###
+
+#### Tag Commands ####
+
+- list tags:
+  ```console
+  $ git tag
+  ```
+- create tag:
+  - *lightweight*  
+    A lightweight tag is just a pointer to a commit
+    ```console
+    $ git tag <tagname> [commit]
+    ```
+  - *annotated*  
+    Annotated tags are stored as full objects in the Git database. They're checksummed; contain the tagger's name/email/date; contain
+    a tagging message; can be signed and verified with GPG
+    ```console
+    $ git tag -a <tagname> [-m "<message>"] [commit]
+    ```
+
+- replace a tag:
+  ```console
+  $ git -f <tagname>
+  ```
+
+- view tag data:
+  ```console
+  $ git show <tagname>
+  ```
+
+- push tag(s):  
+  `push` doesn't send tags by default.
+  ```console
+  $ git push origin <tagname>
+  ```
+  Or if you have a lot of tags to push:
+  ```console
+  $ git push origin --tags
+  ```
+
+#### Tag Syntax ####
+
+[Not all characters are valid in a tagname](https://git-scm.com/docs/git-check-ref-format).
 
 
 
