@@ -682,6 +682,11 @@ Here are some common ways of performing a diff:
     ```console
     $ git tag <tagname> [commit]
     ```
+    Example tag with a datestamp (format: `DEPLOYED-20181116-162753-0700`):
+    ```console
+    $ export TAGDATA=$(date +DEPLOYED-%Y%m%d-%H%M%S%z)
+    $ git tag $TAGDATA
+    ```
   - *annotated*  
     Annotated tags are stored as full objects in the Git database. They're checksummed; contain the tagger's name/email/date; contain
     a tagging message; can be signed and verified with GPG
