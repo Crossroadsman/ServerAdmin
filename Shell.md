@@ -199,12 +199,16 @@ today() {
 
 Footnotes
 ---------
-<a name="footnote01">1</a>: `printenv` and `set` differ in that `set` (a shell builtin) can see shell-local variables 
-(i.e., variables that are local to the shell, including shell functions) while `printenv` can only see exported variables (the
-variables that are passed to all programs).
-<a name="footnote02">2</a>: Only retains special meaning if followed by `$`, 'backtick', `"`, `\`, or *newline*  
-<a name="footnote03">3</a>: Only when history expansion is enabled and shell is not in Posix mode
-<a name="footnote04">4</a>: It is called 'OR' but is really XOR
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+<a name="footnote01">1</a>: `printenv` and `set` differ in that `set` (a shell 
+  builtin) can see shell-local variables (i.e., variables that are local to the 
+  shell, including shell functions) while `printenv` can only see exported 
+  variables (the variables that are passed to all programs).  
+<a name="footnote02">2</a>: Only retains special meaning if followed by `$`, 
+  'backtick', `"`, `\`, or *newline*.  
+<a name="footnote03">3</a>: Only when history expansion is enabled and shell is 
+  not in Posix mode.  
+<a name="footnote04">4</a>: It is called 'OR' but is really XOR.  
 
 
 
