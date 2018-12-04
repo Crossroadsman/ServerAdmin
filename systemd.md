@@ -185,11 +185,11 @@ then the log message.
 ### More Guides ###
 
 In addition to the [man page][journalctl_man], there are several useful guides for server admins. For example:
-[Lennart Poettering](http://0pointer.de/blog/projects/journalctl.html)
-[Linode](https://www.linode.com/docs/quick-answers/linux/how-to-use-journalctl/)
-[Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs)
-[Red Hat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-using_the_journal)
-[Cheatsheet (pdf)](https://www.cheatography.com/airlove/cheat-sheets/journalctl/pdf/)
+- [Lennart Poettering](http://0pointer.de/blog/projects/journalctl.html)
+- [Linode](https://www.linode.com/docs/quick-answers/linux/how-to-use-journalctl/)
+- [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs)
+- [Red Hat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-using_the_journal)
+- [Cheatsheet (pdf)](https://www.cheatography.com/airlove/cheat-sheets/journalctl/pdf/)
 
 
 Footnotes
