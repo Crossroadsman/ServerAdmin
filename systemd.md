@@ -11,8 +11,6 @@ From the [homepage][systemd_home]:
 > simple network configuration, network time synchronization, log forwarding, and name resolution. 
 
 
-
-
 How It Works
 ------------
 systemd decides what to launch by looking at 'service' ('unit') files. These files describe how systemd should execute a particular
@@ -46,7 +44,6 @@ Service files must have the `.service` extension and custom service config files
 `/etc/systemd/system`.
 
 They can be started with `systemctl start myservice.service`.
-
 
 
 systemctl Examples
@@ -144,6 +141,57 @@ $ systemctl list-dependencies --reverse multi-user.target
   ```
 
 
+Logging ([`journalctl`][journalctl_man])
+----------------------------------------
+`systemd` units produce binary logs. The typical way to review these logs is using `journalctl`.
+
+By default, journalctl sends its output to less, which gives us the standard interactive controls such as f/b, pg up/pg down, 
+cursor up/down to scroll through the lines of the logs. You can use the cursor left and right arrows to view text that has 
+been truncated.
+
+Example Log (truncated):
+```
+-- Logs begin at Sat 2018-11-10 20:26:59 MST, end at Mon 2018-12-03 20:54:12 MST
+Dec 03 20:54:12 my_server sudo[2028]: pam_unix(sudo:session): session opened for use
+Dec 03 20:54:12 my_server sudo[2028]:     some_user : TTY=pts/0 ; PWD=/home/some_user/sites ;
+```
+
+Note the first columns show the date and time (server's local time), then the server's hostname, the process name (with pid),
+then the log message.
+
+
+### Common Options ###
+
+- `-b [n]`: show logs from the current boot. Specify a negative value for `n` to show the logs from the boot n boots ago.
+- `-f`: follow (live update)
+- `-F <variable>`: show all the available values for the specified variable (handy for constructing filters)
+- `-n 100`: only show the most recent 100 entries
+- `-o <type>`: specify the output format (examples include `cat`, `json`, `json-pretty`, `short` (default), `verbose`)
+- `-p <level>`: filter based on priority level
+- `-r`: present results in reverse chronological order
+- `-u <service> [-u <another_service>]`: just view entries for the specified service(s)
+- `--list-boots`: list the available boots
+- `--no-pager`: send logs to stdout without paging
+- `--since "2 days ago" | "2018-11-30 14:37:00"`: show entries from a certain point of time (relative or absolute) 
+- `--until "8 hours ago" | "2018-12-03 06:00:00"`: show entries to a certain point of time (relative or absolute)
+- `--utc`: format timestamps in UTC
+- `<VARIABLE>=<value>`: filter entries where the specified variable has the specified value (the variables are as shown when
+  viewing the log in verbose mode). For example, suppose a particular log entry of interest has an associated UID of 1000 (shown as 
+  `_UID=1000`. We can filter to show only log entries for that UID using `_UID=1000` as an argument to journalctl. Similarly if we
+  want to filter by a PID or a group ID we could use `_PID=<value>` or `_GID=<value>`, respectively. Variables starting with a 
+  leading underscore are supplied by journald, while variables without a leading underscore were provided by the logged service
+  itself. For more information see `man systemd.journal-fields`
+
+### More Guides ###
+
+In addition to the [man page][journalctl_man], there are several useful guides for server admins. For example:
+[Lennart Poettering](http://0pointer.de/blog/projects/journalctl.html)
+[Linode](https://www.linode.com/docs/quick-answers/linux/how-to-use-journalctl/)
+[Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs)
+[Red Hat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-using_the_journal)
+[Cheatsheet (pdf)](https://www.cheatography.com/airlove/cheat-sheets/journalctl/pdf/)
+
+
 Footnotes
 ---------
 <a name="footnote01">1.</a> "Loaded" means simply that the unit has been loaded from the disk into memory. This happens any time that 
@@ -153,6 +201,10 @@ always appear to be loaded because it is loaded for `status` (and then immediate
 the [systemd.unit][systemd_unit] man page.
 
 
+
+
+
+[journalctl_man]: https://www.freedesktop.org/software/systemd/man/journalctl.html
 [systemd_home]: https://www.freedesktop.org/wiki/Software/systemd/
 [systemd_unit]: https://www.freedesktop.org/software/systemd/man/systemd.unit.html#
 [systemctl_man]: https://www.freedesktop.org/software/systemd/man/systemctl.html
