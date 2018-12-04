@@ -56,6 +56,7 @@ $ echo $((2 + 2))
 4
 ```
 
+### Variable (Brace) Expansion ###
 We can also use braces to perform expansion. See a bunch of examples in 
 [this](http://linuxcommand.org/lc3_lts0080.php) guide. Two are reproduced below:
 ```console
@@ -79,15 +80,28 @@ We can also do parameter/variable expansion:
 $ echo $USER
 tempUser
 ```
+The above is, in this case, equivalent to:
+```console
+$ echo ${USER}
+tempUser
+```
 A current list of environment variables is available by running `printenv` or 
 `set`<sup>[1](#footnote01)</sup>.
 
+### Command Substitution (Parenthesis/Backtick Expansion) ###
 We can use command substitution to use the output of a command as an expansion.
 ```console
 $ ls -l $(which cp)
 -rwxr-xr-x 1 root root 71516 2007-12-05 08:58 /bin/cp
 ```
-(This is equivalent to running `ls -l /bin/cp`)
+Similarly:
+```console
+$ ls -l `which cp`
+-rwxr-xr-x 1 root root 71516 2007-12-05 08:58 /bin/cp
+```
+Note that `$(...)` is preferred over `` `...` `` for [various 
+reasons](http://mywiki.wooledge.org/BashFAQ/082)
+
 
 [Escaping and Quoting][link03]
 ------------------------------
@@ -123,7 +137,7 @@ $ ls -l $(which cp)
   hello!? are you there?
   ```
 
-- single quote  
+- `'` (single quotes)  
   Items enclosed in single quotes will have **all** expansions suppressed. This
   means that a single quote character can never be represented in a string 
   enclosed in single quotes (even if escaped).  
@@ -133,7 +147,7 @@ $ ls -l $(which cp)
   $(cal)
   ```
 
-- backslash  
+- `\` (backslash)  
   Escapes a single character. It preserves the literal value of the next 
   character that follows (except `\\n`, i.e., backslash followed by newline, 
   which represents line continuation)
