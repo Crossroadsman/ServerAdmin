@@ -69,14 +69,8 @@ Jenkins' apt repo url to the apt repo list.
    Resolving github.com (github.com)... 192.30.255.112, 192.30.255.113
    ...
    2018-12-06 15:25:12 (6.01 MB/s) - ‘geckodriver-v0.23.0-linux64.tar.gz’ saved [3876109/3876109]
-   ```
-   
-   ```console
    $ sudo tar -xvf geckodriver-v0.23.0-linux64.tar.gz -C /usr/local/bin
    geckodriver
-   ```
-
-   ```console
    $ geckodriver --version
    geckodriver 0.23.0 ( 2018-10-04)
    ...
