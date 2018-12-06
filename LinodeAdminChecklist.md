@@ -123,7 +123,7 @@ Github's [SSH key generation guide][link07]
 
 [link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/git.md 'Crossroadsman: Server Admin: Git'
 [link02]: https://github.com/Crossroadsman/.vim 'Crossroadsman: .vimrc'
-[link03]: ethanschoonover.com/solarized
+[link03]: https://ethanschoonover.com/solarized/
 [link04]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md 'Crossroadsman: Server Admin: Securing a Server'
 [link05]: https://www.dnswatch.info/articles/dns-update
 [link06]: https://github.com/hjwp/Book-TDD-Web-Dev-Python/blob/master/server-quickstart.md
