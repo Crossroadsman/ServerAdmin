@@ -509,8 +509,8 @@ Notes:
 4. `git commit` the file
 
 #### Resolution Process (binary files) ####
-1. determine which version you want
-2. checkout the appropriate file. If you want HEAD's version (the branch receiving the merge):  
+1. Determine which version you want
+2. `git checkout` the appropriate file. If you want HEAD's version (the branch receiving the merge):  
    ```console
    $ git checkout --ours -- path/to/some_binary.file
    ```
