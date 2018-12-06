@@ -10,6 +10,9 @@ Installation
 Ideally, Jenkins should be installed on a separate server to the staging and 
 production servers.
 
+### Install a Jenkins-Compatible Version of Java ###
+TODO
+
 ### Download Jenkins ###
 There have been [issues][tddp_01] with the Ubuntu-distributed version of 
 Jenkins (bugs re locale/unicode, etc) so download from the official Jenkins apt
@@ -55,9 +58,28 @@ Jenkins' apt repo url to the apt repo list.
    $ apt install firefox xvfb
    ```
 
-3. Fabric
+3. Pre-requisites for building Fabric
    ```console
    $ apt install build-essential libssl-dev libffi-dev
+   ```
+
+4. [Geckodriver](https://github.com/mozilla/geckodriver/releases)
+   ```console
+   $ wget https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz
+   Resolving github.com (github.com)... 192.30.255.112, 192.30.255.113
+   ...
+   2018-12-06 15:25:12 (6.01 MB/s) - ‘geckodriver-v0.23.0-linux64.tar.gz’ saved [3876109/3876109]
+   ```
+   
+   ```console
+   $ sudo tar -xvf geckodriver-v0.23.0-linux64.tar.gz -C /usr/local/bin
+   geckodriver
+   ```
+
+   ```console
+   $ geckodriver --version
+   geckodriver 0.23.0 ( 2018-10-04)
+   ...
    ```
 
 Footnotes
@@ -68,7 +90,7 @@ sudo to give us write privileges into /etc/apt/sources.list.d (we can't just
 start the echo command with sudo and use `>` to redirect to the destination 
 file because it is the redirect that needs privilege escalation, and we can't 
 use sudo to elevate a redirect). Then we use `> /dev/null` to explicitly throw 
-away the output from `tee` that goes to stdout.
+away the output from `tee` that goes to stdout.  
 <a name="footnote01">2</a>: The following packages could all be installed with 
 a single call to `apt install` but have been separated by context.
 
