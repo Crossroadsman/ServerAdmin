@@ -508,6 +508,20 @@ Notes:
 3. `git add` the file
 4. `git commit` the file
 
+#### Resolution Process (binary files) ####
+1. determine which version you want
+2. checkout the appropriate file. If you want HEAD's version (the branch receiving the merge):  
+   ```console
+   $ git checkout --ours -- path/to/some_binary.file
+   ```
+   If you want the version from the branch being merged in:
+   ```console
+   $ git checkout --theirs -- path/to/some_binary.file
+   ```
+3. `git add` the file
+4. `git commit` the file
+
+
 Note you can use third-party merge tools.
 
 
