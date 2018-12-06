@@ -82,6 +82,18 @@ Jenkins' apt repo url to the apt repo list.
    ...
    ```
 
+### Add Some Swap ###
+
+```console
+$ sudo fallocate -l 4G /swapfile
+$ sudo mkswap /swapfile
+mkswap: /swapfile: insecure permissions 0644, 0600 suggested.
+Setting up swapspace version 1, size = 4 GiB (4294963200 bytes)
+no label, UUID=d18b6b4b-6440-4c3b-93ef-a1358427e99f
+$ sudo chmod 600 /swapfile
+$ sudo swapon /swapfile
+```
+
 Footnotes
 ---------
 <a name="footnote01">1</a>: Here we're piping the string 
