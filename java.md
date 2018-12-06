@@ -16,6 +16,11 @@ We will be using the OpenJDK version<sup>[2](#footnote02)</sup>.
   ```
   sudo apt-get install default-jdk
   ```
+
+Note, if we wanted to install an older version of the JDK, we could do it like this:
+```
+sudo apt install openjdk-8-jdk
+```
   
 ### OpenJRE ###
 - update the apt package index
