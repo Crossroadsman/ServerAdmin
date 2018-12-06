@@ -10,8 +10,41 @@ Installation
 Ideally, Jenkins should be installed on a separate server to the staging and 
 production servers.
 
-### Install a Jenkins-Compatible Version of Java ###
-TODO
+### [Install a Jenkins-Compatible Version of Java][jenk_02] ###
+There are separate run and job execution requirements for Jenkins installations.
+
+#### Running Jenkins ####
+As of December 2018, Java 8 (32/64) is the ONLY supported runtime environment.
+
+These requirements apply to all components of the Jenkins system including:
+- Jenkins master,
+- all types of agents,
+- CLI clients,
+- other components
+
+#### Executing Jobs on Jenkins ###
+Jenkins jobs can be executed on Java versions different from the master/agent
+runtime. Generally, Jenkins allows **any** version of JRE/JDG to be invoked
+during the build, including:
+- execution of Java commands from CLI,
+- installation and execution of build steps based on the plug:jdk-tool plugin.
+
+[Particular plugins may have their own Java requirements][jenk_02].
+
+#### [Install Java](https://github.com/Crossroadsman/ServerAdmin/blob/master/java.md) ####
+You can check the current version of Java:
+```console
+$ java -version
+openjdk version "11.0.1" 2018-10-16
+OpenJDK Runtime Environment (build 11.0.1+13-Ubuntu-2ubuntu1)
+OpenJDK 64-Bit Server VM (build 11.0.1+13-Ubuntu-2ubuntu1, mixed mode, sharing)
+```
+
+To install a specific version of Java (substitute a different version 
+as applicable):
+```console
+$ sudo apt install openjdk-8-jdk
+```
 
 ### Download Jenkins ###
 There have been [issues][tddp_01] with the Ubuntu-distributed version of 
@@ -104,5 +137,6 @@ a single call to `apt install` but have been separated by context.
 
 
 [jenk_01]: https://jenkins.io/doc/book/installing/#debianubuntu
+[jenk_02]: https://jenkins.io/doc/administration/requirements/java/#java-requirements
 [stko_01]: https://stackoverflow.com/a/26021071
 [tddp_01]: https://www.obeythetestinggoat.com/book/chapter_CI.html#_installing_jenkins
