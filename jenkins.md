@@ -144,7 +144,6 @@ $ sudo swapon /swapfile
 
 For more on swap, see [Digital Ocean: How to Add Swap Space][digo_01].
 
-
 ### 5. Open [Firewall][serv_01] for Jenkins' Ports ###
 
 ```console
@@ -153,6 +152,9 @@ Rule added
 Rule added (v6)
 ```
 
+### 6. Unlock Jenkins ###
+
+In a web browser go to the server's host IP, port 8080 and review the Jenkins unlock instructions.
 
 
 Footnotes
