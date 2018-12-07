@@ -152,9 +152,13 @@ Rule added
 Rule added (v6)
 ```
 
-### 6. Unlock Jenkins ###
+### 6. Unlock Jenkins and Initial Web Setup ###
 
 In a web browser go to the server's host IP, port 8080 and review the Jenkins unlock instructions.
+
+Once unlocked, choose 'suggested' plugins, then wait as they are installed.
+
+Create an admin username and password.
 
 
 Footnotes
