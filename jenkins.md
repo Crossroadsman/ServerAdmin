@@ -169,18 +169,22 @@ Rule added (v6)
   - `ShiningPanda` (for Python support);
   - `Xvfb` (for headless web browsing)
 
+- Reboot the server (`sudo reboot`).
+
 - Tell Jenkins where to find Python 3
    - Go to `Manage Jenkins`,
    - `Global Tool Configuration`,
-   - `Python` -> `Python installations` -> `Add Python` (you can use 
-     `which python3` on the server to find it).
+   - `Python` -> `Python installations` -> `Add Python`,
+   - give it a name (no whitespace), e.g., `System-Python3`,
+   - fill in the path (you can use `which python3` on the server to find it),
+     e.g., `/usr/bin/python3`
 
 - Tell Jenkins where to find Xvfb
    - Go to `Manage Jenkins`,
    - `Global Tool Configuration`,
    - `Xvfb installation` -> `Add Xvfb`
    - enter `/usr/bin` as the installation directory.
-
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
 
 
 
