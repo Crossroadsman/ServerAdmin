@@ -171,7 +171,7 @@ Rule added (v6)
 
 - Reboot the server (`sudo reboot`).
 
-- Tell Jenkins where to find Python 3
+- Tell Jenkins where to find Python 3:
    - Go to `Manage Jenkins`,
    - `Global Tool Configuration`,
    - `Python` -> `Python installations` -> `Add Python`,
@@ -179,11 +179,102 @@ Rule added (v6)
    - fill in the path (you can use `which python3` on the server to find it),
      e.g., `/usr/bin/python3`
 
-- Tell Jenkins where to find Xvfb
+- Tell Jenkins where to find Xvfb:
    - Go to `Manage Jenkins`,
    - `Global Tool Configuration`,
-   - `Xvfb installation` -> `Add Xvfb`
+   - `Xvfb installation` -> `Add Xvfb`  
+     (if you can't see `Xvfb installation`, make sure you rebooted the server
+     after installing the Xvfb plugin),
    - enter `/usr/bin` as the installation directory.
+
+### 7. Switch Jenkins to HTTPS ###
+We'll use Nginx to redirect https traffic (port 443) to Jenkins (port 8080).
+
+#### 7.1. Install Nginx (Steps 1 and 2 of [this guide][serv_02]) ####
+
+#### 7.2. Create a SSL Certificate ####
+     Either create a self-signed cert or, better, get a [Let's Encrypt
+     cert][digo_03].
+
+##### Self-Signed Cert #####
+See also [Digital Ocean: How To Create an SSL Certificate on Nginx for 
+Ubuntu 14.04][digo_02].
+
+- Make a directory to hold SSL information (inside the Nginx config directory):
+  ```console
+  $ sudo mkdir /etc/nginx/ssl
+  ```
+
+- Use OpenSSL to create the cert:
+  ```console
+  $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+  ```
+
+The arguments to openssl are:
+- `req -x509` : This is the subcommand to tell openssl that we want X.509
+  certificate signing request (CSR) management (for SSL/TLS compliance). The
+  `-x509` argument to the subcommand is what specifies we are self-signing
+  the cert rather than generating a certificate signing request;
+- `nodes` : Don't create a passphrase (we need the cert to be usable by
+  nginx without user intervention);
+- `-days 365` : The certificate expiration period;
+- `-newkey rsa:2048` : Create the key along with the certificate (as opposed
+  to providing openSSL a ready-made key to associate with the certificate);
+- `-keyout /etc/nginx/ssl/nginx.key` : the file to write the key to;
+- `-out /etc/nginx/ssl/nginx.crt` : the file to write the cert to.
+
+- OpenSSL will prompt you with a few questions. Most of the answers are 
+  obvious, but pay attention to:  
+  ```
+  Common Name (e.g. server FQDN or YOUR name) []:
+  ```
+
+  OpenSSL suggests that it should be a FQDN (e.g., 'subdomain.domain.com')
+  but the Digital Ocean [guide][digo_02] suggests a bare domain (e.g., 
+  'domain.com').
+
+#### 7.3 Create a Server Config File ####
+- In `/etc/nginx/sites-available` create a server file with the public-facing
+  url as a filename, e.g., if the server will be 
+  at `www.my_jenkins_server.com`:
+  ```console
+  $ sudo vi /etc/nginx/sites-available/www.my_jenkins_server.com
+  ```
+
+- Create a server block that looks like the following:  
+  **TODO**
+  ```nginx
+  server {
+	  listen 80 default_server;  # IP4
+	  listen [::]:80 default_server;  # IP6
+
+     # SSL configuration
+     listen 443 ssl default_server;
+     listen [::]:443 ssl default_server;
+
+     root /var/www/html;
+
+     index index.html index.htm index.nginx-debian.html;
+
+     server_name koumparossoftware.com;
+     ssl_certificate /etc/nginx/ssl/nginx.crt;
+     ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+     location / {
+         # First attempt to serve request as file, then
+         # as directory, then fall back to displaying a 404.
+         try_files $uri $uri/ =404;
+	  }
+  }
+  ```
+
+- Restart Nginx:
+  ```console
+  $ sudo systemctl restart nginx
+  ```
+
+
+
 12345678901234567890123456789012345678901234567890123456789012345678901234567890
 
 
@@ -204,8 +295,11 @@ a single call to `apt install` but have been separated by context.
 
 
 [digo_01]: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
+[digo_02]: https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
+[digo_03]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
 [jenk_01]: https://jenkins.io/doc/book/installing/#debianubuntu
 [jenk_02]: https://jenkins.io/doc/administration/requirements/java/#java-requirements
 [serv_01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md#ufw-uncomplicated-firewall
+[serv_02]: https://github.com/Crossroadsman/ServerAdmin/blob/master/nginx.md
 [stko_01]: https://stackoverflow.com/a/26021071
 [tddp_01]: https://www.obeythetestinggoat.com/book/chapter_CI.html#_installing_jenkins
