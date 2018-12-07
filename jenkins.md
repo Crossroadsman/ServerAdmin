@@ -190,6 +190,11 @@ Rule added (v6)
 ### 7. Switch Jenkins to HTTPS ###
 We'll use Nginx to redirect https traffic (port 443) to Jenkins (port 8080).
 
+Note that the Nginx config needs to be different depending on whether the 
+Jenkins URL is a subdomain (e.g., `jenkins.domain.com`), a folder off 
+another URL (e.g., the tested application is at `https://www.domain.com` 
+and Jenkins is at `https://www.domain.com/jenkins`).
+
 #### 7.1. Install Nginx (Steps 1 and 2 of [this guide][serv_02]) ####
 
 #### 7.2. Create a SSL Certificate ####
@@ -240,31 +245,87 @@ The arguments to openssl are:
   ```console
   $ sudo vi /etc/nginx/sites-available/www.my_jenkins_server.com
   ```
+  
+See also these example use cases:
+[Example 1: Jenkins Behind Nginx in Reverse Proxy](https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)
+[Example 2: Running Jenkins Behind Nginx](https://wiki.jenkins.io/display/JENKINS/Running+Jenkins+behind+Nginx)
 
 - Create a server block that looks like the following:  
-  **TODO**
   ```nginx
+  # this is a list of servers that can handle the request (not very helpful when
+  # we only have one server, but if we scale up we can just add additional
+  # server addresses here without changing any of the config in the server{} 
+  # block.
+  upstream jenkins {
+    keepalive 32;  # keepalive connections
+    server 127.0.0.1:8080;  # jenkins IP and port
+  }
+  
+  # redirect any http traffic to https
   server {
-	  listen 80 default_server;  # IP4
-	  listen [::]:80 default_server;  # IP6
+    listen 80;
+    server_name jenkins.my_domain.com;
+    return 301 https://$host$request_uri;
+  }
+  
+  # handle https traffic
+  server {
+    listen 443 ssl;
+    
+    server_name jenkins.my_domain.com;
+    
+    ssl_certificate /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
 
-     # SSL configuration
-     listen 443 ssl default_server;
-     listen [::]:443 ssl default_server;
-
-     root /var/www/html;
-
-     index index.html index.htm index.nginx-debian.html;
-
-     server_name koumparossoftware.com;
-     ssl_certificate /etc/nginx/ssl/nginx.crt;
-     ssl_certificate_key /etc/nginx/ssl/nginx.key;
-
-     location / {
-         # First attempt to serve request as file, then
-         # as directory, then fall back to displaying a 404.
-         try_files $uri $uri/ =404;
-	  }
+    # location is a regex so `/` will match every URI
+    location / {
+      # `proxy_set_header x y` : assigns a http header to the proxied request
+      # with the header field `x` and the value `y`. This will create the header
+      # if the original request didn't have one, or replace it if the original
+      # request did have one.
+      #
+      # `proxy_redirect redirect replacement` : rewrites the `Location` and 
+      # `Refresh` header fields in the response from the proxied server. Suppose 
+      # the server sent back a response with a header: 
+      # "Location: http://localhost:8000/some/uri", we could use
+      # "proxy_redirect http://localhost:8000/some http://my_domain.com/other"
+      # and then the response header would be rewritten by Nginx before sending
+      # back to the client to look like:
+      # "Location: http://my_domain.com/other/uri"
+      #
+      # `proxy_pass url` : Set the protocol, address (and optionally, URI) of
+      # a proxied server. I.e., the destination of the server being proxied for 
+      # the matching location (in this case `/`). This could be a server literal,
+      # e.g., "http://127.0.0.1:8080" or the name of an upstream, like here,
+      # "jenkins" which triggers Nginx to look at the `upstream jenkins` 
+      # directive, and follow one of the servers listed in the upstream.
+      #
+      # variables
+      # ---------
+      # (see http://nginx.org/en/docs/varindex.html)
+      #
+      # $host : in this order or precendence: the host name from the request
+      #         line, host name from "Host" request header field, or server
+      #         name matching the request.
+      # $server_port : the port of the server which accepted a request
+      # $remote_addr : the client address
+      # $proxy_add_x_forwarded_for : the "X-Forwarded-For" client request
+      #         header field with the `$remote_addr` variable appended to it,
+      #         separated with a comma.
+      # $scheme : the request scheme ('http' or 'https')
+      proxy_set_header Host $host:$server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_redirect http:// https://;
+      proxy_pass http://jenkins;
+      # (Required for new HTTP-based CLI:)
+      proxy_http version 1.1;
+      proxy_request_buffering off;
+      proxy_buffering off;
+      # (Workaround for https://issues.jenkins-ci.org/browse/JENKINS-45651)
+      add_header 'X-SSH-Endpoint' 'jenkins.my_domain.com:50022' always;
+    }
   }
   ```
 
