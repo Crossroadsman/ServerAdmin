@@ -71,8 +71,8 @@ Command                        | Result
 `sudo systemctl enable nginx`  | set nginx to load on boot
 
 
-3: Configure nginx
-------------------
+3: Nginx Installation Structure
+-------------------------------
 
 ### Nginx files and directories ###
 
@@ -93,8 +93,8 @@ Command                        | Result
 - `/var/log/nginx/error.log`
 
 
-4: Configure a Server<sup>[2]('#footnote02')</sup>
----------------------
+4: Configure a Web Server<sup>[2]('#footnote02')</sup>
+-------------------------
 
 ### Example1: ###
 
@@ -153,8 +153,8 @@ Notes:
   on localhost). This can cause problems for, e.g., Django apps which match the host header to its ALLOWED_HOSTS list.  
   `proxy_set_header` can tell nginx to reconstruct the host header (or construct it if it was missing originally).
 
-5: Setting Up to Work With Django
----------------------------------
+5: Setting Up the Web Server to Work With Django
+------------------------------------------------
 
 Collect all the static files into the directory that nginx will be serving from:
 ```
