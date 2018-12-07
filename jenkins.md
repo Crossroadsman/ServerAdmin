@@ -153,12 +153,35 @@ Rule added (v6)
 ```
 
 ### 6. Unlock Jenkins and Initial Web Setup ###
+- In a web browser go to the server's host IP, port 8080 and review the Jenkins 
+  unlock instructions.
 
-In a web browser go to the server's host IP, port 8080 and review the Jenkins unlock instructions.
+- Once unlocked, choose 'suggested' plugins, then wait as they are installed.
 
-Once unlocked, choose 'suggested' plugins, then wait as they are installed.
+- Create an admin username and password.
 
-Create an admin username and password.
+- Once in the main dashboard:
+  - select `Manage Jenkins` from the left sidebar,
+  - then select `Manage Plugins`, 
+  - `Available`
+
+- Use the search to find, then install, the following plugins:
+  - `ShiningPanda` (for Python support);
+  - `Xvfb` (for headless web browsing)
+
+- Tell Jenkins where to find Python 3
+   - Go to `Manage Jenkins`,
+   - `Global Tool Configuration`,
+   - `Python` -> `Python installations` -> `Add Python` (you can use 
+     `which python3` on the server to find it).
+
+- Tell Jenkins where to find Xvfb
+   - Go to `Manage Jenkins`,
+   - `Global Tool Configuration`,
+   - `Xvfb installation` -> `Add Xvfb`
+   - enter `/usr/bin` as the installation directory.
+
+
 
 
 Footnotes
