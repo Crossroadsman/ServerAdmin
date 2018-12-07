@@ -20,6 +20,15 @@ For a system using nginx and django, the behaviour of the various components is 
 nginx can serve static content (media/css/etc) directly but can't control django apps, so needs an intermediary app server (typically
 gunicorn).
 
+For a system where we just redirect traffic from some inbound port to another port, e.g., taking HTTPS traffic on port 443 and
+redirecting to 8080 for a Jenkins CI server, the components might look like this:
+
+```
+
+[ The Internet ] <<=== TLS ===>> 443:[nginx] <------> 8080:[Jenkins]
+
+```
+
 
 1: Installing Nginx
 -------------------
