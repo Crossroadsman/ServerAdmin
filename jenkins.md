@@ -51,7 +51,7 @@ Then select Java 8 as default:
 $ sudo update-alternatives --config java
 ```
 
-### 2. Download Jenkins ###
+### 2. Download and Install Jenkins ###
 There have been [issues][tddp_01] with the Ubuntu-distributed version of 
 Jenkins (bugs re locale/unicode, etc) so download from the official Jenkins apt
 repo. The process for this is to add Jenkins' GPG key to the keyring and
@@ -142,6 +142,16 @@ $ sudo swapon /swapfile
 ```
 **Note**: Adding additional swap to VPSs with SSD storage is not recommended.
 
+For more on swap, see [Digital Ocean: How to Add Swap Space][digo_01].
+
+
+### 5. Open [Firewall][serv_01] for Jenkins' Ports ###
+
+```console
+$ sudo ufw allow 8080 comment 'jenkins'
+Rule added
+Rule added (v6)
+```
 
 
 
@@ -160,7 +170,9 @@ a single call to `apt install` but have been separated by context.
 
 
 
+[digo_01]: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
 [jenk_01]: https://jenkins.io/doc/book/installing/#debianubuntu
 [jenk_02]: https://jenkins.io/doc/administration/requirements/java/#java-requirements
+[serv_01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md#ufw-uncomplicated-firewall
 [stko_01]: https://stackoverflow.com/a/26021071
 [tddp_01]: https://www.obeythetestinggoat.com/book/chapter_CI.html#_installing_jenkins
