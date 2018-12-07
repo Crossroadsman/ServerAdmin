@@ -249,14 +249,15 @@ The arguments to openssl are:
 See also these example use cases:
 [Example 1: Jenkins Behind Nginx in Reverse Proxy](https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)
 [Example 2: Running Jenkins Behind Nginx](https://wiki.jenkins.io/display/JENKINS/Running+Jenkins+behind+Nginx)
-
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
 - Create a server block that looks like the following:  
   ```nginx
-  # this is a list of servers that can handle the request (not very helpful when
-  # we only have one server, but if we scale up we can just add additional
-  # server addresses here without changing any of the config in the server{} 
-  # block.
   upstream jenkins {
+    # this is a list of servers that can handle the request (not very helpful 
+    # when we only have one server, but if we scale up we can just add 
+    # additional server addresses here without changing any of the config in the 
+    # server{} block.
+  
     keepalive 32;  # keepalive connections
     server 127.0.0.1:8080;  # jenkins IP and port
   }
@@ -329,15 +330,13 @@ See also these example use cases:
   }
   ```
 
+- Create a symlink in `sites-enabled` that points to `sites-available`:
+  **TODO**
+
 - Restart Nginx:
   ```console
   $ sudo systemctl restart nginx
   ```
-
-
-
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
-
 
 
 Footnotes
