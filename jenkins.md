@@ -253,85 +253,106 @@ See also these example use cases:
 - Create a server block that looks like the following:  
   ```nginx
   upstream jenkins {
-    # this is a list of servers that can handle the request (not very helpful 
-    # when we only have one server, but if we scale up we can just add 
-    # additional server addresses here without changing any of the config in the 
-    # server{} block.
-  
+    # this is a list of servers that can the request.
+    # (this isn't especially helpful while we only have one server, but
+    # if we scale up then we can just add additional server IPs here without
+    # changing any of the server{} block below.
+
     keepalive 32;  # keepalive connections
-    server 127.0.0.1:8080;  # jenkins IP and port
+    server 127.0.0.1: 8080;  # the IP and port for Jenkins
   }
-  
-  # redirect any http traffic to https
+
   server {
+    # redirect any http inbound traffic (port 80) to https
+
     listen 80;
-    server_name jenkins.my_domain.com;
+    server_name jake.koumparossoftware.com;
     return 301 https://$host$request_uri;
   }
-  
-  # handle https traffic
-  server {
-    listen 443 ssl;
-    
-    server_name jenkins.my_domain.com;
-    
-    ssl_certificate /etc/nginx/ssl/server.crt;
-    ssl_certificate_key /etc/nginx/ssl/server.key;
 
-    # location is a regex so `/` will match every URI
+  server {
+    # handle any https traffic
+
+    listen 443 ssl;
+
+    server_name jake.koumparossoftware.com;
+
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+
+    # location is a regex, so `/` will match every URI
     location / {
-      # `proxy_set_header x y` : assigns a http header to the proxied request
-      # with the header field `x` and the value `y`. This will create the header
-      # if the original request didn't have one, or replace it if the original
-      # request did have one.
+      #  with regard to headers, nginx by default performs the following
+      #  transformations on client request headers before passing to the
+      #  proxied server:
+      #  - strip all empty headers (there's no point sending empty values
+      #    to another server, it would only bloat the request);
+      #  - strip any invalid headers (this includes any headers with
+      #    underscores, which can be overridden with the
+      #    `underscores_in_headers on` directive);
+      #  - rewrites `Host` to the value specified by `$proxy_host`
+      #  - rewrites `Connection` to `close`. Thus the upstream server
+      #    should not expect the connection to be persistent.
       #
-      # `proxy_redirect redirect replacement` : rewrites the `Location` and 
-      # `Refresh` header fields in the response from the proxied server. Suppose 
-      # the server sent back a response with a header: 
-      # "Location: http://localhost:8000/some/uri", we could use
-      # "proxy_redirect http://localhost:8000/some http://my_domain.com/other"
-      # and then the response header would be rewritten by Nginx before sending
-      # back to the client to look like:
-      # "Location: http://my_domain.com/other/uri"
-      #
-      # `proxy_pass url` : Set the protocol, address (and optionally, URI) of
-      # a proxied server. I.e., the destination of the server being proxied for 
-      # the matching location (in this case `/`). This could be a server literal,
-      # e.g., "http://127.0.0.1:8080" or the name of an upstream, like here,
-      # "jenkins" which triggers Nginx to look at the `upstream jenkins` 
-      # directive, and follow one of the servers listed in the upstream.
+      # these are the commands we use to manually manipulate the headers:
+      # `proxy_set_header field value` : assigns an HTTP request header
+      #     to the proxied request with the specified `field` and `value`.
+      #     This will create a header if it didn't already exist or replace
+      #     one that did exist
+      # `proxy_redirect redirect replacement` : rewrites the `Location` and
+      #     `Refresh` HTTP response header fields coming back from the
+      #     proxied server before giving back to the client.
+      #     Example: suppose the server sent back a response with a header:
+      #     "Location: http://localhost:8000/some/uri", we could use:
+      #     `proxy_redirect http://localhost:8000/some http://domain.com/other`
+      #     and then the response header would be rewritten by Nginx to look
+      #     like:
+      #     "Location: http://domain.com/other/uri"
       #
       # variables
       # ---------
       # (see http://nginx.org/en/docs/varindex.html)
       #
-      # $host : in this order or precendence: the host name from the request
-      #         line, host name from "Host" request header field, or server
-      #         name matching the request.
-      # $server_port : the port of the server which accepted a request
+      # $host : in this order of precedence: the host name from the request
+      #     line, host name from the "Host" request header field, or server
+      #     name matching the request.
+      # $server_port : the port of the server that accepted a request.
       # $remote_addr : the client address
-      # $proxy_add_x_forwarded_for : the "X-Forwarded-For" client request
-      #         header field with the `$remote_addr` variable appended to it,
-      #         separated with a comma.
-      # $scheme : the request scheme ('http' or 'https')
+      # $proxy_add_x_forward_for : the client's "X-Forwarded-For" request
+      #     header value with the `$remote_addr` variable appended to it,
+      #     separated with a comma.
+      # $scheme : the request scheme (i.e., 'http' or 'https')
       proxy_set_header Host $host:$server_port;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
-      proxy_redirect http:// https://;
+
+      proxy_redirect http:// https://
+
+      # `proxy_pass url` : Set the protocol, address (and optionally, URI) of
+      # a proxied server. I.e., this is the server that the request, matching
+      # the location regex (here '/') should be proxied to. It can be an
+      # address literal, e.g., `http://127.0.0.1:8080` or the name of an
+      # upstream (as in this case), which tells Nginx to look at the relevant
+      # upstream directive to see where to send the request.
       proxy_pass http://jenkins;
-      # (Required for new HTTP-based CLI:)
+
+      # Other stuff
+      # (maybe required for Jenkins HTTP-based CLI, or for working around
+      # Jenkins bugs)
       proxy_http version 1.1;
       proxy_request_buffering off;
       proxy_buffering off;
-      # (Workaround for https://issues.jenkins-ci.org/browse/JENKINS-45651)
-      add_header 'X-SSH-Endpoint' 'jenkins.my_domain.com:50022' always;
+      add_header 'X-SSH-Endpoint' 'jake.koumparossoftware.com:50022' always;
     }
   }
   ```
 
 - Create a symlink in `sites-enabled` that points to `sites-available`:
-  **TODO**
+  ```console
+  $ cd ../sites-enabled
+  $ sudo ln -s ../sites-available/jenkins.my_domain.com ./jenkins.my_domain.com
+  ```
 
 - Restart Nginx:
   ```console
