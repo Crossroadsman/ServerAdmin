@@ -10,10 +10,10 @@ Installation
 Ideally, Jenkins should be installed on a separate server to the staging and 
 production servers.
 
-### [Install a Jenkins-Compatible Version of Java][jenk_02] ###
+### 1. [Install a Jenkins-Compatible Version of Java][jenk_02] ###
 There are separate run and job execution requirements for Jenkins installations.
 
-#### Running Jenkins ####
+#### 1.1. Running Jenkins ####
 As of December 2018, Java 8 (32/64) is the ONLY supported runtime environment.
 
 These requirements apply to all components of the Jenkins system including:
@@ -22,7 +22,7 @@ These requirements apply to all components of the Jenkins system including:
 - CLI clients,
 - other components
 
-#### Executing Jobs on Jenkins ###
+#### 1.2. Executing Jobs on Jenkins ###
 Jenkins jobs can be executed on Java versions different from the master/agent
 runtime. Generally, Jenkins allows **any** version of JRE/JDG to be invoked
 during the build, including:
@@ -31,7 +31,7 @@ during the build, including:
 
 [Particular plugins may have their own Java requirements][jenk_02].
 
-#### [Install Java](https://github.com/Crossroadsman/ServerAdmin/blob/master/java.md) ####
+#### 1.3. [Install Java](https://github.com/Crossroadsman/ServerAdmin/blob/master/java.md) ####
 You can check the current version of Java:
 ```console
 $ java -version
@@ -46,7 +46,12 @@ as applicable):
 $ sudo apt install openjdk-8-jdk
 ```
 
-### Download Jenkins ###
+Then select Java 8 as default:
+```console
+$ sudo update-alternatives --config java
+```
+
+### 2. Download Jenkins ###
 There have been [issues][tddp_01] with the Ubuntu-distributed version of 
 Jenkins (bugs re locale/unicode, etc) so download from the official Jenkins apt
 repo. The process for this is to add Jenkins' GPG key to the keyring and
@@ -79,7 +84,7 @@ Jenkins' apt repo url to the apt repo list.
    $ sudo apt install jenkins
    ```
 
-### Download Other Dependencies<sup>[2](#footnote02)</sup> ###
+### 3. Download Other Dependencies<sup>[2](#footnote02)</sup> ###
 
 1. Venv and Pip for Python
    ```console
@@ -109,8 +114,23 @@ Jenkins' apt repo url to the apt repo list.
    ...
    ```
 
-### Add Some Swap ###
+### 4. Add Some Swap ###
+You can check the current swap status by looking at swap allocations:
+```console
+$ sudo swapon --show
+/dev/sdb partition 512M 268K   -2
+```
 
+and memory usage:
+```console
+$ sudo free -h
+              total        used        free      shared  buff/cache   available
+Mem:          985Mi       327Mi       199Mi       5.0Mi       458Mi       512Mi
+Swap:         511Mi       0.0Ki       511Mi
+```
+**Note**: `-h` is for human-readable
+
+Add some additional swap as follows:
 ```console
 $ sudo fallocate -l 4G /swapfile
 $ sudo mkswap /swapfile
@@ -120,6 +140,10 @@ no label, UUID=d18b6b4b-6440-4c3b-93ef-a1358427e99f
 $ sudo chmod 600 /swapfile
 $ sudo swapon /swapfile
 ```
+**Note**: Adding additional swap to VPSs with SSD storage is not recommended.
+
+
+
 
 Footnotes
 ---------
