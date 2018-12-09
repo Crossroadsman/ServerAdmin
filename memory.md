@@ -44,3 +44,12 @@ the OOM killer terminated out services:
 ```console
 $ dmesg | grep -Ei "oom"
 ```
+or:
+```console
+$ dmesg | grep -Ei "killed process"
+```
+
+[If a process was killed you'll see a line like](https://www.memset.com/docs/additional-information/oom-killer/):
+```
+host kernel: Out of Memory: Killed process 2592 (mysql).
+```
