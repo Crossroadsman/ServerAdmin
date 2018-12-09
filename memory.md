@@ -94,7 +94,7 @@ see if they indicate out of memory.
 $ less /var/log/messages
 ```
 
-Note that a crash situation means that `dmesg` won't help, since it only shows
+Note that a crash situation means that `dmesg`<sup>[1](#htt_01)</sup> won't help, since it only shows
 kernel messages since the last boot. If the server didn't actually crash, but
 expected services/applications aren't running, we can use `dmesg` to check if
 the OOM killer terminated out services:
@@ -118,9 +118,21 @@ host kernel: Out of Memory: Killed process 2592 (mysql).
 ```
 
 
+Footnotes
+---------
+1. <a name="htt_01"> </a>**dmesg** (*display message* or *driver message*) is 
+   the command to print the message buffer of the kernel. See the 
+   [wikipedia][wiki_01] page, the [linfo][linf_01] page, the [Linux Gazette 
+   'dmesg explained'][ling_01] page, or the [man][manp_01] page.
+
+
 
 
 [gorm_01]: https://www.kernel.org/doc/gorman/html/understand/index.html "kernel.org: Understanding the Linux Virtual Memory Manager"
 [gorm_02]: https://www.kernel.org/doc/gorman/html/understand/understand016.html "kernel.org: Chapter 13 Out of Memory Management"
+[linf_01]: http://www.linfo.org/dmesg.html
+[ling_01]: http://tldp.org/LDP/LG/issue59/nazario.html
 [linm_01]: https://linux-mm.org/OOM_Killer
+[manp_01]: http://man7.org/linux/man-pages/man1/dmesg.1.html
 [sxul_01]: https://unix.stackexchange.com/a/136294
+[wiki_01]: https://en.wikipedia.org/wiki/Dmesg
