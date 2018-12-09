@@ -205,6 +205,9 @@ and Jenkins is at `https://www.domain.com/jenkins`).
 See also [Digital Ocean: How To Create an SSL Certificate on Nginx for 
 Ubuntu 14.04][digo_02].
 
+Note that a self-signed cert is only a temporary solution before the server goes
+into production as most browsers will vehemently mistrust self-signed certs.
+
 - Make a directory to hold SSL information (inside the Nginx config directory):
   ```console
   $ sudo mkdir /etc/nginx/ssl
