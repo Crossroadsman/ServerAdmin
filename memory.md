@@ -5,9 +5,12 @@ Memory Management in Linux
 --------------------------
 TODO
 
+See also [Mel Gorman: "Understanding the Linux Virtual Memory Manager][gorm_01].
+
 Virtual Memory
 --------------
 TODO
+
 See also [Mel Gorman: "Understanding the Linux Virtual Memory Manager][gorm_01].
 
 Over-Commitment
