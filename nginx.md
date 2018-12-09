@@ -95,6 +95,7 @@ Command                        | Result
 
 4: Configure a Web Server<sup>[2]('#footnote02')</sup>
 -------------------------
+(For an example pure reverse proxy setup, see the [Jenkins guide][link09])
 
 ### Example1: ###
 
@@ -193,3 +194,4 @@ Ocean guide to using server blocks.
 [link06]: http://nginx.org/en/docs/http/ngx_http_core_module.html#try_files
 [link07]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md
 [link08]: https://github.com/Crossroadsman/ServerAdmin/blob/master/gunicorn.md
+[link09]: https://github.com/Crossroadsman/ServerAdmin/blob/master/jenkins.md#73-create-a-server-config-file
