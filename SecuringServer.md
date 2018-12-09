@@ -9,7 +9,9 @@ Fail2Ban
 Fail2ban scans log files (which contain interesting information, especially about failed logins) and bans IP addresses that show 
 malicious signs (e.g., multiple password failures, exploit-seeking behaviour, etc.). 
 
-It is then used (typically) to update firewall rules to reject those IP addresses (and email the system 
+By default, it only scans `/var/log/auth.log` (i.e., ssh).
+
+It is then used (typically) to update firewall rules to reject those IP addresses (and optionally email the system 
 administrator)<sup>[1](#footnote01)</sup>.
 
 
@@ -27,6 +29,9 @@ fail2ban-client -h
 
 Note, always use `fail2ban-client`, [never][link01] call `fail2-ban-server` directly.
 
+Using the default configuration, you won't see any fail2ban activity in `ufw status`. Fail2ban interacts with IPtables directly
+and so its rules apply before ufw. You can check fail2ban's activity using `fail2ban-client status <rule>`.
+
 
 ### Configuration ###
 
@@ -34,6 +39,8 @@ Once installed, we want to configure Fail2ban. It keeps its configuration files 
 is called `fail2ban.conf` and the 'jail' file (which has the filters and actions for various services) is called 'jail.conf'.
 
 Best practice is to not modify the master files but instead to create `.local` copies that override the `.conf` files:
+
+[Here's][https://zaiste.net/intro_fail2ban_with_ufw/] a nice worked example of implementing a custom jail.
 
 
 #### Configuring `fail2ban.local` ####
@@ -148,3 +155,4 @@ Footnotes
 
 [link01]: https://www.fail2ban.org/wiki/index.php/Fail2Ban 'Fail2ban.org: Wiki'
 [link02]: https://www.tutorialspoint.com/unix/unix-system-logging.htm
+[link03]: 
