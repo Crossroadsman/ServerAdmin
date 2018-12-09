@@ -35,12 +35,19 @@ The `select_bad_process()` function is responsible for deciding which process
 will be killed. It does this by going through every running task and calculating
 a score with the `badness()` function.
 
-[`badness()`][gorm_02] will look prioritise processes that:
-- are using a large amount of memory;
-- but have not been running for very long;
-- are probably not `root` (root processes have their score divided by 4);
-- probably don't have direct access to hardware (these also have their score
-  divided by 4).
+To illustrate how it works, here are the comments in the `badness()` 
+function's [source][linm_01]:
+> The main rationale is that we want to select a good task to kill when we run 
+> out of memory.
+> 
+> Good in this context means that:
+> 1. we lose the minimum amount of work done
+> 2. we recover a large amount of memory
+> 3. we don't kill anything innocent of eating tons of memory
+> 4. we want to kill the minimum amount of processes (one)
+> 5. we try to kill the process the user expects us to kill, this
+>    algorithm has been meticulously tuned to meet the principle
+>    of least surprise ... (be careful when you change it)
 
 Once the process has been identified, the process list is traversed again and
 every process that shares the same `mm_struct` as the selected process (i.e., 
@@ -90,3 +97,4 @@ host kernel: Out of Memory: Killed process 2592 (mysql).
 
 [gorm_01]: https://www.kernel.org/doc/gorman/html/understand/index.html "kernel.org: Understanding the Linux Virtual Memory Manager"
 [gorm_02]: https://www.kernel.org/doc/gorman/html/understand/understand016.html "kernel.org: Chapter 13 Out of Memory Management"
+[linm_01]: https://linux-mm.org/OOM_Killer
