@@ -241,15 +241,15 @@ The arguments to openssl are:
 #### 7.3 Create a Server Config File ####
 - In `/etc/nginx/sites-available` create a server file with the public-facing
   url as a filename, e.g., if the server will be 
-  at `www.my_jenkins_server.com`:
+  at `jenkins.my_domain.com`:
   ```console
-  $ sudo vi /etc/nginx/sites-available/www.my_jenkins_server.com
+  $ sudo vi /etc/nginx/sites-available/jenkins.my_domain.com
   ```
   
 See also these example use cases:
 [Example 1: Jenkins Behind Nginx in Reverse Proxy](https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)
 [Example 2: Running Jenkins Behind Nginx](https://wiki.jenkins.io/display/JENKINS/Running+Jenkins+behind+Nginx)
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
+
 - Create a server block that looks like the following:  
   ```nginx
   upstream jenkins {
@@ -259,14 +259,14 @@ See also these example use cases:
     # changing any of the server{} block below.
 
     keepalive 32;  # keepalive connections
-    server 127.0.0.1: 8080;  # the IP and port for Jenkins
+    server 127.0.0.1:8080;  # the IP and port for Jenkins
   }
 
   server {
     # redirect any http inbound traffic (port 80) to https
 
     listen 80;
-    server_name jake.koumparossoftware.com;
+    server_name jenkins.my_domain.com;
     return 301 https://$host$request_uri;
   }
 
@@ -275,7 +275,7 @@ See also these example use cases:
 
     listen 443 ssl;
 
-    server_name jake.koumparossoftware.com;
+    server_name jenkins.my_domain.com;
 
     ssl_certificate /etc/nginx/ssl/nginx.crt;
     ssl_certificate_key /etc/nginx/ssl/nginx.key;
@@ -327,7 +327,7 @@ See also these example use cases:
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
 
-      proxy_redirect http:// https://
+      proxy_redirect http:// https://;
 
       # `proxy_pass url` : Set the protocol, address (and optionally, URI) of
       # a proxied server. I.e., this is the server that the request, matching
@@ -340,7 +340,7 @@ See also these example use cases:
       # Other stuff
       # (maybe required for Jenkins HTTP-based CLI, or for working around
       # Jenkins bugs)
-      proxy_http version 1.1;
+      proxy_http_version 1.1;
       proxy_request_buffering off;
       proxy_buffering off;
       add_header 'X-SSH-Endpoint' 'jake.koumparossoftware.com:50022' always;
