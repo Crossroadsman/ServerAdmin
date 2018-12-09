@@ -8,6 +8,7 @@ TODO
 Virtual Memory
 --------------
 TODO
+See also [Mel Gorman: "Understanding the Linux Virtual Memory Manager][gorm_01].
 
 Over-Commitment
 ---------------
@@ -15,11 +16,40 @@ TODO
 
 Out-of-Memory (OOM) Killer
 --------------------------
-TODO
+From the [Out of Memory Management Chapter][gorm_02] of [Gorman][gorm_01]:
+
+> Before deciding to kill a process, it [the system] goes through the following 
+> checklist:
+>
+> - Is there enough swap space left (`nr_swap_pages` > 0)? If yes, not OOM
+> - Has it been more than 5 seconds since the last failure? If yes, not OOM
+> - Have we failed within the last second? If no, not OOM
+> - If there hasn't been 10 failures at least in the last 5 seconds, we're 
+>   not OOM
+> - Has a process been killed within the last 5 seconds? If yes, not OOM
+
+If none of the above tests indicate not OOM, `oom_kill()` will be called to 
+determine a process to kill.
+
+The `select_bad_process()` function is responsible for deciding which process
+will be killed. It does this by going through every running task and calculating
+a score with the `badness()` function.
+
+[`badness()`][gorm_02] will look prioritise processes that:
+- are using a large amount of memory;
+- but have not been running for very long;
+- are probably not `root` (root processes have their score divided by 4);
+- probably don't have direct access to hardware (these also have their score
+  divided by 4).
+
+Once the process has been identified, the process list is traversed again and
+every process that shares the same `mm_struct` as the selected process (i.e., 
+they are threads) is sent a signal (either `SIGTERM` for hardware-accessing
+processes, or `SIGKILL` otherwise).
+
 
 How to Tell if Server Ran Out of Memory
 ---------------------------------------
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
 It's unusual that a server will completely run out of memory, because Linux 
 will start using the OOM killer before that point is reached.
 
@@ -53,3 +83,10 @@ $ dmesg | grep -Ei "killed process"
 ```
 host kernel: Out of Memory: Killed process 2592 (mysql).
 ```
+
+
+
+
+
+[gorm_01]: https://www.kernel.org/doc/gorman/html/understand/index.html "kernel.org: Understanding the Linux Virtual Memory Manager"
+[gorm_02]: https://www.kernel.org/doc/gorman/html/understand/understand016.html "kernel.org: Chapter 13 Out of Memory Management"
