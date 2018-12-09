@@ -12,7 +12,23 @@ See also [Mel Gorman: "Understanding the Linux Virtual Memory Manager][gorm_01].
 
 Over-Commitment
 ---------------
-TODO
+Many distributions set the default value of `/proc/sys/vm/overcommit_memory` to
+zero, which means processes can request more memory than is currently free in the
+system (on the usually-true assumption that applications will generally use less
+memory than they've requested).
+
+You can check the setting on a system as follows:
+```console
+$ cat /proc/sys/vm/overcommit_memory
+0
+```
+
+A value of `0` or `1` means overcommitment is enabled, `2` means overcommitment
+is disabled.
+
+See also: [Unix & Linux: Will Linux start killing my processes without asking 
+me if memory gets short?][sxul_01]
+
 
 Out-of-Memory (OOM) Killer
 --------------------------
@@ -48,6 +64,10 @@ function's [source][linm_01]:
 > 5. we try to kill the process the user expects us to kill, this
 >    algorithm has been meticulously tuned to meet the principle
 >    of least surprise ... (be careful when you change it)
+
+The final calculated score (out of 1000) has the user-settable value 
+of `/proc/<pid>/oom_score_adj`(which itself has a value from -1000 to +1000) 
+added to it.
 
 Once the process has been identified, the process list is traversed again and
 every process that shares the same `mm_struct` as the selected process (i.e., 
@@ -91,6 +111,11 @@ $ dmesg | grep -Ei "killed process"
 host kernel: Out of Memory: Killed process 2592 (mysql).
 ```
 
+[or][sxul_01]:
+```
+[11686.043641] Out of memory: Kill process 2603 (flasherav) score 761 or sacrifice child
+[11686.043647] Killed process 2603 (flasherav) total-vm:1498536kB, anon-rss:721784kB, file-rss:4228k
+```
 
 
 
@@ -98,3 +123,4 @@ host kernel: Out of Memory: Killed process 2592 (mysql).
 [gorm_01]: https://www.kernel.org/doc/gorman/html/understand/index.html "kernel.org: Understanding the Linux Virtual Memory Manager"
 [gorm_02]: https://www.kernel.org/doc/gorman/html/understand/understand016.html "kernel.org: Chapter 13 Out of Memory Management"
 [linm_01]: https://linux-mm.org/OOM_Killer
+[sxul_01]: https://unix.stackexchange.com/a/136294
