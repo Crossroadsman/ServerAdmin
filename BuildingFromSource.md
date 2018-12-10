@@ -60,7 +60,7 @@ We then download our tarball:
 cd /source/tarballs
 curl -O <url_to_tarball>
 ```
-(`-O` is an alias for `--remote-name` and signifies that the next argument will be the remote url)
+(`-O` is an alias for `--remote-name` and signifies that we want the local filename to be the same as the remote filename)
 
 Or if we prefer Gnu wget:
 ```
