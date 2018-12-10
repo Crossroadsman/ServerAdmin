@@ -331,9 +331,83 @@ The arguments to openssl are:
   which can be used to get a wildcard certificate. This is worth looking into 
   but we won't be using this here.
 
+- Get the certificate using certbot:
+  ```console
+  $ sudo certbot --nginx certonly
+  Saving debug log to /var/log/letsencrypt/letsencrypt.log
+  Plugins selected: Authenticator nginx, Installer nginx
+  Enter email address (used for urgent renewal and security notices)(Enter 'c'
+  to cancel):
+  ```
+- Type in the email address that should receive renewal and security notices:
+  ```
+  security@my_domain.com
+  ```
+- Agree to the ToS
+- Decide whether to share email with EFF
+- Select the names from the list that you wish to activate HTTPS:
+  ```
+  Which names would you like to activate HTTPS for?
+  - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  1: jenkins.my_domain.com
+  - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Select the appropriate numbers separated by commas and/or spaces, or leave
+  input blank to select all options shown (Enter 'c' to cancel):
+  1
+  ```
+- Wait while certbot does its thing:
+  ```
+  Obtaining a new certificate
+  Performing the following challenges:
+  http-01 challenge for jenkins.my_domain.com
+  Waiting for verification...
+  Cleaning up challanges
+  ```
+- Take note of where certbot saved the cert/chain and key:
+  ```
+  IMPORTANT NOTES:
+   - Congratulations! Your certificate and chain have been saved at:
+     /etc/letsencrypt/live/jenkins.my_domain.com/fullchain.pem
+     Your key file has been saved at:
+     /etc/letsencrypt/live/jenkins.my_domain.com/privkey.pem
+  ```
+- Also note that Let's Encrypt certs expire after 90 days, so it's worth
+  checking that the automated renewal cron job (installed with the certbot
+  packages) is working:
+  ```console
+  $ sudo certbot renew --dry-run
+  Saving debug log to /var/log/letsencrypt/letsencrypt.log
+  ...
+  Cert not due for renewal, but simulating renewal for dry run
+  ...
+  ** DRY RUN: simulating 'certbot renew' close to cert expiry
+  **          (the test certificates below have not been saved.)
+  
+  Congratulations, all renewals succeeded. The following certs have been
+  renewed:
+    /etc/letsencrypt/live/jenkins.my_domain.com/fullchain.pem (success)
+  ...
+  ```
+
+- Point nginx at the key and cert by editing the server config in
+  `sites-available` (note we can either reference the file directly in
+  the server config, or create a symlink in, e.g., `/etc/nginx/ssl` and
+  put the symlink in the config file):
+  ```nginx
+  ...
+  server_name jenkins.my_domain.com;
+  
+  ssl_certificate /etc/letsencrypt/live/jenkins.my_domain.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/jenkins.my_domain.com/privkey.pem;
+  ```
+
+- Restart nginx:
+  ```console
+  $ sudo systemctl restart nginx
+  ```
 
 
-#### <a name="7.3">7.3</a> Create a Server Config File ####
+#### <a name="s7.3">7.3</a> Create a Server Config File ####
 - In `/etc/nginx/sites-available` create a server file with the public-facing
   url as a filename, e.g., if the server will be 
   at `jenkins.my_domain.com`:
