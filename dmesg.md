@@ -39,8 +39,8 @@ Logging
 On older systems, the contents of the kernel ring buffer at the completion of 
 boot are written to `/var/log/dmesg`.
 
-On new systems using systemd, these messages are not written to a text log file
-but are instead captured by journald.
+[On new systems using systemd, these messages are not written to a text log file
+but are instead captured by journald][sxau_01].
 
 If we want to read just the kernal messages in the journal, we can pass the 
 `-k` flag to journalctl:
@@ -61,3 +61,9 @@ Footnotes
 ---------
 1. <a name="intro01"> </a>A ring buffer is simply a buffer of fixed sized where,
    when the buffer is full, the newest item overwrites the oldest existing item.
+
+
+
+
+
+[sxau_01]: https://askubuntu.com/questions/859816/where-did-the-functionality-of-var-log-dmesg-go-in-xenial-16-04
