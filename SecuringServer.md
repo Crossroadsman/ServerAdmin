@@ -40,7 +40,7 @@ is called `fail2ban.conf` and the 'jail' file (which has the filters and actions
 
 Best practice is to not modify the master files but instead to create `.local` copies that override the `.conf` files:
 
-[Here's][https://zaiste.net/intro_fail2ban_with_ufw/] a nice worked example of implementing a custom jail.
+[Here's][link03] a nice worked example of implementing a custom jail.
 
 
 #### Configuring `fail2ban.local` ####
@@ -155,4 +155,4 @@ Footnotes
 
 [link01]: https://www.fail2ban.org/wiki/index.php/Fail2Ban 'Fail2ban.org: Wiki'
 [link02]: https://www.tutorialspoint.com/unix/unix-system-logging.htm
-[link03]: 
+[link03]: https://zaiste.net/intro_fail2ban_with_ufw/
