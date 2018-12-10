@@ -198,10 +198,10 @@ and Jenkins is at `https://www.domain.com/jenkins`).
 #### 7.1. Install Nginx (Steps 1 and 2 of [this guide][serv_02]) ####
 
 #### 7.2. Create a SSL Certificate ####
-     Either create a self-signed cert or, better, get a [Let's Encrypt
-     cert][digo_03].
+Either create a [self-signed cert](#s7.2.1) or, better, get a [Let's 
+Encrypt cert](#s7.2.2).
 
-##### Self-Signed Cert #####
+##### <a name="s7.2.1">7.2.1.</a> Self-Signed Cert #####
 See also [Digital Ocean: How To Create an SSL Certificate on Nginx for 
 Ubuntu 14.04][digo_02].
 
@@ -241,7 +241,9 @@ The arguments to openssl are:
   but the Digital Ocean [guide][digo_02] suggests a bare domain (e.g., 
   'domain.com').
 
-##### Use Let's Encrypt to Create a Cert #####
+##### <a name="s7.2.2">7.2.2.</a> Use Let's Encrypt to Create a Cert #####
+See also: [Digital Ocean: How To Secure Nginx with Let's Encrypt on 
+Ubuntu 18.04][digo_03] or [Eff: Nginx on Ubuntu 18.04 LTS (bionic)][cbot_01].
 
 - Install [Certbot][cbot_01] (Eff's tool for generating SSL certs from
   Let's Encrypt):
