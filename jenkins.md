@@ -241,7 +241,99 @@ The arguments to openssl are:
   but the Digital Ocean [guide][digo_02] suggests a bare domain (e.g., 
   'domain.com').
 
-#### 7.3 Create a Server Config File ####
+##### Use Let's Encrypt to Create a Cert #####
+
+- Install [Certbot][cbot_01] (Eff's tool for generating SSL certs from
+  Let's Encrypt):
+  - update apt's package list:
+    ```console
+    $ sudo apt update
+    Hit:1 http://mirrors.linode.com/ubuntu cosmic InRelease
+    ...
+    1 package can be upgraded. Run 'apt list --upgradable' to see it.
+    ```
+  - install software-properties-common, a bunch of scripts useful for adding/
+    removing PPAs. Most significantly these scripts mean you don't need to
+    manually edit `/etc/apt/sources.list` or `/etc/apt/sources.list.d` when 
+    adding/removing PPAs:
+    ```console
+    $ sudo apt install software-properties-common
+    Reading packag lists... Done
+    ...
+    software-properties-common is already the newest version (0.96.27).
+    0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+    ```
+  - add Universe to the repository list (equivalent to adding the PPA to
+    `/etc/apt/sources.list` and dowloading the associated GPG key and adding
+    to the apt keyring). 'Universe' is one of the four main Ubuntu-provided
+    offical repos (Main, Restricted, Universe, Multiverse). Universe receives
+    less support from Canonical than Main and Restricted, so it is not always
+    enabled by default:
+    ```console
+    $ sudo add-apt-repository universe
+    'universe' distribution component enabled for all sources.
+    ...
+    Fetched 22.9 MB in 7s (3,429 kB/s)
+    Reading package lists... Done
+    ```
+  - add the Certbot PPA to the repository list (You might get an error if
+    the PPA does not have a release for the corresponding Ubuntu version, 
+    in this case 18.10):
+    ```console
+    $ sudo add-apt-repository ppa:certbot/certbot
+    This is the PPA for packages prepared by Debian Let's Encrypt Team and
+    backported for Ubuntu(s).
+    ...
+    Press [ENTER] to continue or Ctrl-c to cancel adding it
+    Hit:1 http://mirrors.linode.com/ubuntu cosmic InRelease
+    ...
+    Err:10 http://ppa.launchpad.net/certbot/certbot/ubuntu cosmic Release
+      404  Not Found [IP: 91.189.95.83 80]
+    Reading package lists... Done
+    E: The repository 'http://ppa.launchpad.net/certbot/certbot/ubuntu cosmic
+    Release' does not have a Release file.
+    N: Updating from such a repository can't be done securely, and is therefore
+    disabled by default.
+    N: See apt-secure(8) manpage for repository creation and user configuration
+    details.
+    ```
+  - re-run apt update to get add to the package list any packages from the 
+    newly-added repos
+    ```console
+    $ sudo apt update
+    ```
+  - install certbot (in this case, the nginx-specific version). Note, if there
+    is no current version available from the PPA (see the error above), there
+    might be a version available from the main Ubuntu repos (as in this case):
+    ```console
+    $ sudo apt install python-certbot-nginx
+    Reading package lists... Done
+    ...
+    The following additional packages will be installed:
+      certbot python-pyicu python3-acme python3 certbot python3-certbot-nginx
+      ...
+    0 upgraded, 19 newly installed, 0 to remove and 1 not upgraded.
+    Need to get 1,224 kB of archives.
+    After this operation, 6,533 kB of additional disk space will be used.
+    Do you want to continue? [Y/n] y
+    ...
+    Setting up python3-certbot-nginx (0.26.0-1) ...
+    Setting up python-certbot-nginx (0.26.0-1) ...
+    ```
+
+- At this point, certbot is installed and ready to use, but we need to 
+  configure SSL for Nginx:
+  - ensure that the server block has a `server_name` line that matches
+    the certificate we will be getting. The whole config file can look
+    like the one in [7.3 Create a Server Config File](#s7.3).
+
+- The certbot website [mentions][cbot_01] that DNS plugins are also available 
+  which can be used to get a wildcard certificate. This is worth looking into 
+  but we won't be using this here.
+
+
+
+#### <a name="7.3">7.3</a> Create a Server Config File ####
 - In `/etc/nginx/sites-available` create a server file with the public-facing
   url as a filename, e.g., if the server will be 
   at `jenkins.my_domain.com`:
@@ -378,6 +470,7 @@ a single call to `apt install` but have been separated by context.
 
 
 
+[cbot_01]: https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
 [digo_01]: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04
 [digo_02]: https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
 [digo_03]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
