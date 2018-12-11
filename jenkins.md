@@ -13,7 +13,7 @@ Jenkins
      7.1. [Install nginx](#s2.7.1)
      7.2. [Create SSL Certificate](#s2.7.2)
           7.2.1. [Self-Signed Cert](#s2.7.2.1)
-          7.2.2  [Let's Encrypt Cert](#s2.7.2.2)
+          7.2.2.  [Let's Encrypt Cert](#s2.7.2.2)
 
 <a name="s1"> </a>
 Intro
