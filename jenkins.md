@@ -157,6 +157,12 @@ $ sudo swapon /swapfile
 ```
 **Note**: Adding additional swap to VPSs with SSD storage is not recommended.
 
+- Make the new swap persist across reboots by adding the new swap 
+  to `/etc/fstab` (append the following line):
+  ```
+  /swapfile  none  swap  sw  0  0
+  ```
+
 For more on swap, see [Digital Ocean: How to Add Swap Space][digo_01].
 
 <a name="s2.5"> </a>
