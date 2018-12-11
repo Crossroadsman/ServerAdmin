@@ -441,6 +441,8 @@ Ubuntu 18.04][digo_03] or [Eff: Nginx on Ubuntu 18.04 LTS (bionic)][cbot_01].
   $ sudo systemctl restart nginx
   ```
 
+- Test the SSL config at <https://www.ssllabs.com/ssltest/analyze.html>
+
 
 #### <a name="s7.3">7.3</a> Create a Server Config File ####
 - In `/etc/nginx/sites-available` create a server file with the public-facing
