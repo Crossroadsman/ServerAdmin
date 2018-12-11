@@ -457,7 +457,7 @@ See also these example use cases:
 - Create a server block that looks like the following:  
   ```nginx
   upstream jenkins {
-    # this is a list of servers that can the request.
+    # this is a list of servers that can handle the request.
     # (this isn't especially helpful while we only have one server, but
     # if we scale up then we can just add additional server IPs here without
     # changing any of the server{} block below.
