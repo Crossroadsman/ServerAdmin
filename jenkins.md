@@ -15,7 +15,12 @@ Jenkins
             7.2.1. [Self-Signed Cert](#s2.7.2.1)
             7.2.2. [Let's Encrypt Cert](#s2.7.2.2)
      - 7.3. [Create a Server Config File](#s2.7.3)
-- [Footnotes](#s3)
+- [Create a Project](#s3)
+- [Improve Testing Environment](#s4)
+  1. [Authenticate with GitHub](#s4.1)
+  2. [xUnit](#s4.2)
+- [Footnotes](#s5)
+
 
 <a name="s1"> </a>
 Intro
@@ -569,7 +574,81 @@ See also these example use cases:
   ```
 
 
-<a name="s3"> </>
+<a name="s3"> </a>
+Create a Project
+----------------
+
+<a name="s3.1"> </a>
+### 1. Creation ###
+- Go to New Item in the left sidebar
+- Give it a name (e.g., Superlists)
+- Select Freestyle Project
+- Select OK
+
+<a name="s3.2"> </a>
+### 2. Configure Tools ###
+
+#### 2.1. Git ####
+- Ensure GitHub is up to date
+- Select 'Git' in SCM
+- Enter the full repo URL (incl. the .git extension, i.e., the HTTPS address you 
+  get when selecting clone repository)
+- In Build Triggers, set it to poll each hour (`H * * * *`)
+
+#### 2.2 Xvfb ####
+- In Build Environment, check the "Start Xvfb before the build, and shut it 
+  down after" box. 
+
+#### 2.3 Virtualenv Builder ####
+- In Build, select the Python3 instance we set up earlier
+- In the command box, enter the commands that will install any requirements
+  and execute the tests. E.g., for Superlists:
+  ```
+  pip3 install -r requirements.txt
+  pip3 install -r test-requirements.txt
+  python3 manage.py test lists accounts
+  python3 manage.py test functional_tests
+  ```
+- Save
+
+
+<a name="s4"> </a>
+Improve Testing Environment
+---------------------------
+
+<a name="s4.1"> </a>
+### Authenticate Using the GitHub API ###
+**NOTE: The following has been tried but doesn't work. Leaving Github settings
+at default for now. The following has been left in-place just as a history
+of what was tried**
+- In Jenkins / Manage Jenkins / Manage Plugins, search for and install:
+  - Github Integration
+  - Job and Stage Monitoring (previously known as Github Autostatus)
+- Once downloaded, restart Jenkins
+- Go to github.com in a browser;
+- In Settings/Developer, select Personal Access Tokens;
+- Click 'Generate a New Token';
+- Select 'repo' as scope;
+- Then click 'Generate Token';
+- Copy the token to the clipboard;
+- In Jenkins / Manage Jenkins / Configure System, scroll down to the section
+  labelled 'Github', and select 'Advanced';
+- Select 'Manage additional GitHub actions';
+- Select 'Convert login and password to token';
+- Select 'From login and password';
+- For the user, enter your github username;
+- For the password, paste the Personal Access Token
+
+<a name="s4.2"> </a>
+### xUnit ###
+- In Jenkins / Manage Jenkins / Manage Plugins, search for and install:
+  - xUnit
+- Once downloaded, restart Jenkins
+
+
+
+
+<a name="s5"> </>
 Footnotes
 ---------
 <a name="footnote01">1</a>: Here we're piping the string 
