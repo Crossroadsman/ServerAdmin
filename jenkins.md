@@ -1,15 +1,27 @@
 Jenkins
 =======
 
+- [Intro](#s1)
+- [Installation](#s2)
+  1. [Install Jenkins-Compatible Java](#s2.1)
+  2. [Download and Install Jenkins](#s2.2)
+  3. [Download and Install Other Dependencies](#s2.3)
+  4. [Add Swap](#s2.4)
+  5. [Open Firewall for Jenkins](#s2.5)
+  6. [Unlock Jenkins Web Panel](#s2.6)
+
+<a name="s1"> </a>
 Intro
 -----
 Jenkins is a popular CI server with a rich plugin ecosystem.
 
+<a name="s2"> </a>
 Installation
 ------------
 Ideally, Jenkins should be installed on a separate server to the staging and 
 production servers.
 
+<a name="s2.1"> </a>
 ### 1. [Install a Jenkins-Compatible Version of Java][jenk_02] ###
 There are separate run and job execution requirements for Jenkins installations.
 
@@ -51,6 +63,7 @@ Then select Java 8 as default:
 $ sudo update-alternatives --config java
 ```
 
+<a name="s2.2"> </a>
 ### 2. Download and Install Jenkins ###
 There have been [issues][tddp_01] with the Ubuntu-distributed version of 
 Jenkins (bugs re locale/unicode, etc) so download from the official Jenkins apt
@@ -84,6 +97,7 @@ Jenkins' apt repo url to the apt repo list.
    $ sudo apt install jenkins
    ```
 
+<a name="s2.3"> </a>
 ### 3. Download Other Dependencies<sup>[2](#footnote02)</sup> ###
 
 1. Venv and Pip for Python
@@ -114,6 +128,7 @@ Jenkins' apt repo url to the apt repo list.
    ...
    ```
 
+<a name="s2.4"> </a>
 ### 4. Add Some Swap ###
 You can check the current swap status by looking at swap allocations:
 ```console
@@ -144,6 +159,7 @@ $ sudo swapon /swapfile
 
 For more on swap, see [Digital Ocean: How to Add Swap Space][digo_01].
 
+<a name="s2.5"> </a>
 ### 5. Open [Firewall][serv_01] for Jenkins' Ports ###
 
 ```console
@@ -152,6 +168,7 @@ Rule added
 Rule added (v6)
 ```
 
+<a name="s2.6"> </a>
 ### 6. Unlock Jenkins and Initial Web Setup ###
 - In a web browser go to the server's host IP, port 8080 and review the Jenkins 
   unlock instructions.
