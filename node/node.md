@@ -77,9 +77,9 @@ versions of node without conflicts).
     $ . .profile
     ```
   - or:
-  ```console
-  $ . .bashrc
-  ```
+    ```console
+    $ . .bashrc
+    ```
 
 - Once nvm is installed, you can see which node versions are available:
   ```console
