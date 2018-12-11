@@ -648,7 +648,7 @@ of what was tried**
 
 
 
-<a name="s5"> </>
+<a name="s5"> </a>
 Footnotes
 ---------
 <a name="footnote01">1</a>: Here we're piping the string 
