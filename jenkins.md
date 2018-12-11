@@ -9,6 +9,11 @@ Jenkins
   4. [Add Swap](#s2.4)
   5. [Open Firewall for Jenkins](#s2.5)
   6. [Unlock Jenkins Web Panel](#s2.6)
+  7. [Switch Jenkins to HTTPS](#s2.7)
+     7.1. [Install nginx](#s2.7.1)
+     7.2. [Create SSL Certificate](#s2.7.2)
+          7.2.1. [Self-Signed Cert](#s2.7.2.1)
+          7.2.2  [Let's Encrypt Cert](#s2.7.2.2)
 
 <a name="s1"> </a>
 Intro
@@ -210,6 +215,7 @@ Rule added (v6)
      after installing the Xvfb plugin),
    - enter `/usr/bin` as the installation directory.
 
+<a name="s2.7"> </a>
 ### 7. Switch Jenkins to HTTPS ###
 We'll use Nginx to redirect https traffic (port 443) to Jenkins (port 8080).
 
@@ -218,13 +224,16 @@ Jenkins URL is a subdomain (e.g., `jenkins.domain.com`), a folder off
 another URL (e.g., the tested application is at `https://www.domain.com` 
 and Jenkins is at `https://www.domain.com/jenkins`).
 
+<a name="s2.7.1"> </a>
 #### 7.1. Install Nginx (Steps 1 and 2 of [this guide][serv_02]) ####
 
+<a name="s2.7.2"> </a>
 #### 7.2. Create a SSL Certificate ####
-Either create a [self-signed cert](#s7.2.1) or, better, get a [Let's 
-Encrypt cert](#s7.2.2).
+Either create a [self-signed cert](#s2.7.2.1) or, better, get a [Let's 
+Encrypt cert](#s2.7.2.2).
 
-##### <a name="s7.2.1">7.2.1.</a> Self-Signed Cert #####
+<a name="s2.7.2.1"> </a>
+##### 7.2.1. Self-Signed Cert #####
 See also [Digital Ocean: How To Create an SSL Certificate on Nginx for 
 Ubuntu 14.04][digo_02].
 
@@ -264,7 +273,8 @@ The arguments to openssl are:
   but the Digital Ocean [guide][digo_02] suggests a bare domain (e.g., 
   'domain.com').
 
-##### <a name="s7.2.2">7.2.2.</a> Use Let's Encrypt to Create a Cert #####
+<a name="s2.7.2.2"> </a>
+##### 7.2.2. Use Let's Encrypt to Create a Cert #####
 See also: [Digital Ocean: How To Secure Nginx with Let's Encrypt on 
 Ubuntu 18.04][digo_03] or [Eff: Nginx on Ubuntu 18.04 LTS (bionic)][cbot_01].
 
