@@ -14,6 +14,8 @@ Jenkins
      - 7.2. [Create SSL Certificate](#s2.7.2)
             7.2.1. [Self-Signed Cert](#s2.7.2.1)
             7.2.2. [Let's Encrypt Cert](#s2.7.2.2)
+     - 7.3. [Create a Server Config File](#s2.7.3)
+- [Footnotes](#s3)
 
 <a name="s1"> </a>
 Intro
@@ -444,7 +446,8 @@ Ubuntu 18.04][digo_03] or [Eff: Nginx on Ubuntu 18.04 LTS (bionic)][cbot_01].
 - Test the SSL config at <https://www.ssllabs.com/ssltest/analyze.html>
 
 
-#### <a name="s7.3">7.3</a> Create a Server Config File ####
+<a name="s2.7.3"> </a>
+#### 7.3 Create a Server Config File ####
 - In `/etc/nginx/sites-available` create a server file with the public-facing
   url as a filename, e.g., if the server will be 
   at `jenkins.my_domain.com`:
@@ -566,6 +569,7 @@ See also these example use cases:
   ```
 
 
+<a name="s3"> </>
 Footnotes
 ---------
 <a name="footnote01">1</a>: Here we're piping the string 
