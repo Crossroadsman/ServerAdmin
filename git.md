@@ -17,6 +17,7 @@ Index
    9. [Fetching/Pulling](#s2.9)
    10. [Diff](#s2.10)
    11. [Tagging](#s2.11)
+   12. [Remove Large Files](#s2.12)
 3. [Understanding Git](#s3)
    1. [Trees](#s3.1)
    2. [Commits](#s3.2)
@@ -731,6 +732,17 @@ Here are some common ways of performing a diff:
 #### Tag Syntax ####
 
 [Not all characters are valid in a tagname](https://git-scm.com/docs/git-check-ref-format).
+
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+### <a name="s2.12">Fix Committed Large File</a> ###
+Situation: you've got a repo with no .gitignore, you've added a bunch of node
+packages and committed, then you try to push to GitHub and get this message:
+```
+TODO -- GET EXAMPLE ERROR MESSAGE
+```
+You've tried adding the .gitignore, `git rm -r --cached .`, add then recommitting, but
+the file keeps reappearing when you push.
+
 
 
 
