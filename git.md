@@ -742,7 +742,7 @@ packages and committed, then you try to push to GitHub and get this message:
 remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
 remote: error: Trace: bcb1bf43ee0435af6ef20f998f7a02e1
 remote: error: See http://git.io/iEPt8g for more information.
-remote: error: File task_runners/grunt/sample_project/node_modules/puppeteer/.local-chromium/linux-579032/chrome-linux/chrome is 201.89 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: File task_runners/bad_files/sample_project/node_modules/puppeteer/.local-chromium/linux-579032/chrome-linux/chrome is 201.89 MB; this exceeds GitHub's file size limit of 100.00 MB
 To github.com:MyUser/javascript-notes.git
  ! [remote rejected] master -> master (pre-receive hook declined)
 error: failed to push some refs to 'git@github.com:MyUser/javascript-notes.git'
@@ -771,13 +771,13 @@ Try:
    Untracked files:
    (use "git add <file>..." to include in what will be committed)
 
-	task_runners/grunt/
+	task_runners/bad_files/
 
    nothing added to commit but untracked files present (use "git add" to track)
    ```
 5. delete the offending files:
    ```console
-   $ rm -rf task_runners/grunt
+   $ rm -rf task_runners/bad_files
    ```
 6. run `git status` again to confirm clean:
    ```console
@@ -810,7 +810,7 @@ Try:
    ```
 10. checkout the offending files from temp branch (in this case, they were all in a subdirectory called 'bad_files'):
     ```console
-    git checkout temp-newfiles -- bad_files
+    git checkout temp-newfiles -- task_runners/bad_files
     ```
 11. run `git status`. You should find that the files from bad_files (except those covered by `.gitignore`) have been copied into 
     the working directory and staging area.
