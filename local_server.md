@@ -46,5 +46,41 @@ In netgear orbi this is ADVANCED / Setup / LAN Setup, and at the bottom of the p
 <https://www.manualslib.com/manual/1237157/Netgear-Orbi.html?page=67>
 
 
+
+
+Getting IP Address Updates
+--------------------------
+Sometimes your local machine's public IP address will get changed.
+
+To find out what your current public IP address is from command line (Linux or Mac):
+
+Either use [dig](https://linux.die.net/man/1/dig):
+- Example1: opendns.com:
+  ```console
+  $ dig +short myip.opendns.com @resolver1.opendns.com
+  74.86.144.194
+  ```
+- Example2: google:
+  ```console
+  $ dig TXT +short o-o.myaddr.l.google.com @ns1.google.com
+  "74.86.144.194"
+  ```
+  
+Or use [host](https://linux.die.net/man/1/host):
+```console
+$ host myip.opendns.com resolver1.opendns.com
+Using domain server:
+Name: resolver1.opendns.com
+Address: 208.67.222.222#53
+Aliases:
+
+myip.opendns.com has address 74.86.144.194
+Host myip.opendns.com not found: 3(NXDOMAIN)
+Host myip.opendns.com not found: 3(NXDOMAIN)
+```
+
+See also: [How To Find My Public IP Address From Command Line On a Linux](https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/)
+
+
 [link01]: https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos#0
 [link02]: https://www.lifewire.com/dual-boot-linux-and-mac-os-4125733
