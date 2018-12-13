@@ -23,6 +23,8 @@ Index
    2. [Commits](#s3.2)
 4. [Other Useful Resources](#s4)
 5. [Glossary](#s5)
+6. [Footnotes](#s6)
+
 
 <a name="s1">1: Install and Setup</a>
 -------------------------------------
@@ -730,20 +732,90 @@ Here are some common ways of performing a diff:
   ```
 
 #### Tag Syntax ####
-
 [Not all characters are valid in a tagname](https://git-scm.com/docs/git-check-ref-format).
 
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
 ### <a name="s2.12">Fix Committed Large File</a> ###
 Situation: you've got a repo with no .gitignore, you've added a bunch of node
 packages and committed, then you try to push to GitHub and get this message:
 ```
-TODO -- GET EXAMPLE ERROR MESSAGE
+...
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: error: Trace: bcb1bf43ee0435af6ef20f998f7a02e1
+remote: error: See http://git.io/iEPt8g for more information.
+remote: error: File task_runners/grunt/sample_project/node_modules/puppeteer/.local-chromium/linux-579032/chrome-linux/chrome is 201.89 MB; this exceeds GitHub's file size limit of 100.00 MB
+To github.com:MyUser/javascript-notes.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'git@github.com:MyUser/javascript-notes.git'
 ```
 You've tried adding the .gitignore, `git rm -r --cached .`, add then recommitting, but
 the file keeps reappearing when you push.
 
+Try:
+1. create and checkout a new branch:
+   ```console
+   $ git checkout -b temp-newfiles
+   Switched to a new branch 'temp-newfiles'
+   ```
+2. checkout master
+3. reset hard to the most recent commit before adding the big files:
+   ```console
+   $ git reset --hard origin/master
+   HEAD is now at a9664be Update grunt.md
+   ```
+4. run `git status` to see what files are lingering that aren't part of the commit we resetted to
+   ```console
+   $ git status
+   On branch master
+   Your branch is up to date with 'origin/master'.
 
+   Untracked files:
+   (use "git add <file>..." to include in what will be committed)
+
+	task_runners/grunt/
+
+   nothing added to commit but untracked files present (use "git add" to track)
+   ```
+5. delete the offending files:
+   ```console
+   $ rm -rf task_runners/grunt
+   ```
+6. run `git status` again to confirm clean:
+   ```console
+   $ git status
+   On branch master
+   Your branch is up to date with 'origin/master'.
+
+   nothing to commit, working tree clean
+   ```
+7. checkout the `.gitignore` from the temp branch:
+   ```console
+   $ git checkout temp-newfiles -- .gitignore
+   ```
+8. Run `git status`. you should find that `.gitignore` has been copied into the working directory and staging 
+   area<sup>[1](#footnote_2.12_01)</sup>:
+   ```console
+   $ git status
+   On branch master
+   Your branch is up to date with 'origin/master'.
+
+   Changes to be committed:
+   (use "git reset HEAD <file>..." to unstage)
+
+	new file:   .gitignore
+
+   ```
+9. commit the `.gitignore`:
+   ```console
+   $ git commit -m "Add .gitignore"
+   ```
+10. checkout the offending files from temp branch (in this case, they were all in a subdirectory called 'bad_files'):
+    ```console
+    git checkout temp-newfiles -- bad_files
+    ```
+11. run `git status`. You should find that the files from bad_files (except those covered by `.gitignore`) have been copied into 
+    the working directory and staging area.
+11. commit the changes
+12. push the commit
 
 
 <a name="s3">Understanding Git</a>
@@ -929,6 +1001,19 @@ See [Git From the Bottom Up][bottom-up]
 - [`working tree`][bottom-up]  
   A working tree is any directory on the filesystem which has a *repository* associated with it (typically indicated by the presence of 
   a subdirectory within it named `.git.`). It includes all the files and subdirectories in that directory.
+
+
+
+<a name="s6">Footnotes</a>
+--------------------------
+1. <a name="footnote_2.12_01"> </a>* It seems that checkout behaves differently if you specify files. Any checkout will copy the files from the branch/commit into the working directory and the staging area. However, if one or more files are specified (i.e., checking out files not a branch/commit), the HEAD pointer isn't moved, which means that the working directory will match the staging area for files, but not match the tree as of
+a particular commit (since we didn't check out a whole commit). Thus all the files that changed as a result of the checkout will appear
+staged (ready to be committed). On the face of it, it looks like the difference in behaviour is due to what git stages, but the real
+difference in behaviour is just that the HEAD pointer isn't being moved. This is obvious when you think about it: checking out just
+part of a commit doesn't necessarily leave the working directory/staging area in a condition that matches either the previous HEAD
+state or the stage of the commit we checked out from. Thus git can't simply move the HEAD pointer to a different commit (as it could
+if we checkout out a branch or commit hash).
+
 
 
 
