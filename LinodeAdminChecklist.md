@@ -110,14 +110,14 @@ Other Management
 
 Footnotes
 ---------
-<a name="footnote01">1.</a> `-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
-any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`.  
-<a name="footnote02">2.</a> `adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
-defaults to providing a full profile while `useradd` needs you to manually specify several values. See the [TDD guide][link06] for an 
-example.  
-<a name="footnote03">3.</a> The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
-Github's [SSH key generation guide][link07]  
-<a name="footnote04">4.</a> Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
+1. <a id="footnote01"> </a>`-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
+   any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`.  
+2. <a id="footnote02"> </a>`adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
+   defaults to providing a full profile while `useradd` needs you to manually specify several values. See the [TDD guide][link06] for an 
+   example.  
+3. <a id="footnote03"> </a>The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
+   Github's [SSH key generation guide][link07]  
+4. <a name="footnote04"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
 
 
 
