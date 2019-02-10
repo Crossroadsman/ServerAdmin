@@ -18,19 +18,19 @@ The Solutions
 
 There are three most commonly suggested solutions to this issue:
 
-- launch the process you want to keep alive with **Screen**;
+- launch the process you want to keep alive with **Screen** or **Tmux**;
 - launch the process with the `nohup` command;
 - launch the process with Bash's builtin `disown`.
 
-### Screen ###
+### Screen/Tmux ###
 
 #### Why? ####
 
-- Screen is a very comprehensive tool that can keep the process alive and much more.
+- Screen and Tmux are very comprehensive tools that can keep the process alive and much more.
 
 #### Why not? ####
 
-- Screen may be overkill if the only goal is to keep a process alive when a VPS disconnects;
+- They may be overkill if the only goal is to keep a process alive when a VPS disconnects;
 - Needs to be installed on most systems.
 
 #### How ####
@@ -39,6 +39,12 @@ There are three most commonly suggested solutions to this issue:
 
 ```
 $ sudo apt-get install screen
+```
+
+#### Install tmux ####
+
+```console
+$ sudo apt install tmux
 ```
 
 ##### Run Screen #####

@@ -117,7 +117,7 @@ Footnotes
    example.  
 3. <a id="footnote03"> </a>The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
    Github's [SSH key generation guide][link07]  
-4. <a name="footnote04"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
+4. <a id="footnote04"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
 
 
 
