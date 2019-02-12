@@ -1,6 +1,8 @@
 The Unix Shell
 ==============
 
+See also: <http://mywiki.wooledge.org/BashGuide>
+
 What is the Shell
 -----------------
 Shell is the program that enables the user to directly interact with the OS. 
@@ -29,6 +31,85 @@ The Role of the Shell
 5. Perform redirections (and remove redirection operators and operands from the argument list)
 6. Execute the command
 7. (Optionally) wait for the command to complete and collect its exit status
+
+Commands
+--------
+
+Shell (at least Bash) understands the following types of command:
+- aliases (interactive mode only)
+- functions
+- builtins
+- keywords
+- executables
+
+We can use the `type` command to check the command type:
+```console
+$ type rm
+rm is hashed (/bin/rm)
+$ type cd
+cd is a shell builtin
+```
+
+### Alias ###
+An alias is a `word` mapped to a certain `string`. Whenever that word is
+used as a command name, it is replaced by the string before executing the
+command.
+
+An alias is used only in **interactive** shells and not in scripts (a rare
+difference between a script and interactive shell).
+
+As a builtin, created aliases are only available to the current session 
+(although they can be specified in one of the shell's startup scripts to 
+load automatically).
+
+Syntax: `alias name=value`.  
+Examples:  
+```console
+$ alias la='ls -la'
+```
+
+```console
+$ alias today='date +"%FT%T%:z"' #2018-10-23T17:12:02+01:00
+2018-10-23T17:12:02+01:00
+```
+
+### Shell Functions ###
+Functions are like aliases but available in scripts as well as in
+interactive mode.
+
+They are also more powerful, they can take arguments and create 
+variables. Think of a function as a mini script.
+
+Example:
+```console
+today() {
+    echo -n "Today's date is: "
+    date +"%FT%T%:z"
+}
+```
+
+### Builtins ###
+These are commands built into Bash, e.g., `cd`, `echo`, etc.
+
+### Keywords ###
+Keywords are like builtins but with different parsing rules.
+
+Consider the following example:
+```console
+$ [ a < b ]
+-bash: b: No such file or directory
+$ [[ a < b ]]
+```
+
+Both commands are test commands: `[` is a builtin and `[[`
+is a keyword.
+
+As a builtin, tokens are interpreted as normal, so in the
+first example Bash tries to redirect the file `b` to the
+command `[ a ]`.
+
+However, `[[` replaces the file redirection meaning of `<`
+with the comparison operator.
 
 
 Expansion
@@ -181,34 +262,6 @@ Chaining (Listing) Commands[link04]
 
 See also [this](https://askubuntu.com/a/817969) Ask Ubuntu answer which provides 
 more interesting commentary on chaining commands.
-
-
-Aliases and Functions
----------------------
-### Alias ###
-Alias is a shell builtin that allows creating named aliases to commands. As a 
-builtin, created aliases are only available to the current session (although 
-they can be specified in one of the shell's startup scripts to load 
-automatically).
-Syntax: `alias name=value`.  
-Examples:  
-```console
-$ alias la='ls -la'
-```
-
-```console
-$ alias today='date +"%FT%T%:z"' #2018-10-23T17:12:02+01:00
-2018-10-23T17:12:02+01:00
-```
-
-### Shell Functions ###
-Example:
-```console
-today() {
-    echo -n "Today's date is: "
-    date +"%FT%T%:z"
-}
-```
 
 
 Footnotes
