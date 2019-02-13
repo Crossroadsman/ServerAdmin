@@ -47,7 +47,8 @@ Usage
 -----
 [Common command syntax][link05] (in the form `brew <command>`):
 - `--version` display version information then quit
-- `install <thing>` installs the package 'thing'; or chain multiple packages: `brew install foo bar baz`
+- `install <thing>` installs the bottled (binary) package 'thing'; or chain multiple packages: `brew install foo bar baz`
+- `install <thing> --<compile_option>` installs the package (thing) by building from source with the specified option<sup>[2](#footnote02)</sup>
 - `uninstall <thing>` uninstalls the package 'thing'
 - `update` updates Homebrew from the latest version on git (and update the local package listing—called *formulae*)
 - `list` lists all installed *formulae* (not casks);
@@ -131,9 +132,9 @@ command, and `brew deps <package>` will not indicate that `<package>` depends on
 
 Footnotes
 ---------
-<a name="footnote01">1</a>: Apple expressly [warns developers not to use the Apple-supplied versions of Ruby, Perl, Python or any other
+1. <a name="footnote01"> </a> Apple expressly [warns developers not to use the Apple-supplied versions of Ruby, Perl, Python or any other
 scripting languages that might be found on a MacOS installation](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/FileSystemProtections/FileSystemProtections.html#//apple_ref/doc/uid/TP40016462-CH2-DontLinkElementID_2).
-
+2. <a name="footnote02"> </a> Homebrew is [moving away](https://github.com/Homebrew/homebrew-core/issues/31510) from allowing options (since these are maintained by Homebrew itself) in favour of having project owners/users [produce (and thus maintain) their own taps for building from source](https://docs.brew.sh/How-to-Create-and-Maintain-a-Tap).
 
 
 
