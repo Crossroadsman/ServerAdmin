@@ -50,20 +50,89 @@ Usage
 - `install <thing>` installs the package 'thing'; or chain multiple packages: `brew install foo bar baz`
 - `uninstall <thing>` uninstalls the package 'thing'
 - `update` updates Homebrew from the latest version on git (and update the local package listing—called *formulae*)
-- `list` lists all installed *formulae*
+- `list` lists all installed *formulae* (not casks);
 - `doctor` perform various diagnostics on Homebrew and installed packages
 - `search` search the package directory
 - `cask <brew_command> [brew_command_args]` use Homebrew Cask for installation. Typically used for installing GUI applications, e.g,:
-  `brew cask install vlc`
+  `brew cask install vlc`, `brew cask list`
 - `brew cleanup` delete all old applications in the Cellar
 - `brew upgrade` install the latest version (per the local formulae) of all apps in the Cellar (without deleting old versions)
 
+
+Dependencies
+------------
+
+### What depends on `<package>` ###
+
+```console
+$ brew uses lua --installed
+vim
+```
+
+Note: we use the `--installed` flag otherwise homebrew will tell us every package in its index that depends on `<package>`.
+
+Here, vim is the only installed packaged that uses (depends on) lua.
+
+### What does `<package>` depend on ###
+
+```console
+$ brew deps vim
+gdbm
+gettext
+libyaml
+lua
+openssl
+perl
+python
+readline
+ruby
+sqlite
+xz
+```
+
+Here, vim uses all the listed packages above.
+
+To get a list of every installed package and its dependencies:
+```console
+$ brew deps --installed
+...
+nettle: gmp
+openexr: ilmbase
+openjpeg: jpeg libpng libtiff little-cms2
+openssl: 
+p11-kit: libffi
+...
+```
+
+Here we see that `nettle` depends on `gmp`; `openjpeg` depends on `jpeg`, `libpng`, `libtiff`, and `little-cms2`;
+`openssl` doesn't depend on any other packages.
+
+Just list the packages that no other packages depend on (but note caveat below):
+```console
+$ brew leaves
+bash
+bats
+coreutils
+...
+```
+
+Note: `brew leaves` (at least as of Dec 2016) only lists `dependencies` not `requirements`. As such, it is possible to 
+remove a package (trusting the output of `brew leaves`) that is the only installed package meeting a particular requirement,
+which will break the requiring package (this might be fixed in homebrew 2.0.1, since we didn't get the same results as 
+described [here](https://blog.jpalardy.com/posts/untangling-your-homebrew-dependencies/)).
+
+Note: casks are excluded from the dependency listing (both ways). For example, there is no `brew cask uses <package>`
+command, and `brew deps <package>` will not indicate that `<package>` depends on a particular cask.
 
 
 Footnotes
 ---------
 <a name="footnote01">1</a>: Apple expressly [warns developers not to use the Apple-supplied versions of Ruby, Perl, Python or any other
 scripting languages that might be found on a MacOS installation](https://developer.apple.com/library/content/documentation/Security/Conceptual/System_Integrity_Protection_Guide/FileSystemProtections/FileSystemProtections.html#//apple_ref/doc/uid/TP40016462-CH2-DontLinkElementID_2).
+
+
+
+
 
 
 [link01]: https://brew.sh
