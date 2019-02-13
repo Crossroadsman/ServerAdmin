@@ -51,12 +51,16 @@ Usage
 - `uninstall <thing>` uninstalls the package 'thing'
 - `update` updates Homebrew from the latest version on git (and update the local package listing—called *formulae*)
 - `list` lists all installed *formulae* (not casks);
+- `list --version <package>` lists all installed versions of `<package>`
 - `doctor` perform various diagnostics on Homebrew and installed packages
 - `search` search the package directory
 - `cask <brew_command> [brew_command_args]` use Homebrew Cask for installation. Typically used for installing GUI applications, e.g,:
   `brew cask install vlc`, `brew cask list`
-- `brew cleanup` delete all old applications in the Cellar
-- `brew upgrade` install the latest version (per the local formulae) of all apps in the Cellar (without deleting old versions)
+- `cleanup` delete all old applications in the Cellar
+- `upgrade` install the latest version (per the local formulae) of all apps in the Cellar (without deleting old versions)
+- `deps <package>|--installed` list the `<package>`(/all installed packages) and what they depend on
+- `uses <package> --installed` list the installed packages that depend on `<package>`
+- `info <package>` get info about a package
 
 
 Dependencies
