@@ -1,8 +1,42 @@
 API Notes
 =========
 
-API Requests
-------------
+Resources
+---------
+
+- In REST, the nouns are "resources"
+- Resources are often models from the application
+- CRUD operations are performed on resources using specific URLs, these 
+  are 'endpoints'
+- Examples:
+  ```
+  /api/v1/games
+  /api/v1/games/1247
+  ```
+- Always include the API's version in the URL to preserve backward compatibility
+- Unique identifiers should always come after the category identifier
+
+Actions
+-------
+
+The noun is the URL, the verb is the http method:
+- GET: retrieve
+- POST: create
+- PUT: update
+- DELETE: delete
+
+When POSTing, we are adding a resource to a collection. Thus we POST to 
+collection URLs not record URLs.
+
+In contrast, we use PUT to update an existing record, so we use PUT on the
+record's URL not the collection URL.
+
+In principle we can use DELETE with either records or collections, but it's 
+often too dangerous to implement DELETE on collection URLs.
+
+
+Requests
+--------
 
 You can include request parameters in the URL using a query string.
 
@@ -31,8 +65,8 @@ Here are some common headers that many APIs implement:
 The Wikipedia page [List of HTTP Header Fields][wiki_01] has a list of the 
 standardized fields with examples.
 
-API Responses
--------------
+Responses
+---------
 
 ### HTTP Status Codes ###
 (See Wikipedia: [List of HTTP Status Codes][wiki_02])
