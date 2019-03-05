@@ -52,7 +52,7 @@ We can `chown` the directory tree so we don't always need to be superuser:
 ```
 sudo chown -R <username> /home/source
 ```
-(Note this will make `/home/source` and `/home/source/tarballs` owned by <username> but the `/source` symlink will still be owned by
+(Note this will make `/home/source` and `/home/source/tarballs` owned by `<username>` but the `/source` symlink will still be owned by
 root).
 
 We then download our tarball:
