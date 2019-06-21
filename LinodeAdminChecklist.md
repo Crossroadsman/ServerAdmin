@@ -54,7 +54,7 @@ First-time Log in
 - verify by entering `hostname -f` which should respond with the FQDN, obtained by looking up the hostname in the hosts file 
   and returning the associated FQDN
 
-☐ specify timezone
+☐ specify timezone (use None of the Above/UTC)<sup>[2](#footnote02)</sup>
 
 - `dpkg-reconfigure tzdata`
 
@@ -66,7 +66,7 @@ Secure Server
 
 ☐ create limited user account
 
-- `adduser my_user_name`<sup>[2](#footnote02)</sup>
+- `adduser my_user_name`<sup>[3](#footnote03)</sup>
 
 ☐ add limited user to sudo group
 
@@ -76,7 +76,7 @@ Secure Server
 
 ☐ create SSH keypair on local machine
 
-- `ssh-keygen -t rsa -b 4096 -C "<user@email.com>"`<sup>[3](#footnote03)</sup>
+- `ssh-keygen -t rsa -b 4096 -C "<user@email.com>"`<sup>[4](#footnote04)</sup>
 
 ☐ copy public key to server
 
@@ -97,7 +97,7 @@ Other Management
 
 ☐ [Configure git][link01]
 
-☐ [Clone .vimrc][link02]<sup>[4](#footnote04)</sup>
+☐ [Clone .vimrc][link02]<sup>[5](#footnote05)</sup>
 
 ☐ Enable longview
 
@@ -112,12 +112,13 @@ Footnotes
 ---------
 1. <a id="footnote01"> </a>`-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
    any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`.  
-2. <a id="footnote02"> </a>`adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
+2. [Always use UTC](http://yellerapp.com/posts/2015-01-12-the-worst-server-setup-you-can-make.html)
+3. <a id="footnote03"> </a>`adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
    defaults to providing a full profile while `useradd` needs you to manually specify several values. See the [TDD guide][link06] for an 
    example.  
-3. <a id="footnote03"> </a>The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
+4. <a id="footnote04"> </a>The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
    Github's [SSH key generation guide][link07]  
-4. <a id="footnote04"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
+5. <a id="footnote05"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
 
 
 
