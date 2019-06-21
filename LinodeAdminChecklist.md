@@ -122,7 +122,7 @@ Footnotes
 
 
 
-[link01]: https://github.com/Crossroadsman/ServerAdmin/blob/master/git.md 'Crossroadsman: Server Admin: Git'
+[link01]: https://github.com/Crossroadsman/git-notes/blob/master/git.md 'Crossroadsman: Git: Git Notes'
 [link02]: https://github.com/Crossroadsman/.vim 'Crossroadsman: .vimrc'
 [link03]: https://ethanschoonover.com/solarized/
 [link04]: https://github.com/Crossroadsman/ServerAdmin/blob/master/SecuringServer.md 'Crossroadsman: Server Admin: Securing a Server'
