@@ -54,7 +54,7 @@ First-time Log in
 - verify by entering `hostname -f` which should respond with the FQDN, obtained by looking up the hostname in the hosts file 
   and returning the associated FQDN
 
-☐ specify timezone (use None of the Above/UTC)<sup>[2](#footnote02)</sup>
+☐ specify timezone (use None of the Above/UTC)<sup>[3](#footnote02)</sup>
 
 - `dpkg-reconfigure tzdata`
 
@@ -66,7 +66,7 @@ Secure Server
 
 ☐ create limited user account
 
-- `adduser my_user_name`<sup>[3](#footnote03)</sup>
+- `adduser my_user_name`<sup>[3](#footnote04)</sup>
 
 ☐ add limited user to sudo group
 
@@ -76,7 +76,7 @@ Secure Server
 
 ☐ create SSH keypair on local machine
 
-- `ssh-keygen -t rsa -b 4096 -C "<user@email.com>"`<sup>[4](#footnote04)</sup>
+- `ssh-keygen -t rsa -b 4096 -C "<user@email.com>"`<sup>[4](#footnote05)</sup>
 
 ☐ copy public key to server
 
@@ -97,7 +97,7 @@ Other Management
 
 ☐ [Configure git][link01]
 
-☐ [Clone .vimrc][link02]<sup>[5](#footnote05)</sup>
+☐ [Clone .vimrc][link02]<sup>[5](#footnote06)</sup>
 
 ☐ Enable longview
 
