@@ -33,7 +33,7 @@ First-time Log in
 ☐ perform software updates (`apt update && apt upgrade -y`)<sup>[1](#footnote01)</sup>
   (note: when prompted to update Grub, select '*keep the local version installed*')
 
-☐ consider whether appropriate to perform a full (dist) upgrade (`apt full-upgrade`) (previously `apt-get dist-upgrade`)
+☐ consider whether appropriate to perform a full (dist) upgrade (`apt full-upgrade`) (previously `apt-get dist-upgrade`)<sup>[2](#footnote02)</sup>.
 - you can check whether there are packages available using `apt list --upgradable`
 
 ☐ create & activate hostname
@@ -111,14 +111,21 @@ Other Management
 Footnotes
 ---------
 1. <a id="footnote01"> </a>`-y` will run non-interactively, assuming and applying 'yes' as the answer to all prompts (and aborting if
-   any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`.  
-2. [Always use UTC](http://yellerapp.com/posts/2015-01-12-the-worst-server-setup-you-can-make.html)
-3. <a id="footnote03"> </a>`adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
+   any 'undesirable' situations arise). Per the man page.  Replaces `apt-get update && apt-get upgrade -y`. 
+2. <a id="footnote02"> </a>'upgrade' is the safest option and behaves slightly different under `apt-get` than `apt`:
+   i. [`apt-get upgrade`][ubun01]: will upgrade any packages that do not require installing new packages or removing 
+      old packages.
+   ii. [`apt upgrade`][ubun02]: will upgrade any packages. Will install new packages if required for an upgrade. Will never
+      remove an old package.
+   iii. [`apt full-upgrade`][ubun02] (aka [`apt-get dist-upgrade`][ubun01]: will upgrade any packages. Will install new
+      packages and remove old packages as required (using smart conflict resolution where necessary).
+3. <a id="footnote03"> </a>[Always use UTC](http://yellerapp.com/posts/2015-01-12-the-worst-server-setup-you-can-make.html)
+4. <a id="footnote04"> </a>`adduser` is a debian-specific tool that, where available, is generally preferable to `useradd`. `adduser`
    defaults to providing a full profile while `useradd` needs you to manually specify several values. See the [TDD guide][link06] for an 
    example.  
-4. <a id="footnote04"> </a>The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
+5. <a id="footnote05"> </a>The switches (`-t rsa` type RSA, `b 4096` bitsize 4096, `-C "<email>"` comment: email address) come from 
    Github's [SSH key generation guide][link07]  
-5. <a id="footnote05"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
+6. <a id="footnote06"> </a>Note that on the Mac, Terminal needs to be [configured][link03] to show Solarized colours  
 
 
 
@@ -129,3 +136,5 @@ Footnotes
 [link05]: https://www.dnswatch.info/articles/dns-update
 [link06]: https://github.com/hjwp/Book-TDD-Web-Dev-Python/blob/master/server-quickstart.md
 [link07]: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-linux
+[ubun01]: http://manpages.ubuntu.com/manpages/xenial/man8/apt-get.8.html
+[ubun02]: 
