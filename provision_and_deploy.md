@@ -1,6 +1,14 @@
 Provisioning And Deploying
 ==========================
 
+0: Index
+--------
+- [1: Definitions](#s1)
+- [2: Example Server Layout](#s2)
+- [3: Process Checklist](#s3)
+
+
+<a name="s1"> </a>
 1: Definitions
 --------------
 - *provision*: make the server able to host the code;
@@ -10,6 +18,7 @@ Note, a rule of thumb for distinguishing between *provisioning* and *deploying*:
 you are deploying.
 
 
+<a name="s2"> </a>
 2: Example Server Layout
 ------------------------
 ```
@@ -41,13 +50,13 @@ you are deploying.
                ├── etc...
 ```
 
-
+<a name="s3"> </a>
 3: Process
 ----------
-- 3.1: [ ] [Create clean server with non-root user](https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md)
-- 3.2: [ ] [Check the project's `deploy_tools/provisioning_notes` to determine required server-side installs](#s3.2)
-- 3.3: [ ] [Configure any server-side installs](#s3.3)
-- 3.4: [ ] [Run the deploy script](#s3.4a) or follow the [manual deployment instructions](#s3.4b)
+- [ ] 3.1: [Create clean server with non-root user](https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md)
+- [ ] 3.2: [Check the project's `deploy_tools/provisioning_notes` to determine required server-side installs](#s3.2)
+- [ ] 3.3: [Configure any server-side installs](#s3.3)
+- [ ] 3.4: [Run the deploy script](#s3.4a) or follow the [manual deployment instructions](#s3.4b)
 
 <a name="s3.2"> </a>
 ### 3.2: Provisioning Notes ###
@@ -126,6 +135,12 @@ you are deploying.
 
 <a name="s3.4b"> </a>
 ### OR 3.4(b): Manual Deployment ###
-TODO
+
+- After copying deployed files to server:
+  - [ ] `collectstatic`
+  - [ ] `makemigrations` and `migrate`
+  - [ ] may need to restart nginx and/or gunicorn
+
+
 
 [guide_nginx]: https://github.com/Crossroadsman/ServerAdmin/blob/master/nginx.md
