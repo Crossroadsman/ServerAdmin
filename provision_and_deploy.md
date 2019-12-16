@@ -44,10 +44,10 @@ you are deploying.
 
 3: Process
 ----------
-1. [ ] [Create clean server with non-root user](https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md)
-2. [ ] [Check the project's `deploy_tools/provisioning_notes` to determine required server-side installs](#s3.2)
-3. [ ] [Configure any server-side installs](#s3.3)
-4. [ ] [Run the deploy script](#s3.4a) or follow the [manual deployment instructions](#s3.4b)
+- 3.1: [ ] [Create clean server with non-root user](https://github.com/Crossroadsman/ServerAdmin/blob/master/LinodeAdminChecklist.md)
+- 3.2: [ ] [Check the project's `deploy_tools/provisioning_notes` to determine required server-side installs](#s3.2)
+- 3.3: [ ] [Configure any server-side installs](#s3.3)
+- 3.4: [ ] [Run the deploy script](#s3.4a) or follow the [manual deployment instructions](#s3.4b)
 
 <a name="s3.2"> </a>
 ### 3.2: Provisioning Notes ###
