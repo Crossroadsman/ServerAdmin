@@ -88,8 +88,8 @@ you are deploying.
 
 #### 3.3.1: nginx ####
 
-- In the above example, we needed to install [nginx][guide_nginx]. The `deploy_tools/provisioning_notes.md` should
-  have a section with configuration notes for these applications.
+- In the above example, we needed to install [nginx][guide_nginx]. The `deploy_tools/provisioning_notes.md`
+  should have a section with configuration notes for these applications.
 
   Example:
   ```
@@ -119,6 +119,14 @@ you are deploying.
 
 - We would create a file called, e.g., `staging.mysite.com` in `/etc/nginx/sites-available` based on the specified template.
 
+- We can replace the instances of `DOMAIN` with the actual domain values by doing something like:
+  ```console
+  server-directory$ cat ./deploy_tools/nginx.template.conf \
+      | sed "s/DOMAIN/staging.mysite.com/g" \
+      | sed "s/USERNAME/myuser/g" \
+      | sudo tee /etc/nginx/sites-available/staging.mysite.com > /dev/null
+  ```
+
 - Enable the site by creating a symlink in `sites-enabled` to the config in `sites-available`:
   ```console
   $ SITENAME=staging.mysite.com
@@ -126,6 +134,61 @@ you are deploying.
   $ ln -s /etc/nginx/sites-available/$SITENAME $SITENAME
   $ sudo systemctl reload nginx  # tell nginx to reload its config
   ```
+
+#### 3.3.2: Gunicorn systemd Service ####
+
+- In the above example, we needed to install [Gunicorn][guide_gunicorn]. The `deploy_tools/provisioning_notes.md`
+  should have a section with configuration notes for these applications.
+
+  Example:
+  ```
+  Gunicorn systemd Service
+  ------------------------
+  - see `gunicorn-systemd.template.service`
+  - replace `DOMAIN` with, e.g., `staging.mysite.com`
+  - replace `USERNAME` with the appropriate Unix username
+  - replace `APPNAME` with the appropriate application name
+  ...
+  ```
+
+- Here is an example `gunicorn-systemd.template.service`:
+  ```gunicorn
+  [Unit]
+  Description=Gunicorn server for DOMAIN
+
+  [Service]
+  Restart=on-failure
+  User=USERNAME
+  WorkingDirectory=/home/USERNAME/sites/DOMAIN
+  EnvironmentFile=/home/USERNAME/sites/DOMAIN/.env
+
+  ExecStart=/home/USERNAME/sites/DOMAIN/venv/bin/gunicorn \
+      --bind unix:/tmp/DOMAIN.socket \
+      APPNAME.wsgi:application
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+
+- replace `DOMAIN` with, e.g., `staging.mysite.com`, `USERNAME` with the appropriate Unix username,
+  `APPNAME` with the appropriate application name:
+  ```console
+  server$ cat ./deploy_tools/gunicorn-systemd.template.service \
+      | sed "s/DOMAIN/staging.mysite.com/g" \
+      | sed "s/USERNAME/myuser/g" \
+      | sed "s/APPNAME/myapplicationname/g" \
+      | sudo tee /etc/systemd/system/gunicorn-staging.mysite.com.service
+  ```
+
+- start the service immediately: `sudo systemctl start gunicorn`
+
+- set the service to start on boot: `sudo systemctl enable gunicorn`
+
+- to reload the service:
+  - first reload the service definition file: `sudo systemctl daemon-reload`
+  - then restart gunicorn: `sudo systemctl restart gunicorn`
+
+
 
 <a name="s3.4a"> </a>
 ### 3.4(a): Deploy Script ###
@@ -144,3 +207,4 @@ you are deploying.
 
 
 [guide_nginx]: https://github.com/Crossroadsman/ServerAdmin/blob/master/nginx.md
+[guide_gunicorn]: https://github.com/Crossroadsman/ServerAdmin/blob/master/gunicorn.md
