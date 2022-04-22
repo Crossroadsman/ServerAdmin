@@ -99,7 +99,14 @@ Other Management
 
 ☐ [Clone .vimrc][link02]<sup>[6](#footnote06)</sup>
 
-☐ Enable longview
+☐ Enable Longview:
+
+- Create a longview client in the Linode control panel
+- Copy the command from the control panel into the terminal
+- Ensure that the firewall allows https (at least from `longview.linode.com`)
+- Reboot the Linode (or start the service)
+- Check that the longview process is running on the VPS by entering `sudo systemctl status longview`
+- If still not running, review the troubleshooting doc at [Troubleshooting Linode Longview][lind01]
 
 
 
@@ -129,6 +136,7 @@ Footnotes
 
 
 
+[lind01]: https://www.linode.com/docs/guides/troubleshooting-linode-longview/
 [link01]: https://github.com/Crossroadsman/git-notes/blob/master/git.md 'Crossroadsman: Git: Git Notes'
 [link02]: https://github.com/Crossroadsman/.vim 'Crossroadsman: .vimrc'
 [link03]: https://ethanschoonover.com/solarized/
